@@ -1,0 +1,234 @@
+\documentclass[8pt]{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsopn}
+\usepackage{comment}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{bussproofs}
+\usepackage[all, 2cell]{xy}
+\usepackage[all]{xy}
+\usepackage{rotating}
+\usepackage{lscape}
+\usepackage{minted}
+
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}[section]
+
+\theoremstyle{definition}
+\newtheorem{claim}{Claim}[section]
+
+\theoremstyle{definition}
+\newtheorem{ex}{Example}[section] 
+
+\theoremstyle{definition}
+\newtheorem{cons}{Construction}[section] 
+
+\theoremstyle{definition}
+\newtheorem{rem}{Remark}[section] 
+
+
+\theoremstyle{definition}
+\newtheorem{prop}{Proposition}[section]
+
+\theoremstyle{definition}
+\newtheorem{lemma}{Lemma}[section]
+
+\theoremstyle{definition}
+\newtheorem{fact}{Fact}[section]
+
+\theoremstyle{definition}
+\newtheorem{remark}{Remark}[section]
+
+\theoremstyle{definition}
+\newtheorem{notation}{Notation}[section]
+
+\theoremstyle{definition}
+\newtheorem{example}{Example}[section]
+
+\theoremstyle{col}
+\newtheorem{col}{Corollary}
+
+\theoremstyle{question}
+\newtheorem{question}{Question}
+
+\let\strokeL\L
+\renewcommand\L{\mathbf{L}}
+
+\title{Some Notes on Set Theory, Pt 1}
+\author{Daniel Rogozin}
+\date{ }
+
+\begin{document}
+
+\maketitle
+
+\section{Cardinals}
+
+An ordinal number $\alpha$ is a \emph{cardinal number} if no $\beta < \alpha$ such that $|\alpha| = |\beta|$.
+Further, we shall use $\kappa, \lambda, \mu$ to denote cardinal numbers.
+
+Let $W$ be a well-ordered set, then there exists an ordinal $\alpha$ such that $|W| = |\alpha|$, so we let:
+\begin{center}
+  $|W| = \text{the least ordinal $\alpha$ such that $|W| = |\alpha|$}$
+\end{center}
+
+An \emph{aleph} is an infinite cardinal number. 
+
+Let $\alpha$ be an ordinal, then $\alpha^+$ is the least cardinal bigger than $\alpha$.
+
+\begin{lemma}
+  $ $
+
+  \begin{enumerate}
+    \item For every $\alpha$ there is a cardinal number $\kappa$ such that $\kappa > \alpha$.
+    \item Let $X$ be a set of cardinal, then $\sup X$ is a cardinal.
+  \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+  $ $
+
+  \begin{enumerate}
+    \item Let $X$ be a set, let 
+    \begin{center}
+      $h(X) = \text{the least $\alpha$ such that no injection from $\alpha$ into $X$}$
+    \end{center}
+
+    Consider $X \times X$, so $2^{X \times X}$ is the set of relations on $X$ and there 
+    are well-orderings of subsets of $X$ amongst all relations in $2^{X \times X}$, so consider the set
+    \begin{center}
+      $Y = \{ R \subseteq Y \times Y \: | \: Y \subseteq X \: \& \: \text{$Y$ is a well-ordering }\}$
+    \end{center}
+
+    So there is a set of ordinals:
+    \begin{center}
+      $Ord(Y) = \{ \alpha \in \operatorname{Ord} \: | \: \exists R \in Y \: \text{$\alpha$ is the order type of $Y$}  \}$
+    \end{center}
+    Note that $Ord(Y)$ is a set and take the least element ordinal $\beta$ does not belong to $Ord(Y)$. So $h(X) = \beta$.
+    To be more precise, we have:
+    \begin{center}
+      $\beta = \sup Ord(Y)$
+    \end{center}
+
+    Then $|\alpha| < h(\alpha)$ for each ordinal $\alpha$.
+
+    \item Let $\alpha = \sup X$. Let $f$ be a one-to-one function from $\alpha$ onto some $\beta < \alpha$.
+    Let $\kappa$ be a cardinal such that $\beta < \kappa \leq \alpha$, then $|\kappa| = |\{ f(\xi) \: | \: \xi < \kappa \}| \leq \beta$, 
+    so contradiction and $\alpha$ is a cardinal.
+  \end{enumerate}
+\end{proof}
+
+The enumeration of all alephs is defined by transfinite induction:
+\begin{itemize}
+  \item $\aleph_0 = \omega$
+  \item $\aleph_{\alpha + 1} =\aleph_{\alpha}^+ = \omega_{\alpha+1}$
+  \item If $\beta$ is a limit ordinal, then $\aleph_{\beta} = \omega_{\beta} = \sup \{ \omega_{\alpha} \: | \: \alpha < \beta \}$.
+\end{itemize}
+
+A cardinal of the form $\aleph_{\alpha + 1}$ is a \emph{successor} cardinal, 
+a cardinal $\aleph_{\beta}$ for limit $\beta$ is a \emph{limit cardinal}.
+
+\subsection{The ordering of $\alpha \times \alpha$}
+
+Define a well-ordering of the class $\operatorname{Ord} \times \operatorname{Ord}$ the following way:
+
+\begin{center}
+  $(\alpha, \beta) < (\gamma, \delta)$ iff either $\max(\alpha, \beta) < \max(\gamma, \delta)$ or \\ $\max(\alpha, \beta) = \max(\gamma, \delta)$ and $\alpha < \gamma$ or \\ $\max(\alpha, \beta) = \max(\gamma, \delta)$ and $\alpha = \gamma$ and $\beta < \delta$.
+\end{center}
+
+Then $<$ is a well-ordering and linear relation on $\operatorname{Ord}$. 
+Moreover, $\alpha \times \alpha$ is the initial segment of $(\operatorname{Ord} \times \operatorname{Ord}, <)$ given by $(0, \alpha)$.
+
+We let:
+
+\begin{center}
+  $\Gamma(\alpha, \beta) = \text{the order type of } \{ (\xi, \eta) \: | \: (\xi, \eta) < (\alpha, \beta) \}$
+\end{center}
+
+$\Gamma$ is also one-to-one:
+\begin{center}
+  $(\alpha, \beta) < (\gamma, \delta)$ iff $\Gamma(\alpha, \beta) < \Gamma(\gamma, \delta)$
+\end{center}
+
+$\Gamma$ is increasing and continuous and $\Gamma(\alpha \times \alpha) = \alpha$ for arbitrarily large $\alpha$.
+
+\begin{theorem}
+  $\aleph_{\alpha} \cdot \aleph_{\alpha} = \aleph_{\alpha}$
+\end{theorem}
+
+\begin{proof}
+  Let us show that $\Gamma(\omega_{\alpha} \times \omega_{\alpha}) = \omega_{\alpha}$. 
+  \begin{enumerate}
+    \item If $\alpha = 0$, then $\Gamma(\omega \times \omega) = \omega$.
+    \item Let $\alpha$ be the least ordinal such that $\Gamma(\omega_{\alpha} \times \omega_{\alpha}) \neq \omega_{\alpha}$.
+    Let $\beta, \gamma$ be ordinals such that $\Gamma(\beta, \gamma) = \omega_{\alpha}$.
+    Take $\delta < \omega_{\alpha}$ such that $\delta > \beta, \gamma$. 
+    $\delta \times \delta$ is the initial segment of $\operatorname{Ord}^2$ and it contains $(\beta, \gamma)$. 
+    So $\Gamma(\delta \times \delta) \supset \omega_{\alpha} = \Gamma(\beta, \gamma)$.
+    Thus $|\delta \times \delta| \geq \aleph_{\alpha}$. 
+    But $|\delta \times \delta| = |\delta| \cdot |\delta| = |\delta|$. But $|\delta| < \aleph_{\alpha}$ by the assumption 
+    of minimality of $\alpha$. Contradiction.
+  \end{enumerate}
+\end{proof}
+
+As a corollary:
+\begin{center}
+  $\aleph_{\alpha} + \aleph_{\beta} = \aleph_{\alpha} \cdot \aleph_{\beta} = \max(\aleph_{\alpha}, \aleph_{\beta})$
+\end{center}
+
+\subsection{Cofinality}
+
+Let $\alpha, \beta > 0$ be limit ordinals. An increasing $\beta$-sequence 
+$\langle \alpha_{\xi} : \xi < \beta \rangle$ is \emph{cofinal} in $\alpha$ if $\lim_{\xi \to \beta} \alpha_{\xi} = \alpha$.
+A subset $X \subseteq \alpha$ is \emph{cofinal} in $\alpha$ whenever $\sup X = \alpha$.
+
+Let $\alpha > 0$ be a limit ordinal, the \emph{cofinality} of $\alpha$ is:
+\begin{center}
+  $\operatorname{cf} \alpha = \text{the least ordinal $\beta$ such that $\exists$ 
+  $\langle \alpha_{\xi} : \xi < \beta \rangle$ such that $\lim_{\xi < \beta} \alpha_{\xi} = \alpha$}$
+\end{center}
+
+  Note that for each $\alpha$ $\operatorname{cf} \alpha$ is a limit ordinal and $\operatorname{cf} \alpha \leq \alpha$.
+
+\begin{lemma}
+  For each $\alpha$ $\operatorname{cf} (\operatorname{cf} \alpha) \leq \operatorname{cf} \alpha$.
+\end{lemma}
+
+\begin{proof}
+  Let $\langle \alpha_{\xi} : \xi < \beta \rangle$ be cofinal in $\alpha$ and let $\langle \xi_{\nu} : \nu < \gamma \rangle$ be cofinal in $\beta$.
+
+  Consider $\langle \alpha_{\xi_{\nu}} : \nu < \gamma \rangle$, then
+  \begin{center}
+    $\lim \limits_{\nu < \gamma} \alpha_{\xi_{\nu}} = \alpha$
+  \end{center}
+  since the limit of a subsequence equals the limit of a sequence as in usual real analysis or topology.
+\end{proof}
+
+\begin{lemma}
+  Let $\alpha$ be a non-zero limit ordinal, then
+
+  \begin{enumerate}
+    \item If $A \subseteq \alpha$ and $\sup A = \alpha$, the order-type of $A$ is at least $\alpha$.
+    \item Let $\beta_0 \leq \beta_1 \leq \dots \leq \beta_{\xi} \leq \dots $ for $\xi < \gamma$ 
+    be a non-decreasing sequence of ordinals such that $\lim_{\xi < \gamma} = \alpha$, then $\operatorname{cf} \gamma = \alpha$.
+  \end{enumerate}
+\end{lemma}
+
+\section{The Baire Space}
+
+\section{The Axiom of Choice}
+
+\section{Cardinal Arithmetic via the Generalised Continuum Hypothesis}
+
+\bibliographystyle{alpha}
+\bibliography{Text}
+
+
+\end{document}
