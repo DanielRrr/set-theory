@@ -326,7 +326,7 @@ Let $\kappa$ be a limit ordinal, a subset $X \subset \kappa$ is \emph{bounded} i
   \end{enumerate}
 \end{proof}
 
-\begin{theorem}
+\begin{theorem}~\label{expcofin}
   Let $\kappa$ be an infinite cardinal, then $\kappa < \kappa^{\operatorname{cf} \kappa}$.
 \end{theorem}
 
@@ -351,6 +351,80 @@ An uncountable cardinal $\kappa$ is \emph{weakly inaccessible} if it is limit an
 existence of weakly inaccessible cardinals in ZFC.
 
 \section{Real Numbers and The Baire Space}
+
+The \emph{continuum} is the cardinality of $\mathbb{R}$ denoted as $\mathfrak{c}$.
+
+\begin{theorem} {\bf (Cantor)}
+
+  $\aleph_0 < \mathfrak{c}$.
+\end{theorem}
+
+\begin{proof}
+  One can think of it as a consequence of Theorem~\ref{expcofin}.
+\end{proof}
+
+\begin{definition} The \emph{Continuum Hypothesis} (CH) is the following equation:
+
+  \begin{center}
+    $\aleph_1 = \mathfrak{c}$.
+  \end{center}
+\end{definition}
+
+Let $(P, <)$ be an ordered set, a subset $D \subset P$ is a \emph{dense} 
+subset of $P$ if $a < b$ in $P$ implies $a < d$ and $d < b$ for some $d \in D$.
+
+\begin{theorem}
+  $(\mathbb{R}, <)$ is the unique complete linear ordering that has a 
+  countable dense subset isomorphic to $(\mathbb{Q}, <)$.
+\end{theorem}
+
+\begin{proof}
+
+  Let $C$ and $C'$ be two complete dense linear orderings and let 
+  $P$ and $P'$ be dense in $C$ and $C'$ respectively. 
+  Let $f : P \cong P'$, so $f$ can be extended to $f^* : C \cong C'$ by letting:
+
+  \begin{center}
+    $f^* : x \mapsto \sup \{ f(p) \: | \: p \in P \: \& \: p \leq x \}$
+  \end{center}
+
+  That is, ${(.)}^*$ is functorial.
+\end{proof}
+
+The existence of $(\mathbb{R}, <)$ follows from the following general statement:
+\begin{theorem}
+  Let $(P, <)$ be a dense unbounded linear ordering, then there exists a complete dense unbounded linear ordering 
+  $(C, \prec)$ such that:
+
+  \begin{enumerate}
+    \item $(P, <)$ embeds to $(C, \prec)$.
+    \item $P$ is dense in $C$.
+  \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+  Recall that a \emph{Dedekind cut} in $P$ is a pair $(A, B)$ of disjoint subsets of $P$ such that:
+  \begin{enumerate}
+    \item $A \cup B = P$.
+    \item $\forall a \in A \: \forall b \in B \: a < b$.
+    \item $A$ has no greatest element.
+  \end{enumerate}
+
+  Let $C$ be the set of all Dedekind cuts in $P$. We let $(A_1, B_1) \preceq (A_2, B_2)$
+  if $A_1 \subset A_2$ and $B_2 \subset B_1$. $(C, \preceq)$ is complete.
+
+  Let $\{ C_i \: | \: i \in I \} \neq \emptyset$ be a bounded subset of $C$, then 
+  $(\bigcup \limits_i A_i, \bigcap \limits_i B_i)$ is its supremum.
+
+  Let $p \in P$, let
+  \begin{center}
+    $A_p = \{ x \in P \: | \: x < p \}$
+
+    $B_p = \{ x \in P \: | \: x \geq p \}$
+  \end{center}
+
+  Then $(\{ (A_p, B_p) \: | \: p \in P \}, \preceq) \cong (P, <)$ and is dense in $C$.
+\end{proof}
 
 \section{The Axiom of Choice}
 
