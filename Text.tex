@@ -192,7 +192,7 @@ A subset $X \subseteq \alpha$ is \emph{cofinal} in $\alpha$ whenever $\sup X = \
 Let $\alpha > 0$ be a limit ordinal, the \emph{cofinality} of $\alpha$ is:
 \begin{center}
   $\operatorname{cf} \alpha = \text{the least ordinal $\beta$ such that $\exists$ 
-  $\langle \alpha_{\xi} : \xi < \beta \rangle$ such that $\lim_{\xi < \beta} \alpha_{\xi} = \alpha$}$
+  $\langle \alpha_{\xi} : \xi < \beta \rangle$ such that $\lim_{\xi \to \beta} \alpha_{\xi} = \alpha$}$
 \end{center}
 
   Note that for each $\alpha$ $\operatorname{cf} \alpha$ is a limit ordinal and $\operatorname{cf} \alpha \leq \alpha$.
@@ -215,11 +215,35 @@ Let $\alpha > 0$ be a limit ordinal, the \emph{cofinality} of $\alpha$ is:
   Let $\alpha$ be a non-zero limit ordinal, then
 
   \begin{enumerate}
-    \item If $A \subseteq \alpha$ and $\sup A = \alpha$, the order-type of $A$ is at least $\alpha$.
+    \item If $A \subseteq \alpha$ and $\sup A = \alpha$, the order-type of $A$ is at least $\operatorname{cf} \alpha$.
     \item Let $\beta_0 \leq \beta_1 \leq \dots \leq \beta_{\xi} \leq \dots $ for $\xi < \gamma$ 
-    be a non-decreasing sequence of ordinals such that $\lim_{\xi < \gamma} = \alpha$, then $\operatorname{cf} \gamma = \alpha$.
+    be a non-decreasing sequence of ordinals such that $\lim_{\xi \to \gamma} = \alpha$, then $\operatorname{cf} \gamma = \alpha$.
   \end{enumerate}
 \end{lemma}
+
+\begin{proof}
+
+  \begin{enumerate}
+    \item The order-type of $A$ is the length of the increasing enumeration of $A$, 
+    the limit of which (as an increasing sequence) is $\alpha$.
+    \item If $\gamma = \lim_{\nu \to \operatorname{cf} \gamma} \xi_{\nu}$,
+    then $\alpha = \lim_{\nu \to \operatorname{cf} \gamma} \beta_{\xi_{\nu}}$,
+    and the non-decreasing sequence $\langle \beta_{\xi_{\nu}} : \nu < \operatorname{cf} \gamma\rangle$
+    has an increasing sequence of the length at most $\operatorname{cf} \gamma$ and it has the same limit, 
+    so $\operatorname{cf} \alpha \leq \operatorname{cf} \gamma$.
+
+    To show $\operatorname{cf} \gamma \leq \operatorname{cf} \alpha$, 
+    assume $\alpha = \lim_{\nu \to \operatorname{cf} \alpha} \alpha_{\nu}$.
+    Take $\nu < \operatorname{cf} \alpha$, 
+    let $\xi_{\nu}$ be the least $\xi$ greater than all $\xi_{\iota}$ for $\iota < \nu$
+    such that $\beta_{\xi} > \alpha_{\nu}$.
+    We have $\alpha = \lim_{\nu \to \operatorname{cf} \alpha} \beta_{\xi_{\nu}}$, so
+    $\gamma = \lim_{\nu \to \operatorname{cf} \alpha} \xi_{\nu}$, so the inequation is proved.
+  \end{enumerate}
+\end{proof}
+
+An infinite cardinal $\aleph_{\alpha}$ is \emph{regular} if $\operatorname{cf} \omega_{\alpha} = \omega_{\alpha}$.
+$\aleph_{\alpha}$ is \emph{singular} if $\operatorname{cf} \omega_{\alpha} < \omega_{\alpha}$.
 
 \section{The Baire Space}
 
