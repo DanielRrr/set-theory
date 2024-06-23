@@ -211,11 +211,11 @@ Let $\alpha > 0$ be a limit ordinal, the \emph{cofinality} of $\alpha$ is:
   since the limit of a subsequence equals the limit of a sequence as in usual real analysis or topology.
 \end{proof}
 
-\begin{lemma}
+\begin{lemma}~\label{confin1}
   Let $\alpha$ be a non-zero limit ordinal, then
 
   \begin{enumerate}
-    \item If $A \subseteq \alpha$ and $\sup A = \alpha$, the order-type of $A$ is at least $\operatorname{cf} \alpha$.
+    \item~\label{confin1.1} If $A \subseteq \alpha$ and $\sup A = \alpha$, the order-type of $A$ is at least $\operatorname{cf} \alpha$.
     \item Let $\beta_0 \leq \beta_1 \leq \dots \leq \beta_{\xi} \leq \dots $ for $\xi < \gamma$ 
     be a non-decreasing sequence of ordinals such that $\lim_{\xi \to \gamma} = \alpha$, then $\operatorname{cf} \gamma = \alpha$.
   \end{enumerate}
@@ -245,7 +245,112 @@ Let $\alpha > 0$ be a limit ordinal, the \emph{cofinality} of $\alpha$ is:
 An infinite cardinal $\aleph_{\alpha}$ is \emph{regular} if $\operatorname{cf} \omega_{\alpha} = \omega_{\alpha}$.
 $\aleph_{\alpha}$ is \emph{singular} if $\operatorname{cf} \omega_{\alpha} < \omega_{\alpha}$.
 
-\section{The Baire Space}
+\begin{lemma}
+  Let $\alpha$ be a limit ordinal, then $\operatorname{cf} \alpha$ is a regular cardinal.
+\end{lemma}
+
+\begin{proof}
+  If $\alpha$ is not a cardinal, then there exists an ordinal $\beta < \alpha$ such that 
+  $|\beta| = |\alpha|$, 
+  then we construct a cofinal sequence in $\alpha$ of length $|\beta|$, then $\operatorname{cf} \alpha = |\beta|$ 
+  and $\operatorname{cf} \alpha < \alpha$.
+\end{proof}
+
+Let $\kappa$ be a limit ordinal, a subset $X \subset \kappa$ is \emph{bounded} if $\sup X < \kappa$ and 
+\emph{unbounded} if $\sup X = \kappa$.
+
+\begin{lemma} Let $\kappa$ be an aleph, then:
+
+  \begin{enumerate}
+    \item If $X \subset \kappa$ and $|X| < \operatorname{cf} \kappa$, then $X$ is bounded.
+    \item If $\lambda$ < $\operatorname{cf} \kappa$ and $f : \lambda \to \kappa$, 
+    then $\operatorname{Im}f$ is bounded in $\kappa$.
+  \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+
+  \begin{enumerate}
+    \item Let $X$ be such subset of $\kappa$ and assume $X$ is unbounded, so $\sup X = \kappa$.
+    By~\ref{confin1.1} of Lemma~\ref{confin1}, the order-type of $X$ is at least $\operatorname{cf} \kappa$, which contradicts to 
+    $|X| < \operatorname{cf} \kappa$, so $X$ is bounded.
+    \item  Follows from the first item.
+  \end{enumerate}
+\end{proof}
+
+\begin{lemma} {\bf (Hausdorff)}
+
+  Let $\kappa$ be a cardinal, then the following are equivalent:
+
+  \begin{enumerate}
+    \item $\kappa$ is singular.
+    \item There is a cardinal $\lambda < \kappa$ and a family $\{ S_{\xi} \: | \: \xi < \lambda \}$ such that
+    each $S_{\xi} \subset \kappa$, $|S_{\xi}| < \kappa$ and $\kappa = \bigcup \limits_{\xi < \lambda} S_{\xi}$.
+  \end{enumerate}
+
+\end{lemma}
+
+\begin{proof}
+  $ $
+
+  \begin{enumerate}
+    \item (1) $\Rightarrow$ (2).
+
+    If $\kappa$ is singular, then there is an increasing sequence 
+    $\langle \alpha_{\xi} \: : \: \xi < \operatorname{cf} \kappa \rangle$, so a family of required subsets is
+    actually a family of those $\alpha_{\xi}$'s and $\lambda = \operatorname{cf} \kappa$ which is strictly less that $\kappa$
+    since $\kappa$ is singular.
+    \item (2) $\Rightarrow$ (1).
+    
+    Let $\lambda$ be the least cardinal such that $\lambda < \kappa$ and there exists a family
+    $\{ S_{\xi} \: | \: \xi < \lambda \}$ where each $S_{\xi} \subset \kappa$, $|S_{\xi}| < \kappa$ and
+    \begin{center}
+      $\kappa = \bigcup \limits_{\xi < \lambda} S_{\xi}$
+    \end{center}
+
+    For each $\xi < \lambda$, let $\beta_{\xi}$ be the order-type of 
+    $\cup_{\nu < \xi} S_{\nu}$. The sequence $\langle \beta_{\xi} : \xi < \lambda \rangle$ is non-decreasing and 
+    each $\beta_{\xi} < \kappa$ for all $\xi < \lambda$ since $\lambda$ is minimal.
+
+    Let us show that $\lim \limits_{\xi \to \kappa} \beta_{\xi} = \kappa$ to show that 
+    $\operatorname{cf} \kappa \leq \lambda$.
+
+    Assume $\beta = \lim \limits_{\xi \to \kappa} \beta_{\xi}$. There is a one-to-one mapping 
+    $f : \bigcup \limits_{\xi < \beta} S_{\xi} \to \lambda \times \beta$ such that:
+    \begin{center}
+      $f : \alpha \mapsto (\xi, \gamma)$
+    \end{center}
+    where $\xi$ is the least ordinal such that $\alpha \in S_{\xi}$ and $\gamma$ is the order-type of $S_{\xi} \cap \gamma$.
+
+    We have $\lambda < \kappa$ and $|\lambda \times \beta| = \lambda \cdot |\beta|$, then $\kappa = \beta$.
+  \end{enumerate}
+\end{proof}
+
+\begin{theorem}
+  Let $\kappa$ be an infinite cardinal, then $\kappa < \kappa^{\operatorname{cf} \kappa}$.
+\end{theorem}
+
+\begin{proof}
+
+  Let $F$ be a collection of $\kappa$ functions from $\operatorname{cf} \kappa$ to $\kappa$:
+  \begin{center}
+    $F = \{ f_{\alpha} : \operatorname{cf} \kappa \to \kappa \: | \: \alpha < \kappa \}$
+  \end{center}
+
+  Let us construct $f$ that does not belong to $F$.
+
+  We have $\kappa = \lim_{\xi < \operatorname{cf} \kappa} \alpha_{\xi}$, for $\xi < \operatorname{cf} \kappa$ we let:
+  \begin{center}
+    $f(\xi) = \text{least $\gamma$ such that $\gamma \neq \forall \alpha < \alpha_{\xi} \: f_{\alpha} \neq \gamma$}$
+  \end{center}
+
+  Such $\gamma$ does exist and $f$ is different from all the $f_{\alpha}$.
+\end{proof}
+
+An uncountable cardinal $\kappa$ is \emph{weakly inaccessible} if it is limit and regular, but we cannot prove the
+existence of weakly inaccessible cardinals in ZFC.
+
+\section{Real Numbers and The Baire Space}
 
 \section{The Axiom of Choice}
 
