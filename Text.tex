@@ -52,8 +52,8 @@
 \theoremstyle{definition}
 \newtheorem{example}{Example}[section]
 
-\theoremstyle{col}
-\newtheorem{col}{Corollary}
+\theoremstyle{definition}
+\newtheorem{col}{Corollary}[section]
 
 \theoremstyle{question}
 \newtheorem{question}{Question}
@@ -298,7 +298,7 @@ Let $\kappa$ be a limit ordinal, a subset $X \subset \kappa$ is \emph{bounded} i
 
     If $\kappa$ is singular, then there is an increasing sequence 
     $\langle \alpha_{\xi} \: : \: \xi < \operatorname{cf} \kappa \rangle$, so a family of required subsets is
-    actually a family of those $\alpha_{\xi}$'s and $\lambda = \operatorname{cf} \kappa$ which is strictly less that $\kappa$
+    actually a family of those $\alpha_{\xi}$'s and $\lambda = \operatorname{cf} \kappa$ which is strictly less than $\kappa$
     since $\kappa$ is singular.
     \item (2) $\Rightarrow$ (1).
     
@@ -425,6 +425,91 @@ The existence of $(\mathbb{R}, <)$ follows from the following general statement:
 
   Then $(\{ (A_p, B_p) \: | \: p \in P \}, \preceq) \cong (P, <)$ and is dense in $C$.
 \end{proof}
+
+$\mathbb{Q}$ is dense in $\mathbb{R}$, so every open interval $(a, b)$ contains some rational number.
+Then if $S$ is a disjoint collection of open intervals, then $S$ is at most countable.
+
+Let $P$ be a dense linearly ordered set, if every disjoint collection of open intervals is at most countable, then we say
+that $P$ satisfies the \emph{countable chain condition}.
+
+\emph{{\bf (Suslin's Problem)} Let $P$ be a dense linearly ordered set satisfying the countable chain condition. Is $P$ isomorphic to $(\mathbb{R}, <)$?}
+
+Note that neither Suslin's Problem nor its negation can be decided in ZFC.
+
+\subsection{Topology of $\mathbb{R}$}
+
+The real line is equipped with the natural topology induced by the metric $d(a, b) = |b - a|$ coincides with
+the order topology on $(\mathbb{R}, <)$. $\mathbb{R}$ is also a complete separable metric space.
+
+Every open set in $\mathbb{R}$ is the union of intervals with rational endpoints, so there are continuum many open sets 
+(and the same observation holds for open sets as well).
+
+A subset $P$ is \emph{perfect} is it has no isolated points.
+
+\begin{theorem}
+  Every perfect set $P$ has cardinality $\mathfrak{c}$.
+\end{theorem}
+
+\begin{proof}
+  We construct a one-to-one function $F$ from $\{ 0, 1\}^{\omega}$ to $P$. 
+  Let $S$ be the set of all finite binary sequences and let $s \in S$.
+  
+  By induction on $len(s)$ one can find closed intervals $I_s$ 
+  such that for each $n < \omega$ and for each $s \in S$ such that $len(s) = n$:
+  \begin{enumerate}
+    \item $I_s \cap P$ is perfect,
+    \item the diameter of $I_s$ is $\leq 1/2$,
+    \item $I_{0:s}, I_{1:s} \subset I_s$ and $I_{0:s} \cap I_{1:s} = \emptyset$
+  \end{enumerate}
+
+  Take $f \in \{ 0, 1\}^{\omega}$, the set $P \cap \bigcap \limits_{n < \omega} I_{f \upharpoonright n}$ has exactly one element, so let:
+  \begin{center}
+    $F : f \mapsto \bigcap \limits_{n < \omega} I_{f \upharpoonright n}$
+  \end{center}
+\end{proof}
+
+\begin{theorem} ({\bf Cantor-Bendixon})
+
+ If $F$ is an uncountable closed set, then $F = P \cup S$, where $P$ is perfect and $S$ is at most countable.
+
+\end{theorem}
+
+\begin{proof}
+
+\item Let $F \subset \mathbb{R}$, let
+\begin{center}
+  $F^{'} = \text{the set of all limit points of $F$}$
+\end{center}
+$F^{'}$ is also called the \emph{derived set} of $F$. $F'$ is closed and obviously a subset of $A$. 
+
+We let:
+\begin{enumerate}
+  \item $F_0 = A$.
+  \item $F_{\alpha+1} = F^{'}_{\alpha}$.
+  \item $F_{\alpha} = \bigcap \limits_{\gamma < \alpha} F_{\gamma}$ if $\alpha > 0$ is a limit ordinal.
+\end{enumerate}
+
+Since $F_0 \supset F_1 \supset \dots \supset F_{\alpha} \supset$, so we have an ordinal $\theta$ such that 
+$F_{\theta} = F_{\theta + 1}$ (otherwise we could map the proper class of ordinals onto some set).
+We let $P = F_{\alpha}$. If $P$ is nonempty, then $P$ is also perfect. 
+
+Let us show that $F - P$ is at most countable. 
+Let $\langle J_k : k < \omega \rangle$ be an enumeration of rational intervals. We have
+\begin{center}
+$F - P = \bigcup \limits_{\alpha < \theta} (F_{\alpha} - F_{\alpha + 1})$
+\end{center}
+So if $a \in F - P$, then there exists $\alpha < \theta$ such that $a \in F_{\alpha} - F_{\alpha + 1}$, that is,
+$a$ is an isolated point of $F_{\alpha}$. We let $k_a$ be the least $k$ such that $a$ 
+is the only point of $F_{\alpha}$ in $J_k$. 
+
+If $\alpha \leq \beta$ and $a \neq b$ and $b$ is isolated in $F_{\beta}$, then $b \notin J_{k_a}$, so $k_a \neq k_b$, so
+the mapping $a \mapsto k_a$ is one-to-one.
+
+\end{proof}
+
+\begin{col}
+  If $C \subseteq \mathbb{R}$ is closed, then either $|C| = 2^{\aleph_0}$ or $|C| \leq \aleph_0$.
+\end{col}
 
 \section{The Axiom of Choice}
 
