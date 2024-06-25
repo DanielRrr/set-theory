@@ -468,7 +468,7 @@ A subset $P$ is \emph{perfect} is it has no isolated points.
   \end{center}
 \end{proof}
 
-\begin{theorem} ({\bf Cantor-Bendixon})
+\begin{theorem}~\label{cantor-bendixon} ({\bf Cantor-Bendixon})
 
  If $F$ is an uncountable closed set, then $F = P \cup S$, where $P$ is perfect and $S$ is at most countable.
 
@@ -577,9 +577,80 @@ for each $n < \omega$, then for each $n$ there is some $g \in F$ such that
 $g \upharpoonright n = f \upharpoonright n$, so $f \in F$ since $F$ is closed.
 
 If $f$ is an isolated point of a closed set $F$ in $\mathcal{N}$, then there is $n \in \mathbb{N}$ such that no
-$g \in F$ such that $g \neq f$ and $g \upharpoonright n = f \upharpoonright n$.
+$g \in F$ such that $g \neq f$ and $g \upharpoonright n = f \upharpoonright n$, so we have no branching starting from the
+$n$-th position.
+
+So we have the notion of a perfect set $P$ in the Baire space. A tree $T$ is \emph{perfect} if $t \in T$, then there
+exist incomparable $t_1, t_2 \supset t$ such that both of them are in $T$ and neither $t_1 \subset t_2$ nor $t_2 \subset t_1$.
+
+\begin{theorem}
+  A closed set $F \subset \mathcal{N}$ is perfect iff the tree $T_F$ is perfect.
+\end{theorem}
+
+Let us discuss the Cantor-Bendixon analysis of closed subsets of the Baire space. Let $T$ be a tree, define:
+\begin{center}
+  $T^{'} = \{ t \in T \: | \: \exists t_1, t_2 \supset t \: (t_1, t_2 \in T \: \& \: \neg (t_1 \subset t_2 \lor t_2 \subset t_1))\}$
+\end{center}
+
+Then a set $T$ is perfect iff $T = T^{'} \neq \emptyset$.
+
+$[T] - [T^{'}]$ is at most countable: take $f \in [T]$ such that $f \notin [T^{'}]$.
+Take $s_f = f \upharpoonright n$ where $n < \omega$ is the smallest index such that $f \upharpoonright n \notin T'$.
+If $f, g \in [T] - [T']$, then $s_f \neq s_g$ by the definition of $T'$, so the mapping $f \mapsto s_f$ is one-to-one.
+
+Now let:
+\begin{center}
+  $T_0 = T$
+  
+  $T_{\alpha + 1} = T^{'}_{\alpha}$
+
+  $T_{\alpha} = \bigcap \limits_{\beta < \alpha} T_{\beta}$ if $\alpha > 0$ is limit.
+\end{center}
+
+We have $T_0 \supset T_1 \supset \dots \supset T_{\alpha} \supset \dots$. $T_0$ is at most countable, so there is
+$\theta < \omega_1$ at which the sequence stabilises. If $T_{\theta} \neq \emptyset$, then $T_{\theta}$ is perfect.
+
+One can verify that:
+\begin{center}
+  $[\bigcap \limits_{\beta < \alpha} T_{\beta}] = \bigcap \limits_{\beta < \alpha} [T_{\beta}]$
+\end{center}
+so we have
+\begin{center}
+  $[T] - [T_{\theta}] = \bigcup \limits_{\beta < \alpha} ([T_{\alpha} - T^{'}_{\alpha}])$
+\end{center}
+and the set $[T] - [T_{\theta}]$ is at most countable. So we have a version of Theorem~\ref{cantor-bendixon} for the Baire space.
 
 \section{The Axiom of Choice}
+
+Recall that the axiom of choice (AC) says that if we have a family of sets $S$ such that $\emptyset \notin S$, then
+we have a \emph{choice function} on $S$ such that $f(X) \in X$.
+
+In some cases we can show the existence of a choice function without using the axiom of choice. 
+For example, for families of a complete lattice, the choice function can return the supremum or infimum of each set
+belonging to a family.
+
+Using the axiom of choice one can also show that every infinite set has cardinality equal to $\aleph_{\alpha}$ for some $\alpha$.
+
+\begin{theorem}{({\bf Zermelo})}
+
+  Every set can be well-ordered.
+\end{theorem}
+
+\begin{proof}
+  Let $A$ be a set. It is sufficient to construct a transfinite sequence 
+  $\langle a_{\alpha} \: : \: \alpha < \theta \rangle$ that enumerates $A$. We do that by induction and by using
+  the choice function $f$ on non-empty subsets of $A$. For $\alpha$ we let:
+  \begin{center}
+    $a_{\alpha} = f (A - \{ a_{\xi} \: | \: \xi < \alpha \})$
+  \end{center}
+  whenever $A - \{ a_{\xi} \: | \: \xi < \alpha \}$ is non-empty. 
+  Let $\theta$ be the smallest ordinal such that $A = \{ a_{\alpha} \: | \: \alpha < \theta \}$.
+  Thus $\langle a_{\alpha} \: : \: \alpha < \theta \rangle$ enumerates $A$.
+\end{proof}
+
+As it is well-known, Zermelo's theorem implies the axiom of choice.
+Let $S$ be a family of sets such that $\emptyset \notin S$.
+By Zermelo's theorem, we can well-order $\cup S$, so let $f(X)$ be the smallest element of $X$.
 
 \section{Cardinal Arithmetic via the Generalised Continuum Hypothesis}
 
