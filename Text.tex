@@ -511,6 +511,74 @@ the mapping $a \mapsto k_a$ is one-to-one.
   If $C \subseteq \mathbb{R}$ is closed, then either $|C| = 2^{\aleph_0}$ or $|C| \leq \aleph_0$.
 \end{col}
 
+A set $A \subset \mathbb{R}$ is \emph{nowhere dense} if $\operatorname{Int}\operatorname{Cl} A = \emptyset$.
+The following theorem shows that $\mathbb{R}$ is not of the \emph{first category}, that is,
+$\mathbb{R}$ is not the union of a countable family of nowhere dense sets.
+
+\begin{theorem} ({\bf The Baire Category Theorem})
+
+  Let $\{ D_i \: | \: i < \omega \}$ be a countable family of dense open subsets of $\mathbb{R}$, then
+  $D = \bigcap \limits_{i < \omega} D_i$ is dense in $\mathbb{R}$.
+\end{theorem}
+
+\begin{proof}
+  We show that $D \cap I \neq \emptyset$ for each open interval $I$.
+
+  Note that each finite intersection $D_0 \cap D_1 \cap \dots \cap D_n$ is dense and open for each $n < \omega$.
+  Let $\langle J_k \: : \: k < \omega \rangle$ be an enumeration of rational intervals.
+  
+  Let $I_0 := I$ and for each $n$ $I_{n + 1} = J_k = (q_k, r_k)$ 
+  where $k$ is the smallest index such that $[q_k, r_k] \subset I_n \cap D_n$.
+
+  Take $a = \lim_{k \to \infty} q_k$, then $a \in I \cap D$.
+\end{proof}
+
+\subsection{The Baire Space}
+
+The \emph{Baire Space} is the space $\mathcal{N} = \omega^{\omega}$ of infinite sequences of natural numbers
+with the topology defined the following way.
+Let $s$ be a finite sequence $s = \langle a_k \: : \: k < n \rangle$, we let:
+\begin{center}
+  $O(s) = \{ f \in \mathcal{N} \: | \: s \subset f \} = \{ \langle c_k \: | \: k < \omega \rangle \: | \: \forall k < n \: c_k = a_k \}$
+\end{center}
+All those $O(s)$'s form the open basis for $\mathcal{N}$.
+
+The Baire space is separable and metrisable. The metric is defined as $d(f, g) = 1/2^{n + 1}$ 
+where $n$ is the smallest natural number such that $f(n) \neq g(n)$. 
+We also have separability since the set of all eventually constant sequences is dense in $\mathcal{N}$.
+
+Every infinite sequence $\langle a_k \: : \: k < \omega \rangle$ defines a continued fraction $1/(a_0 + 1/(a_1 + 1/(a_2 + \dots)))$,
+so we have a continuous bijection between infinite sequences and irrational points of the open interval $(0, 1)$. 
+Moreover, the Baire space is homeomorphic to the space of irrational numbers.
+
+Now we describe the characterisation of perfect sets in the Baire space.
+
+Let $\operatorname{Seq}$ be the set of all finite sequences in $\mathcal{N}$. 
+A \emph{tree} is a set $T \subset \operatorname{Seq}$ satisfying:
+\begin{center}
+  If $t \in T$ and there exists $n < \omega$ such that $s = t \upharpoonright n$, then $s \in T$.
+\end{center}
+
+Let $T$ be a tree, let $[T]$ be the set of all infinite paths through $T$:
+\begin{center}
+  $[T] = \{ f \in \mathbb{N} \: | \: \forall n < \omega \: f \upharpoonright n \in T \}$
+\end{center}
+
+For each $T$, the set $[T]$ is closed in the Baire space. Let $f \in \mathcal{N}$
+such that $f \notin [T]$. Then there exists $n < \omega$ such that $s = f \upharpoonright n \notin T$, 
+so the open neighbourhood of $f$ $O(s) = \{ g \in \mathcal{N} \: | \: g \supset s \}$. Thus $[T]$ is closed.
+
+Conversely, let $F$ be closed in $\mathcal{N}$, then the set
+\begin{center}
+  $T_F = \{ s \in \operatorname{Seq} \: | \: \exists f \in F \: s \subset f \}$
+\end{center}
+is a tree and one can verify that $[T_F] = F$. If $f \in \mathcal{N}$ such that $f \upharpoonright n \in T$
+for each $n < \omega$, then for each $n$ there is some $g \in F$ such that 
+$g \upharpoonright n = f \upharpoonright n$, so $f \in F$ since $F$ is closed.
+
+If $f$ is an isolated point of a closed set $F$ in $\mathcal{N}$, then there is $n \in \mathbb{N}$ such that no
+$g \in F$ such that $g \neq f$ and $g \upharpoonright n = f \upharpoonright n$.
+
 \section{The Axiom of Choice}
 
 \section{Cardinal Arithmetic via the Generalised Continuum Hypothesis}
