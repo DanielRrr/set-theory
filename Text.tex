@@ -278,7 +278,7 @@ Let $\kappa$ be a limit ordinal, a subset $X \subset \kappa$ is \emph{bounded} i
   \end{enumerate}
 \end{proof}
 
-\begin{lemma} {\bf (Hausdorff)}
+\begin{lemma}~\label{reg} {\bf (Hausdorff)}
 
   Let $\kappa$ be a cardinal, then the following are equivalent:
 
@@ -652,7 +652,115 @@ As it is well-known, Zermelo's theorem implies the axiom of choice.
 Let $S$ be a family of sets such that $\emptyset \notin S$.
 By Zermelo's theorem, we can well-order $\cup S$, so let $f(X)$ be the smallest element of $X$.
 
-\section{Cardinal Arithmetic via the Generalised Continuum Hypothesis}
+Note that Zermelo's theorem also implies that $\mathbb{R}$ can be well ordered and also that $2^{\aleph_0}$ is an aleph
+and $2^{\aleph_0} \geq \aleph_1$.
+
+Another important consequence of the axiom of choice:
+\begin{theorem}
+  The union of a countable family of countable sets is countable.
+\end{theorem}
+
+\begin{proof}~\label{countableunion}
+  Let $A_n$ be a countable set for each $n < \omega$. For each $n$ let us choose an enumeration 
+  $\langle a_{n, k} \: : \: k < \omega \rangle$ of $A_n$. So we have a projection of $\mathbb{N} \times \mathbb{N}$ onto
+  $\bigcup \limits_{n < \omega} A_n$ by mapping $(n, k) \mapsto a_{n,k}$.
+\end{proof}
+
+In fact, the theorem above can be generalised the following way:
+\begin{theorem}~\label{union}
+  $|S| \leq S \cdot \sup \{ |X| \: | \: X \in S \}$.
+\end{theorem}
+
+\begin{proof}
+  Let $\kappa = |S|$ and $\lambda = \sup \{ |X| \: | \: X \in S \}$.
+  We have $S = \{ X_{\alpha} \: | \: \alpha < \kappa \}$ and for each $\alpha < \kappa$ we choose an 
+  enumeration $X_{\alpha} = \{ a_{\alpha, \beta} \: | \: \beta < \lambda_{\alpha} \}$ where $\lambda_{\alpha} = |X_{\alpha}|$.
+  Clearly that $\lambda_{\alpha} \leq \lambda$ for each $\alpha < \kappa$.
+  So we have a projection of $\kappa \times \lambda$ onto $\cup S$ by mapping $(\alpha, \beta) \mapsto a_{\alpha, \beta}$.
+\end{proof}
+
+\begin{col}
+  For every $\alpha$ $\aleph_{\alpha + 1}$ is a regular cardinal.
+\end{col}
+
+\begin{proof}
+  If $\aleph_{\alpha + 1}$ were singular for some $\alpha$, then 
+  $\omega_{\alpha + 1}$ would be the union of at most $\aleph_{\alpha}$ 
+  sets of cardinality $\aleph_{\alpha}$ by Lemma~\ref{reg}, which
+  would mean that $\aleph_{\alpha + 1} = \aleph_{\alpha}$ by Theorem~\ref{union}.
+  Contradiction.
+\end{proof}
+
+Let $(P, <)$ be a poset, an element $a \in P$ is \emph{maximal} if no $b \in P$ such that $b > a$.
+Let $X$ be a non-empty subset of $P$, then $c$ is the \emph{upper bound} of $X$ if $c \geq X$. 
+$X$ is a \emph{chain} in $P$ if any two elements of $X$ are comparable.
+
+\begin{theorem} {\bf (Zorn)}
+
+  Let $(P, <)$ be a poset such that every chain $C$ has an upper bound, then $P$ has a maximal element.
+\end{theorem}
+
+\begin{proof}
+  Let $f$ be a choice function on non-empty subsets of $P$. We construct a chain $C$ leading to a maximal element.
+
+  Construct the following elements by induction:
+  \begin{center}
+    $a_{\alpha} = \text{an element of $P$ such that $a_{\alpha} > a_{\xi}$ for every $\xi > \alpha$ if it exists}$
+  \end{center}
+
+  If $\alpha > 0$ is a limit ordinal, then $C_{\alpha}$ is a chain in $P$ and $a_{\alpha}$ does exist.
+  Eventually, there is $\theta$ such that no $a_{\theta+1} > a_{\theta}$. Thus $a_{\theta}$ is maximal.
+\end{proof}
+
+As it is known, Zorn's lemma implies the axiom of choice.
+Let $S$ be a family of non-empty sets, then we check that the set
+$\{ f \: | \: f \text{is a choice function on some $S' \subset S$}\}$ ordered by inclusion
+satisfies the condition of Zorn's lemma, so a maximal element of that poset is a choice function on $S$.
+
+
+There is a weaker version of the axiom of choice for countable families of non-empty sets. 
+The countable AC implies Theorem~\ref{countableunion} and regularity of $\aleph_1$, but the
+countable AC is too weak to show that $\mathbb{R}$ can be well-ordered.
+
+There is a stronger version of the countable AC.
+\begin{definition} {\bf (The Principle of Dependent Choice (DC))}
+
+  Let $R$ be a binary relation on $A$ such that for all $x \in A$ there exists $y \in A$ such that $y R x$, then there is
+  a sequence $a_0, a_1, \dots, a_n, \dots$ for $n < omega$ such that:
+  \begin{center}
+    $\forall n < \omega \: (a_{n + 1} R a_n)$
+  \end{center}
+\end{definition}
+
+The Principle of Dependent Choices allows characterising well orderings and (as well as well-founded relations) the following way:
+
+\begin{lemma}
+  Let $(A, <)$ be a poset, then the following are equivalent:
+
+  \begin{enumerate}
+    \item $(A, <)$ is a well-ordering.
+    \item No infinite sequences $a_0, a_1, \dots, a_n, \dots$ for $n < omega$ such that:
+    \begin{center}
+      $a_0 > a_1 > \dots > a_n > \dots$
+    \end{center}
+  \end{enumerate}
+\end{lemma}
+
+\subsection{Cardinal Arithmetic the Generalised Continuum Hypothesis}
+
+We shall be discussing the cardinal exponentiation operator for the rest of the section.
+
+\begin{lemma}
+  Let $\lambda$ be infinite and $2 \leq \kappa \leq \lambda$, then $\kappa^{\lambda} = 2^{\lambda}$.
+\end{lemma}
+
+\begin{proof}
+  $2^{\lambda} \leq \kappa^{\lambda} \leq (2^{\kappa})^{\lambda} = 2^{\kappa \cdot \lambda} = 2^{\lambda}$.
+\end{proof}
+
+The evaluation of $\kappa^{\lambda}$ is more complicated when $\lambda < \kappa$
+
+\section{The Axiom of Regularity}
 
 \bibliographystyle{alpha}
 \bibliography{Text}
