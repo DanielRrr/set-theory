@@ -726,7 +726,7 @@ There is a stronger version of the countable AC.
 \begin{definition} {\bf (The Principle of Dependent Choice (DC))}
 
   Let $R$ be a binary relation on $A$ such that for all $x \in A$ there exists $y \in A$ such that $y R x$, then there is
-  a sequence $a_0, a_1, \dots, a_n, \dots$ for $n < omega$ such that:
+  a sequence $a_0, a_1, \dots, a_n, \dots$ for $n < \omega$ such that:
   \begin{center}
     $\forall n < \omega \: (a_{n + 1} R a_n)$
   \end{center}
@@ -758,7 +758,97 @@ We shall be discussing the cardinal exponentiation operator for the rest of the 
   $2^{\lambda} \leq \kappa^{\lambda} \leq (2^{\kappa})^{\lambda} = 2^{\kappa \cdot \lambda} = 2^{\lambda}$.
 \end{proof}
 
-The evaluation of $\kappa^{\lambda}$ is more complicated when $\lambda < \kappa$
+The evaluation of $\kappa^{\lambda}$ is more complicated when $\lambda < \kappa$.
+If $2^{\lambda} \geq \kappa$, then we have $\kappa^{\lambda} = 2^{\lambda}$ since $\kappa \leq (2^{\lambda})^{\lambda} = 2^{\lambda}$.
+But if $2^{\lambda} < \kappa$, the only thing we can conclude:
+\begin{center}
+  $\kappa \leq \kappa^{\lambda} \leq 2^{\kappa}$
+\end{center}
+which is already known by Cantor's theorem.
+
+Let $\lambda$ be a cardinal and let $A$ be a set such that $|A| \geq \lambda$, we let:
+\begin{center}
+  $[A]^{\lambda} = \{ X \in 2^A \: | \: |X| = \lambda \}$
+\end{center}
+
+\begin{lemma}
+  If $|A| = \kappa \geq \lambda$, then the set $[A]^{\lambda}$ has cardinality $\kappa^{\lambda}$.
+\end{lemma}
+
+\begin{proof}
+  On the one hand every function $f : \lambda \to A$ is a subset of $\lambda \times A$ and $|f| = \lambda$. Thus:
+  \begin{center}
+    $\kappa^{\lambda} \leq |[\lambda \times A]^{\lambda}| = |[A]^{\lambda}|$
+  \end{center}
+  On the other hand, there is a one-to-one function $F : [A]^{\lambda} \to A^{\lambda}$. 
+  If $X \in [A]^{\lambda}$, let $F(X)$ be some function $f$ on $\lambda$ whose range is $X$.
+\end{proof}
+
+Let $\lambda$ be a limit cardinal, let:
+\begin{center}
+  $\kappa^{<\lambda} = \sup \{\kappa^{\mu} \: | \: \text{$\mu$ is a cardinal such that $\mu < \lambda$}\}$
+\end{center}
+We also define $\kappa^{<\lambda^{+}}$ for successors $\lambda^{+}$.
+
+Let $\kappa$ be an infinite cardinal and $|A| \geq \kappa$, let:
+\begin{center}
+  $[A]^{<\kappa} = \{ X \in 2^{A} \: | \: |X| < \kappa \}$
+\end{center}
+Clearly, the cardinality of $[A]^{<\kappa}$ is $|A|^{<\kappa}$.
+
+\subsection{Infinite Sums and Products}
+
+Let $\{ \kappa_i \: | \: i \in I \}$ be an indexed family of cardinals, define:
+\begin{center}
+  $\sum \limits_{i \in I} \kappa_i = |\bigcup \limits_{i \in I} X_i|$
+\end{center}
+where each for $i \in I$ $|X_i| = \kappa_i$. Note that, by the Axiom of Choice, the definition of sum does not depend
+on the choice of $\{ X_i \: | \: i \in I \}$.
+
+Let $\lambda, \kappa$ be cardinals and let $\kappa_i = \kappa$, then:
+\begin{center}
+  $\sum \limits_{i < \lambda} \kappa_i = \lambda \cdot \kappa$
+\end{center}
+
+More generally, we have:
+\begin{lemma}
+  Let $\lambda$ be an infinite cardinal and $\kappa_i > 0$ for each $i < \lambda$, then:
+  \begin{center}
+    $\sum \limits_{i < \lambda} \kappa_i = \lambda \cdot \sup \limits_{i < \lambda} \kappa_i$
+  \end{center}
+\end{lemma}
+\begin{proof}
+  Let $\kappa = \sup \limits_{i < \lambda} \kappa_i$ and $\sigma = \sum \limits_{i < \lambda} \kappa_i$.
+  On the one hand, we have $\forall i < \lambda \:\: \kappa_i \leq \kappa$, so
+  \begin{center}
+    $\sum \limits_{i < \lambda} \kappa_i \leq \lambda \cdot \kappa$
+  \end{center}
+
+  On the other hand, since $\kappa_1 \geq 1$ for each $i$, we have
+  \begin{center}
+  $\lambda = \sum \limits_{i < \lambda} 1 \leq \sigma$
+  \end{center}
+  $\sigma \geq \kappa_i$ for each $i$, so we have
+  \begin{center}
+    $\sigma \geq \sup \limits_{i < \lambda} \kappa_i = \kappa$
+  \end{center}
+  So $\sigma \geq \lambda \cdot \kappa$.
+\end{proof}
+
+Let $\{ X_i \: | \: i \in I \}$ be an indexed family of sets, we let:
+\begin{center}
+  $\prod \limits_{i \in I} X_i = \{ f \: | \: \text{$f$ is a function on $I$ such that $\forall i \in I \:\: f(i) \in X_i$} \}$
+\end{center}
+If each of $X_i$'s is non-empty, then the whole product is non-empty and this is equivalent to the axiom of choice.
+
+Let $\{ \kappa_i \: | \: i \in I \}$ be a family of cardinals, define:
+\begin{center}
+  $\prod \limits_{i \in I} \kappa_i = |\prod \limits_{i \in I} X_i|$
+\end{center}
+where for each $i$ $X_i$ is a set of cardinality of $\kappa_i$. 
+As in the case of sum, assuming the axiom of choice, one can show that the definition of product
+does not depend on the choice of $X_i$'s.
+
 
 \section{The Axiom of Regularity}
 
