@@ -849,6 +849,128 @@ where for each $i$ $X_i$ is a set of cardinality of $\kappa_i$.
 As in the case of sum, assuming the axiom of choice, one can show that the definition of product
 does not depend on the choice of $X_i$'s.
 
+If $\kappa_i = \kappa$ for each $i \in I$ and $I$ has cardinality $\lambda$, then:
+\begin{center}
+  $\prod \limits_{i \in I} \kappa_i = \lambda$
+\end{center}
+
+If $I$ is a disjoint union $I = \bigcup \limits_{j \in J} A_j$, then:
+\begin{center}
+  $\prod \limits_{i \in I} \kappa_i = \prod \limits_{j \in J} (\prod \limits_{i \in A_j} \kappa_i)$
+\end{center}
+
+If $\kappa_i \geq 2$ for each $i \in I$, then:
+\begin{center}
+  $\sum \limits_{i \in I} \kappa_i \leq \prod \limits_{i \in I} \kappa_i$
+\end{center}
+If $I$ is finite, then the inequality is self-evident. Assume $I$ is infinite. We have:
+\begin{center}
+  $\prod \limits_{i \in I} \kappa_i \geq \prod \limits_{i \in I} 2 = 2^{|I|} > |I|$
+\end{center}
+We show that $\sum_i \kappa_i \leq |I| \cdot \prod_i \kappa_i$.
+
+Let $\{ X_i \: | \: i \in I \}$ be a disjoint family such that for each $i \in I$ $|X_i| = \kappa_i$.
+Assign each $x \in \bigcup_i X_i$ to a pair $(i, f)$ such that $x \in X_i$ and $f \in \prod_i X_i$
+such that $f(i) = x$.
+
+\begin{lemma}
+  Let $\lambda$ be an infinite cardinal and let $\langle \kappa_i \: : \: i < \lambda \rangle$ 
+  be a non-descreasing sequence of ordinals, then
+  \begin{center}
+    $\prod \limits_{i \in I} \kappa_i = (\sup \limits_{i \in I} \kappa_i)^{\lambda}$
+  \end{center}
+\end{lemma}
+\begin{proof}
+  Let $\kappa = \sup_i \kappa_i$. Since $\kappa_i \leq \kappa$ for each $i < \lambda$, we have:
+  \begin{center}
+    $\prod \limits_{i \in I} \kappa_i \leq \prod \limits_{i \in I} \kappa = \kappa^{\lambda}$
+  \end{center}
+  Let us show $\kappa^{\lambda} \leq \prod \limits_{i \in I} \kappa_i$.
+
+  Consider a partition of $\lambda$ into $\lambda$ disjoint sets $A_j$, each of which has cardinality $\lambda$:
+  \begin{center}
+    $\lambda = \bigcup \limits_{j < \lambda} A_j$
+  \end{center}
+
+  For each $j < \lambda$ we have:
+  \begin{center}
+    $\kappa = \sup \limits_{i \in A_j} \kappa_i \leq \prod \limits_{i \in A_j} \kappa_i$
+  \end{center}
+  And thus:
+  \begin{center}
+    $\prod \limits_{i \in I} \kappa_i = \prod \limits_{j < \lambda} (\prod \limits_{i \in A_j} \kappa_i) \geq \prod \limits_{j < \lambda} \kappa = \kappa^{\lambda}$
+  \end{center}
+\end{proof}
+
+\begin{theorem} {\bf (K\"{o}nig)}
+
+  Assume $\kappa_i < \lambda_i$ for each $i \in I$, then:
+  \begin{center}
+    $\sum \limits_{i \in I} \kappa_i < \prod \limits_{i \in I} \lambda_i$
+  \end{center}
+\end{theorem}
+
+\begin{proof}
+  Let us show $\Sigma_i \kappa_i \ngeq \Pi_i \lambda_i$. 
+  Let $\{ T_i \: | \: i \in I\}$ be an indexed family such that $|T_i| = \lambda_i$.
+  It sufficies to show that if we have a family $\{ Z_i \: | \: i \in I\}$ of subsets of $T = \Pi_i T_i$
+  such that $|Z_i| < \kappa_i$ for each $i$, then $\cup_i Z_i \neq T$.
+
+  For every $i \in I$, let $S_i$ be the projection of $Z_i$ into the $i$-th coordinate:
+  \begin{center}
+    $S_i = \{ f(i) \: | \: f \in Z_i \}$
+  \end{center}
+
+  As far as $|Z_i| < |T_i|$, we have $S_i \subset T_i$ and $S_i \neq T_i$ for each $i \in I$.
+  Let $f \in T$ be a function such that $f(i) \notin S_i$. $f$ does not belong to any $Z_i$, so $\cup_i Z_i \neq T$.
+\end{proof}
+
+\begin{col}
+  $\kappa < 2^{\kappa}$
+\end{col}
+
+\begin{proof}
+  $\sum \limits_{i < \kappa} 1 < \prod \limits_{i < \kappa} 2$.
+\end{proof}
+
+\begin{col}
+  For each $\alpha$ $\aleph_{\alpha} < \operatorname{cf}(2^{\aleph_{\alpha}})$.
+\end{col}
+
+\begin{proof}
+  Let us show that if for each $i < \omega_{\alpha}$ $\kappa_i < 2^{\aleph_{\alpha}}$,
+  then $\Sigma_{i < \omega_{\alpha}} \kappa_i < 2^{\aleph_{\alpha}}$.
+  Let $\lambda_i = 2^{\aleph_{\alpha}}$.
+  \begin{center}
+    $\sum \limits_{i < \omega_{\alpha}} \kappa_i < \prod \limits_{i < \omega_{\alpha}} \lambda_i = (2^{\aleph_{\alpha}})^{\aleph_{\alpha}} = 2^{\aleph_{\alpha}}$
+  \end{center}
+\end{proof}
+
+\begin{col}
+  For all $\alpha, \beta$ $\aleph_{\beta} < \operatorname{cf}(\aleph_{\alpha}^{\aleph_{\beta}})$.
+\end{col}
+
+\begin{proof}
+  We show that if $\kappa_i < \aleph_{\alpha}^{\aleph_{\beta}}$ for each 
+  $i < \omega_{\beta}$, then $\Sigma_{i < \omega_{\beta}} \kappa_i < \aleph_{\alpha}^{\aleph_{\beta}}$.
+  Let $\lambda_i = \aleph_{\alpha}^{\aleph_{\beta}}$, then
+  \begin{center}
+    $\sum \limits_{i < \omega_{\beta}} \kappa_i < \prod \limits_{i < \omega_{\beta}} = \aleph_{\alpha}^{\aleph_{\beta}}$
+  \end{center}
+\end{proof}
+
+\begin{col}
+  Let $\kappa$ be an infinite cardinal, then $\kappa < \kappa^{\operatorname{cf} \kappa}$
+\end{col}
+
+\begin{proof}
+  Let $i < \operatorname{cf} \kappa$ and $\kappa_i < \kappa$ be such that $\kappa = \Sigma_{i < \operatorname{cf} \kappa} \kappa_i$.
+  \begin{center}
+    $\kappa = \sum \limits_{i < \operatorname{cf} \kappa} \kappa_i < \prod \limits_{i < \operatorname{cf} \kappa} \kappa = \kappa^{\operatorname{cf} \kappa}$.
+  \end{center}
+\end{proof}
+
+\subsection{The Continuum Function}
 
 \section{The Axiom of Regularity}
 
