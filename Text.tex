@@ -69,6 +69,10 @@
 
 \maketitle
 
+\tableofcontents
+
+\newpage
+
 \section{Cardinals}
 
 An ordinal number $\alpha$ is a \emph{cardinal number} if no $\beta < \alpha$ such that $|\alpha| = |\beta|$.
@@ -259,7 +263,7 @@ $\aleph_{\alpha}$ is \emph{singular} if $\operatorname{cf} \omega_{\alpha} < \om
 Let $\kappa$ be a limit ordinal, a subset $X \subset \kappa$ is \emph{bounded} if $\sup X < \kappa$ and 
 \emph{unbounded} if $\sup X = \kappa$.
 
-\begin{lemma} Let $\kappa$ be an aleph, then:
+\begin{lemma}~\label{boundedaleph} Let $\kappa$ be an aleph, then:
 
   \begin{enumerate}
     \item If $X \subset \kappa$ and $|X| < \operatorname{cf} \kappa$, then $X$ is bounded.
@@ -750,7 +754,7 @@ The Principle of Dependent Choices allows characterising well orderings and (as 
 
 We shall be discussing the cardinal exponentiation operator for the rest of the section.
 
-\begin{lemma}
+\begin{lemma}~\label{card1}
   Let $\lambda$ be infinite and $2 \leq \kappa \leq \lambda$, then $\kappa^{\lambda} = 2^{\lambda}$.
 \end{lemma}
 
@@ -771,7 +775,7 @@ Let $\lambda$ be a cardinal and let $A$ be a set such that $|A| \geq \lambda$, w
   $[A]^{\lambda} = \{ X \in 2^A \: | \: |X| = \lambda \}$
 \end{center}
 
-\begin{lemma}
+\begin{lemma}~\label{cardfact1}
   If $|A| = \kappa \geq \lambda$, then the set $[A]^{\lambda}$ has cardinality $\kappa^{\lambda}$.
 \end{lemma}
 
@@ -811,7 +815,7 @@ Let $\lambda, \kappa$ be cardinals and let $\kappa_i = \kappa$, then:
 \end{center}
 
 More generally, we have:
-\begin{lemma}
+\begin{lemma}~\label{cardfact2}
   Let $\lambda$ be an infinite cardinal and $\kappa_i > 0$ for each $i < \lambda$, then:
   \begin{center}
     $\sum \limits_{i < \lambda} \kappa_i = \lambda \cdot \sup \limits_{i < \lambda} \kappa_i$
@@ -933,7 +937,7 @@ such that $f(i) = x$.
   $\sum \limits_{i < \kappa} 1 < \prod \limits_{i < \kappa} 2$.
 \end{proof}
 
-\begin{col}
+\begin{col}~\label{cofinality:aleph}
   For each $\alpha$ $\aleph_{\alpha} < \operatorname{cf}(2^{\aleph_{\alpha}})$.
 \end{col}
 
@@ -971,6 +975,74 @@ such that $f(i) = x$.
 \end{proof}
 
 \subsection{The Continuum Function}
+
+Cantor's theorem claims that $\aleph_{\alpha} < 2^{\aleph_{\alpha}}$, so $\aleph_{\alpha+1} \leq 2^{\aleph_{\alpha}}$
+for each $\alpha$. The \emph{Generalised Continuum Hypothesis} (GCH) is the statement
+\begin{center}
+  $2^{\aleph_{\alpha}} = \aleph_{\alpha+1}$
+\end{center}
+for each $\alpha$. GCH is independent of ZFC, but ZFC + GCH proves the following properties of
+cardinal exponentiation:
+\begin{theorem} Assume GCH. Let $\kappa$ and $\lambda$ be infinite cardinals, then:
+
+  \begin{enumerate}
+    \item If $\kappa \leq \lambda$, then $\kappa^{\lambda} = \lambda^{+}$.
+    \item If $\operatorname{cf} \kappa \leq \lambda < \kappa$, then $\kappa^{\lambda} = \kappa^{+}$.
+    \item If $\lambda < \operatorname{cf} \kappa$, then $\kappa^{\lambda} = \kappa$.
+  \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+$ $
+
+\begin{enumerate}
+  \item By Lemma~\ref{card1} we have $\kappa^{\lambda} = 2^{\lambda}$, but $2^{\lambda} = \lambda^{+}$.
+  \item Combine Lemma~\ref{cardfact1} and Lemma~\ref{cardfact2}.
+  \item By Lemma~\ref{boundedaleph} we have:
+  \begin{center}
+    $\kappa^{\lambda} = \{ \alpha^{\lambda} \: | \: \alpha < \kappa \}$
+  \end{center}
+  so:
+  \begin{center}
+    $|\alpha^{\lambda}| \leq 2^{|\alpha| \cdot \lambda} = (|\alpha| \cdot \lambda)^{+} \leq \kappa$
+  \end{center}
+\end{enumerate}
+\end{proof}
+
+The \emph{beth function} is defined by induction:
+\begin{enumerate}
+  \item $\beth_0 = \aleph_0$
+  \item $\beta_{\alpha + 1} = 2^{\beta_{\alpha}}$
+  \item $\beta_{\alpha} = \sup \{ \beta_{\beta} \: | \: \beta < \alpha \}$ if $\alpha$ is limit ordinal.
+\end{enumerate}
+
+So we can reword GCH as $\beta_{\alpha} = \aleph_{\alpha}$ for all $\alpha$.
+
+Now we study the behaviour of the continuum function $\kappa \mapsto 2^{\kappa}$ assuming no GCH.
+
+\begin{theorem} Let $\kappa, \lambda$ be cardinals, then
+
+  \begin{enumerate}
+    \item If $\kappa < \lambda$, then $2^{\kappa} \leq 2^{\lambda}$.
+    \item $\kappa < \operatorname{cf} 2^{\kappa}$
+    \item If $\kappa$ is a limit cardinal, then $2^{\kappa} = (2^{<\kappa})^{\operatorname{cf} \kappa}$
+  \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+  
+  $ $
+
+  \begin{enumerate}
+    \item Fairly obvious.
+    \item Corollary~\ref{cofinality:aleph}.
+    \item Let $\kappa = \Sigma_{i < \operatorname{cf} \kappa} \kappa_i$ where each $\kappa_i < \kappa$ for each $i$.
+    We have
+    \begin{center}
+      $2^{\kappa} = 2^{\Sigma_{i < \operatorname{cf} \kappa} \kappa_i} = \prod \limits_{i < \operatorname{cf} \kappa} 2^{\kappa_i} \leq \prod \limits_{i < \operatorname{cf} \kappa} 2^{< \kappa} = (2^{< \kappa})^{\operatorname{cf} \kappa} \leq (2^{\kappa})^{\operatorname{cf} \kappa} \leq 2^{\kappa}$
+    \end{center}
+  \end{enumerate}
+\end{proof}
 
 \section{The Axiom of Regularity}
 
