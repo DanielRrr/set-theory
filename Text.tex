@@ -1020,12 +1020,12 @@ So we can reword GCH as $\beta_{\alpha} = \aleph_{\alpha}$ for all $\alpha$.
 
 Now we study the behaviour of the continuum function $\kappa \mapsto 2^{\kappa}$ assuming no GCH.
 
-\begin{theorem} Let $\kappa, \lambda$ be cardinals, then
+\begin{theorem}~\label{continuum:func} Let $\kappa, \lambda$ be cardinals, then
 
   \begin{enumerate}
     \item If $\kappa < \lambda$, then $2^{\kappa} \leq 2^{\lambda}$.
     \item $\kappa < \operatorname{cf} 2^{\kappa}$
-    \item If $\kappa$ is a limit cardinal, then $2^{\kappa} = (2^{<\kappa})^{\operatorname{cf} \kappa}$
+    \item~\label{continuum:func:3} If $\kappa$ is a limit cardinal, then $2^{\kappa} = (2^{<\kappa})^{\operatorname{cf} \kappa}$
   \end{enumerate}
 \end{theorem}
 
@@ -1043,6 +1043,107 @@ Now we study the behaviour of the continuum function $\kappa \mapsto 2^{\kappa}$
     \end{center}
   \end{enumerate}
 \end{proof}
+
+\begin{col}
+  Let $\kappa$ be a singular cardinal. 
+  Assume the continuum function is eventually constant below $\kappa$, with value $\lambda$, 
+  then $2^{\kappa} = \lambda$.
+\end{col}
+
+\begin{proof}
+  If $\kappa$ is singular and it satisfies the assumption of the statement, then
+  there is $\nu$ such that $\operatorname{cf} \kappa \leq \nu < \kappa$ and that
+  $2^{< \kappa} = \lambda = 2^{\nu}$. Thus:
+  \begin{center}
+    $2^{\kappa} = (2^{<\kappa})^{\operatorname{cf} \kappa} = 2^{\nu}$.
+  \end{center}
+\end{proof}
+
+The \emph{gimel function} is the function:
+\begin{center}
+  $\gimel(\kappa) = \kappa^{\operatorname{cf} \kappa}$
+\end{center}
+
+If $\kappa$ is a limit cardinal and the continuum function below $\kappa$ is not eventually constant,
+then the cardinal $\lambda = 2^{<\kappa}$ is a limit of a non-decreasing sequence:
+\begin{center}
+  $\lambda = 2^{<\kappa} = \lim \limits_{\alpha \to \kappa} 2^{|\alpha|}$
+\end{center}
+Then, by Lemma~\ref{confin1}, $\operatorname{cf} \lambda = \operatorname{cf} \kappa$.
+Thus, by Theorem~\ref{continuum:func}(\ref{continuum:func:3}), we have:
+\begin{center}
+$2^{\kappa} = (2^{<\kappa})^{\operatorname{cf} \kappa} = 2^{\operatorname{cf} \lambda}$
+\end{center}
+
+If $\kappa$ is regular, then $\kappa = \operatorname{cf} \kappa$ and, since 
+$\kappa^{\kappa} = 2^{\kappa}$ we have:
+\begin{center}
+  $2^{\kappa} = \kappa^{\operatorname{cf} \kappa}$
+\end{center}
+
+So we can specify the behaviour of the continuum function in terms of the gimel function.
+\begin{col}
+  $ $
+
+  \begin{enumerate}
+    \item If $\kappa$ is a successor cardinal, then $2^{\kappa} = \gimel(\kappa)$.
+    \item If $\kappa$ is a limit cardinal and $\lambda x. 2^x$ below $\kappa$ is eventually constant, then
+    $2^{\kappa} = 2^{<\kappa} \cdot \gimel(\kappa)$.
+    \item If $\kappa$ is a limit cardinal and $\lambda x. 2^x$ below $\kappa$ is not eventually constant, then
+    $2^{\kappa} = \gimel( 2^{<\kappa})$.
+  \end{enumerate}
+\end{col}
+
+\subsection{Cardinal Exponentiation}
+
+Let $\kappa$ be a regular cardinal and let $\lambda < \kappa$, then every function $f : \lambda \to \kappa$ is bounded,
+i.e., $\sup \{ f(\xi) \: | \: \xi < \lambda \} < \kappa$. Thus:
+\begin{center}
+  $\kappa^{\lambda} = \bigcup \limits_{\alpha < \kappa} \alpha^{\lambda}$
+\end{center}
+that is,
+\begin{center}
+  $\kappa^{\lambda} = \sum \limits_{\alpha < \kappa} |\alpha|^{\lambda}$
+\end{center}
+If $\kappa$ is a successor cardinal, then we obtain the \emph{Hausdorff formula}:
+\begin{center}
+  $\aleph_{\alpha + 1}^{\beta} = \aleph_{\alpha}^{\aleph_{\beta}} \cdot \aleph_{\alpha + 1}$
+\end{center}
+
+We can compute $\kappa^{\lambda}$ using the following fact.
+If $\kappa$ is a limit cardinal, we use use the notation:
+\begin{center}
+  $\lim \limits_{\alpha \to \kappa} \alpha^{\lambda} := \sup \{ \mu^{\lambda} \: | \: \text{$\mu$ is a cardinal and $\mu < \kappa$}\}$
+\end{center}
+
+\begin{lemma}
+  Let $\kappa$ be a limit cardinal and assume that $\operatorname{cf} \kappa \leq \lambda$, then
+  \begin{center}
+    $\kappa^{\lambda} = (\lim \limits_{\alpha \to \kappa} \alpha^{\lambda})^{\operatorname{cf} \kappa}$
+  \end{center}
+\end{lemma}
+\begin{proof}
+  Let $\kappa = \Sigma_{i < \operatorname{cf} \kappa} \kappa_i$, where $\kappa_i < \kappa$ for each $i$.
+  We have:
+  \begin{center}
+    $\kappa^{\lambda} \leq (\prod \limits_{i < \operatorname{cf} \kappa} \kappa_i)^{\lambda} = 
+    \prod \limits_{i < \operatorname{cf} \kappa} \kappa_i^{\lambda} \leq 
+    \prod \limits_{i < \operatorname{cf} \kappa} (\lim \limits_{\alpha \to \kappa} \alpha^{\lambda})^{\operatorname{cf} \kappa} \leq (\kappa^{\lambda})^{\operatorname{cf} \kappa} = \kappa^{\lambda}$
+  \end{center}
+\end{proof}
+
+\begin{comment}
+\begin{theorem}
+
+  Let $\lambda$ be an infinite cardinal, then for all infinite cardinals $\kappa$, the value of $\kappa^{\lambda}$ is computed as follows:
+
+  \begin{enumerate}
+    \item $\kappa \leq \lambda$ implies $\kappa^{\lambda} = 2^{\lambda}$.
+    \item 
+    \item 
+  \end{enumerate}
+\end{theorem}
+\end{comment}
 
 \section{The Axiom of Regularity}
 
