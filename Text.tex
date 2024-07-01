@@ -752,7 +752,7 @@ The Principle of Dependent Choices allows characterising well orderings and (as 
 
 \subsection{Cardinal Arithmetic the Generalised Continuum Hypothesis}
 
-We shall be discussing the cardinal exponentiation operator for the rest of the section.
+Now let us discuss the cardinal exponentiation operator.
 
 \begin{lemma}~\label{card1}
   Let $\lambda$ be infinite and $2 \leq \kappa \leq \lambda$, then $\kappa^{\lambda} = 2^{\lambda}$.
@@ -1116,7 +1116,7 @@ If $\kappa$ is a limit cardinal, we use use the notation:
   $\lim \limits_{\alpha \to \kappa} \alpha^{\lambda} := \sup \{ \mu^{\lambda} \: | \: \text{$\mu$ is a cardinal and $\mu < \kappa$}\}$
 \end{center}
 
-\begin{lemma}
+\begin{lemma}~\label{limitcard:lim}
   Let $\kappa$ be a limit cardinal and assume that $\operatorname{cf} \kappa \leq \lambda$, then
   \begin{center}
     $\kappa^{\lambda} = (\lim \limits_{\alpha \to \kappa} \alpha^{\lambda})^{\operatorname{cf} \kappa}$
@@ -1132,18 +1132,113 @@ If $\kappa$ is a limit cardinal, we use use the notation:
   \end{center}
 \end{proof}
 
-\begin{comment}
-\begin{theorem}
+\begin{theorem}~\label{cardexp}
 
-  Let $\lambda$ be an infinite cardinal, then for all infinite cardinals $\kappa$, the value of $\kappa^{\lambda}$ is computed as follows:
+  Let $\lambda$ be an infinite cardinal, then for all infinite cardinals $\kappa$, 
+  the value of $\kappa^{\lambda}$ is computed as follows:
 
   \begin{enumerate}
     \item $\kappa \leq \lambda$ implies $\kappa^{\lambda} = 2^{\lambda}$.
-    \item 
-    \item 
+    \item If there exists $\mu < \kappa$ such that $\kappa \leq \mu^{\lambda}$,
+    then $\kappa^{\lambda} = \mu^{\lambda}$.
+    \item Assume $\kappa > \lambda$ and if for all $\mu < \kappa$ $\mu^{\lambda} < \kappa$, then:
+    \begin{enumerate}
+      \item $\operatorname{cf} \kappa > \lambda$ implies $\kappa^{\lambda} = \kappa$.
+      \item $\operatorname{cf} \kappa \leq \lambda$ implies $\kappa^{\lambda} = \kappa^{\operatorname{cf} \kappa}$.
+    \end{enumerate}
+  \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+  $ $
+
+  \begin{enumerate}
+    \item Follows from Lemma~\ref{card1}.
+    \item $\mu^{\lambda} \leq \kappa^{\lambda} \leq (\mu^{\lambda})^{\lambda} = \mu^{\lambda}$.
+    \item If $\kappa$ is a successor cardinal, then apply the Hausdorff formula.
+    If $\kappa$ is a limit cardinal. We have $\kappa = \lim_{\alpha \to \kappa} \alpha^{\lambda}$.
+
+    If $\operatorname{cf} \kappa > \lambda$, then every $f : \lambda \to \kappa$ is bounded and we have:
+    \begin{center}
+      $\kappa^{\lambda} = \lim \limits_{\alpha \to \kappa} \alpha^{\lambda} = \kappa$.
+    \end{center}
+
+    If $\operatorname{cf} \kappa \leq \lambda$, then, by Lemma~\ref{limitcard:lim}, we have:
+    \begin{center}
+      $\kappa^{\lambda} = (\lim \limits_{\alpha \to \kappa} \alpha^{\lambda})^{\operatorname{cf} \kappa} = \kappa^{\operatorname{cf} \kappa}$
+    \end{center}
+  \end{enumerate}
+\end{proof}
+
+Theorem~\ref{cardexp} allows defining all cardinal exponentiation in terms of the gimel function:
+\begin{col}
+  Let $\kappa$ and $\lambda$ be cardinals, then the value of $\kappa^{\lambda}$ 
+  is either $2^{\lambda}$, or $\kappa$ or $\gimel(\mu)$ for some $\mu$ such that 
+  $\operatorname{cf} \mu \leq \lambda < \mu$.
+\end{col}
+
+\begin{proof}
+  Assume $\kappa^{\lambda} > 2^{\lambda} \cdot \kappa$. 
+  Let $\mu$ be the least cardinal such that $\mu^{\lambda} = \kappa^{\lambda}$, so, by Theorem~\ref{cardexp},
+  $\mu^{\lambda} = \mu^{\operatorname{cf} \mu}$.
+\end{proof}
+
+A cardinal $\kappa$ is a \emph{strong limit} cardinal if
+\begin{center}
+  $\forall \lambda < \kappa \:\: 2^{\lambda} < \kappa$
+\end{center}
+
+Every strong limit cardinal is a limit cardinal, and, assuming the generalised continuum hypothesis, the converse is also true.
+If $\kappa$ is a strong limit cardinal, then
+\begin{center}
+  $\forall \lambda, \nu < \kappa \:\: \lambda^{\nu} < \kappa$
+\end{center}
+$\aleph_0$ is the smallest strong limit cardinal. Also, strong limit cardinals form a proper class: 
+if $\alpha$ is an arbitrary cardinal, then the cardinal
+\begin{center}
+  $\kappa = \{ \alpha, 2^{\alpha}, 2^{2^{\alpha}}, \dots \}$
+\end{center}
+(of cofinality $\omega$) is a strong limit cardinal.
+
+Also, if $\kappa$ is a strong limit cardinal, then $2^{\kappa} = \kappa^{\operatorname{cf} \kappa}$.
+A cardinal $\kappa$ is \emph{strongly inaccessible} if $\kappa > \aleph_0$, if $\kappa$ is strong limit and regular.
+Every strongly inaccessible cardinal is strongly inaccessible, and the converse is true assuming the generalised continuum hypothesis.
+Generally, inaccessibility describes the impossibility of being obtained from smaller cardinals by usual set-theoretic operations:
+\begin{center}
+  $|X| < \kappa \Rightarrow 2^{|X|} < \kappa$.
+
+  $|S| < \kappa$ and $|X| < \kappa$ for each $X \in S$, then $|\cup S| < \kappa$.
+\end{center}
+
+\subsection{The Singular Cardinal Hypothesis}
+
+The \emph{Singular Cardinal Hypothesis} (SCH) states that
+\begin{center}
+  If $\kappa$ is singular, then $2^{\operatorname{cf} \kappa} < \kappa$ implies $2^{\operatorname{cf} \kappa} = \kappa^{+}$.
+\end{center}
+The singular cardinal hypothesis follows from the generalised continuum hypothesis. 
+Indeed, if $\kappa \leq 2^{\operatorname{cf} \kappa}$, then $\kappa^{\kappa} = 2^{\operatorname{cf} \kappa}$.
+If $2^{\operatorname{cf} \kappa} < \kappa$, then $\kappa^{+}$ is the least possible value of $\kappa^{\operatorname{cf} \kappa}$.
+
+The singular cardinal hypothesis allows determining cardinal exponentiation by the values of
+the continuum function on regular cardinals.
+
+\begin{comment}
+\begin{theorem}
+  Assume SCH holds, then:
+
+  \begin{enumerate}
+    \item If $\kappa$ is a singular cardinal, then:
+    \begin{enumerate}
+      \item
+      \item 
+    \end{enumerate}
+    \item
   \end{enumerate}
 \end{theorem}
 \end{comment}
+
+\subsection{Some Exercises}
 
 \section{The Axiom of Regularity}
 
