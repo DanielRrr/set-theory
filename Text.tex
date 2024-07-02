@@ -1223,25 +1223,128 @@ If $2^{\operatorname{cf} \kappa} < \kappa$, then $\kappa^{+}$ is the least possi
 The singular cardinal hypothesis allows determining cardinal exponentiation by the values of
 the continuum function on regular cardinals.
 
-\begin{comment}
 \begin{theorem}
   Assume SCH holds, then:
 
   \begin{enumerate}
     \item If $\kappa$ is a singular cardinal, then:
     \begin{enumerate}
-      \item
-      \item 
+      \item If the continuum function is eventually constant below $\kappa$, then $2^{\kappa} = 2^{< \kappa}$.
+      \item $2^{\kappa} = (2^{< \kappa})^+$ otherwise.
     \end{enumerate}
-    \item
+    \item If $\kappa$ and $\lambda$ are infinite cardinals, then:
+    \begin{enumerate}
+      \item If $\kappa \leq 2^{\lambda}$, then $\kappa^{\lambda} = 2^{\lambda}$.
+      \item If $2^{\lambda} < \kappa$, then $\lambda < \operatorname{cf} \kappa$ implies $\kappa = \kappa^{\lambda}$.
+      \item If $2^{\lambda} < \kappa$, then $\operatorname{cf} \kappa \leq \lambda$ implies $ \kappa^{\lambda} = \kappa^+$.
+    \end{enumerate}
   \end{enumerate}
 \end{theorem}
-\end{comment}
-
-\subsection{Some Exercises}
 
 \section{The Axiom of Regularity}
 
+The \emph{Axiom of Regularity} states that the membership relation on any family of sets is well-founded:
+\begin{center}
+  $\forall S (S \neq \emptyset \to \exists s \in S \: S \cap x = \emptyset)$
+\end{center}
+that is, no infinite sequences are allowed:
+\begin{center}
+  $x_0 \ni x_1 \ni x_2 \ni \dots$
+\end{center}
+neither are cycles:
+\begin{center}
+  $x_0 \ni x_1 \ni x_2 \ni \dots \ni x_n \ni x_0$
+\end{center}
+
+Thus the Axiom of Regularity prevents some sets from existing. This is of interest for metamathematics of set theory, in
+particular, we can classify all sets with respect to ranks and arrange them in a cumulative hierarchy.
+
+Recall that a set $A$ is \emph{transitive} if $x \in A$ implies $x \subseteq A$.
+
+\begin{lemma}
+  Let $S$ be a set, then there exists a transitive set $T \supset S$.
+\end{lemma}
+\begin{proof}
+  By induction:
+
+  \begin{enumerate}
+    \item $S_0 = S$
+    \item $S_{n + 1} = \bigcup S_n$
+    \item $T = \bigcup \limits_{n < \omega} S_n$
+  \end{enumerate}
+\end{proof}
+
+$\operatorname{TC}(S)$ is the \emph{transitive closure} of $S$, that is, the minimal transitive set extending $S$.
+
+\begin{lemma}
+  Let $C$ be a non-empty class, then $C$ has an $\in$-minimal element.
+\end{lemma}
+
+\begin{proof}
+  Let $S$ be a set from $C$. If $S \cap C = \emptyset$, then $S$ is minimal.
+  Otherwise take $X = T \cap C$ where $T = \operatorname{TC}(S)$ and $X \neq \emptyset$.
+  Then $X$ has a minimal $x$ such that $x \cap X = \emptyset$, then $x \cap C = \emptyset$.
+\end{proof}
+
+\subsection{The Cumulative Hierarchy of Sets}
+
+We define by transfinite induction:
+
+\begin{enumerate}
+  \item $\mathcal{V}_0 = \emptyset$
+  \item $\mathcal{V}_{\alpha + 1} = 2^{\mathcal{V}_\alpha}$
+  \item $\mathcal{V}_{\alpha} = \bigcup \limits_{\beta < \alpha} \mathcal{V}_{\beta}$
+\end{enumerate}
+
+By induction, one can show the following:
+\begin{enumerate}
+  \item Each $\mathcal{V}_{\alpha}$ is transitive.
+  \item $\alpha < \beta$ implies $\mathcal{V}_{\alpha} \subset \mathcal{V}_{\beta}$.
+  \item $\alpha \subset \mathcal{V}_{\alpha}$.
+\end{enumerate}
+
+\begin{lemma}
+  For every $x$ there exists $\alpha$ such that $x \in \mathcal{V}_{\alpha}$:
+\begin{center}
+  $\bigcup \limits_{\alpha} \mathcal{V}_{\alpha} = \mathcal{V}$
+\end{center}
+where $V = \{ x \: | \: x = x\}$.
+\end{lemma}
+
+\begin{proof}
+Let $C$ be the class of all $x$ that no $\alpha$ exists such that $x \in \mathcal{V}_{\alpha}$.
+If $C$ is non-empty, then $C$ has an $\in$-minimal element $x$.
+That, $x \in C$ and $z \in \cup_{\alpha} \mathcal{V}_{\alpha}$ for some $\alpha$ for each $z \in x$.
+Hence $x \subset \cup_{\alpha \in \operatorname{Ord}} \mathcal{V}_{\alpha}$.
+By Replacement, there exists $\gamma$ such that $x \subset \cup_{\alpha < \gamma} \mathcal{V}_{\alpha}$, so 
+$x \in \mathcal{V}_{\gamma + 1}$. So $C$ cannot be empty.
+\end{proof}
+
+Since every $x$ belongs to some $\mathcal{V}_{\alpha}$ for some $\alpha$, we can define \emph{the rank of $x$}:
+\begin{center}
+  $\operatorname{rank}(x) = \text{the smallest ordinal $\alpha$ such that $x \in \mathcal{V}_{\alpha} + 1$}$
+\end{center}
+Thus each $V_{\alpha}$ is a collection of sets having lower ranks and we have:
+\begin{enumerate}
+  \item $x \in y$ implies $\operatorname{rank}(x) < \operatorname{rank}(y)$.
+  \item $\operatorname{rank}(\alpha)=\alpha$.
+\end{enumerate}
+
+The rank function is often needed when we deal with equivalence classes for equivalence relation on a proper class.
+Let $C$ be a class, let
+\begin{center}
+  $\hat{C} = \{ x \in C \: | \: \forall z \in C \: \operatorname{rank}(x) \leq \operatorname{rank}(x) \}$
+\end{center}
+Note that $\hat{C}$ is always set and $\hat{C}$ is non-empty whenever $C$ is non-empty.
+
+Let $\equiv$ be an equivalence relation on $C$. Apply the definition above to each equivalence class and define
+\begin{center}
+  $[x] = \{ y \in C \: | \: y \equiv x \land \forall z \in C \: (z \equiv x \to \operatorname{rank}(y) \leq \operatorname{rank}(z)) \}$
+\end{center}
+and
+\begin{center} 
+$C/_{\equiv} = \{ [x] \: | \: x \in C \}$
+\end{center}
 \bibliographystyle{alpha}
 \bibliography{Text}
 
