@@ -226,6 +226,7 @@ Let $\alpha > 0$ be a limit ordinal, the \emph{cofinality} of $\alpha$ is:
 \end{lemma}
 
 \begin{proof}
+$ $
 
   \begin{enumerate}
     \item The order-type of $A$ is the length of the increasing enumeration of $A$, 
@@ -718,7 +719,7 @@ $X$ is a \emph{chain} in $P$ if any two elements of $X$ are comparable.
 
 As it is known, Zorn's lemma implies the axiom of choice.
 Let $S$ be a family of non-empty sets, then we check that the set
-$\{ f \: | \: f \text{is a choice function on some $S' \subset S$}\}$ ordered by inclusion
+$\{ f \: | \: \text{$f$ is a choice function on some $S' \subset S$}\}$ ordered by inclusion
 satisfies the condition of Zorn's lemma, so a maximal element of that poset is a choice function on $S$.
 
 
@@ -1345,6 +1346,163 @@ and
 \begin{center} 
 $C/_{\equiv} = \{ [x] \: | \: x \in C \}$
 \end{center}
+
+One can use the same to prove the \emph{Collection Principle}:
+\begin{center}
+  $\forall X \: \exists Y \:\: (\forall u \in X) [\exists v \varphi(u, v, p) \to (\exists v \in Y) \varphi(u, v, p)]$
+\end{center}
+where $p$ is a parameter.
+
+We can formulate the collection principle the following way. 
+Let $C_u$ be a collection of classes for $u \in X$, where $X$ is a set, then
+there exists a set $Y$ such that for every $u \in X$
+\begin{center}
+  $C_u \neq \emptyset \Rightarrow C_u \cap Y = \emptyset$
+\end{center}
+
+To prove the collection principle, we let
+\begin{center}
+  $Y = \bigcup \limits_{u \in X} \hat{C}_u$
+\end{center}
+where $C_u = \{ v \: | \: \varphi(u, v, p) \}$, that is, 
+\begin{center}
+  $v \in Y \leftrightarrow \exists u \in X (\varphi(u, v, p) \: \& \: \forall z (\varphi(u, z, p) \to \operatorname{rank} v \leq \operatorname{rank} z))$
+\end{center}
+
+By Replacement, $Y$ is a set.
+
+\subsection{$\in$-induction}
+
+\begin{theorem}~\label{in:ind}
+  Let $T$ be a transitive class and let $\Phi$ be a property such that:
+  \begin{enumerate}
+    \item $\Phi(\emptyset)$
+    \item $x \in T \: \& \: \forall z \in x \: \Phi(z) \Rightarrow \Phi(x)$
+  \end{enumerate}
+  then every element of $T$ satisfies $\Phi$.
+\end{theorem}
+
+\begin{proof}
+  Let $C$ be the class of all $x \in T$ such that $\Phi$ is not the case for $x$.
+  If $C$ is non-empty, then either $\neg \Phi(\emptyset)$ or there
+  exists $x \in T$ such that there exists $z \in x$ such that $\Phi(z)$ and $\neg \Phi(x)$.
+\end{proof}
+
+\begin{theorem}~\label{in:rec}
+  Let $T$ be a non-empty transitive class and let $G$ be a function. Then there exists a unique function $F$ on $T$ such that
+  \begin{center}
+  $\forall x \in T \:\: F(x) = G(F \upharpoonright x)$
+  \end{center}
+\end{theorem}
+
+\begin{proof}
+  Let $x \in T$, we let $F(x) = y$ if and only if there exists a function $f$ such that 
+  $\operatorname{dom}(f)$ is a transitive subset $T$ and 
+  \begin{enumerate}
+    \item $\forall z \in \operatorname{dom}(f) \:\: f(z) = G(f \upharpoonright z)$
+    \item $f(x) = y$
+  \end{enumerate}
+
+  The uniqueness is proved by $\in$-induction.
+\end{proof}
+
+\begin{col}
+  Let $A$ be a class, there is a unique class $B$ such that
+  \begin{center}
+    $B = \{ x \in A \:| \: x \subset B \}$
+  \end{center}
+\end{col}
+
+\begin{proof}
+  Let
+\begin{center}
+  $F(x) =
+  \begin{cases}
+    1, \:\: \text{if $x \in A$ and $F(z) = 1$ for all $z \in x$} \\
+    0, \:\: \text{otherwise}
+  \end{cases}$
+\end{center}
+
+Let $B = \{ x \: |\: F(x) = 1 \}$. The uniqueness is proved by $\in$-induction.
+\end{proof}
+
+In such case we say that each $x \in B$ is \emph{hereditarily} in $A$.
+
+The Axiom of Regularity also implies that the universe does not admit non-trivial automorphisms.
+
+\begin{theorem}
+  Let $T_1$ and $T_2$ be transitive classes and let $\pi$ be an $\in$-automorphism
+  of $T_1$ onto $T_2$, i.e. $\pi$ is one-to-one and
+  \begin{center}
+    $u \in v \leftrightarrow \pi u \in \pi v$
+  \end{center}
+
+  Then $T_1 = T_2$ and $\pi u = u$ for every $u \in T_1$.
+\end{theorem}
+\begin{proof}
+  One can show by $\in$-induction that $\pi x = x$ for each $x \in T_1$.
+  Assume $\pi z = z$ for each $z \in x$ and let $y = \pi x$.
+
+  We have $x \subset y$, then, as far as $z \in x$, we have $z = \pi z \in \pi x = y$.
+
+  We also have $y \subset x$. Let $t \in y$. Provided $y \subset T_2$, there is
+  $z \in T_1$ such that $\pi z = t$. Since $\pi z \in y$, we have $z \in x$ and so
+  $t = \pi z = z$. Thus $t \in x$.
+  Therefore $\pi x = x$ for each $x \in T_1$ and $T_1 = T_2$.
+\end{proof}
+
+\subsection{Well-Founded Relations}
+
+Let $E$ be a binary relation on a class $P$. Let $x \in P$, we let the \emph{extension} of $x$:
+\begin{center}
+  $\operatorname{ext}_E(x) = \{ z \in P \: | \: z E x \}$
+\end{center}
+
+\begin{definition}
+  A relation $E$ on $P$ is \emph{well-founded} if
+  \begin{enumerate}
+    \item Every non-empty set $x \subset P$ has an $E$-minimal element. 
+    \item For all $x \in P$ $\operatorname{ext}_E(x)$ is a set.
+  \end{enumerate}
+\end{definition}
+
+\begin{lemma}
+  Let $E$ be a well-founded relation on a class $P$, then every class $C \subset P$ has an $E$-minimal element.
+\end{lemma}
+
+\begin{proof}
+  We need some $x \in C$ such that $\operatorname{ext}_E(x) \cap x = \emptyset$.
+  Let $S \in C$ be arbitrary assume $\operatorname{ext}_E(S) \cap C \neq \emptyset$.
+  We let $X = T \cap C$ where
+  \begin{enumerate}
+    \item $S_0 = \operatorname{ext}_E(S)$ 
+
+    \item $S_{n + 1} = \bigcup \limits_{n} \{ \operatorname{ext}_E(z) \: |\: z \in S_n \}$
+
+    \item $T = \bigcup \limits_{n < \omega} S_n$.
+  \end{enumerate}
+\end{proof}
+
+The following two theorems are proved similarly to Theorem~\ref{in:ind} and Theorem~\ref{in:rec} respecitvely.
+
+\begin{theorem}
+  Let $E$ be a well-founded relation on $P$ and let $\Phi$ be a property such that
+  \begin{enumerate}
+    \item Every $E$-minimal element of $P$ satisfies $\Phi$.
+    \item IF $x \in P$ and if for each $z$ such that $z E x$ $\Phi(z)$ is the case, then $\Phi(x)$ holds.
+  \end{enumerate}
+
+  Then $\Phi$ holds for every element of $P$.
+\end{theorem}
+
+\begin{theorem}
+  Let $E$ be a well-founded relation on $P$. Let $G$ be a function on $\mathcal{V} \times \mathcal{V}$, 
+  then there exists a unique function $F$ on $P$ such that for each $x \in P$
+  \begin{center}
+    $F(x) = G(x, F \upharpoonright \operatorname{ext}_E(x))$
+  \end{center}
+\end{theorem}
+
 \bibliographystyle{alpha}
 \bibliography{Text}
 
