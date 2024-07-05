@@ -53,6 +53,9 @@
 \newtheorem{example}{Example}[section]
 
 \theoremstyle{definition}
+\newtheorem{exercise}{Exercise}[section]
+
+\theoremstyle{definition}
 \newtheorem{col}{Corollary}[section]
 
 \theoremstyle{question}
@@ -1323,7 +1326,7 @@ $x \in \mathcal{V}_{\gamma + 1}$. So $C$ cannot be empty.
 
 Since every $x$ belongs to some $\mathcal{V}_{\alpha}$ for some $\alpha$, we can define \emph{the rank of $x$}:
 \begin{center}
-  $\operatorname{rank}(x) = \text{the smallest ordinal $\alpha$ such that $x \in \mathcal{V}_{\alpha} + 1$}$
+  $\operatorname{rank}(x) = \text{the smallest ordinal $\alpha$ such that $x \in \mathcal{V}_{\alpha + 1}$}$
 \end{center}
 Thus each $V_{\alpha}$ is a collection of sets having lower ranks and we have:
 \begin{enumerate}
@@ -1430,7 +1433,7 @@ In such case we say that each $x \in B$ is \emph{hereditarily} in $A$.
 
 The Axiom of Regularity also implies that the universe does not admit non-trivial automorphisms.
 
-\begin{theorem}
+\begin{theorem}~\label{trivialautomors}
   Let $T_1$ and $T_2$ be transitive classes and let $\pi$ be an $\in$-automorphism
   of $T_1$ onto $T_2$, i.e. $\pi$ is one-to-one and
   \begin{center}
@@ -1499,9 +1502,197 @@ The following two theorems are proved similarly to Theorem~\ref{in:ind} and Theo
   Let $E$ be a well-founded relation on $P$. Let $G$ be a function on $\mathcal{V} \times \mathcal{V}$, 
   then there exists a unique function $F$ on $P$ such that for each $x \in P$
   \begin{center}
-    $F(x) = G(x, F \upharpoonright \operatorname{ext}_E(x))$
+    $F(x) = G(x, F \upharpoonright \operatorname{ext}_E(x))$.
   \end{center}
 \end{theorem}
+
+\begin{example} {\bf (The Rank Function) }
+
+  Let us define, by induction, for all $x \in P$
+  \begin{center}
+    $\rho(x) = \sup \{ \rho(z) + 1 \: | \: z E x \}$.
+  \end{center}
+  The codomain of $\rho$ is either a particular ordinal or the class of all ordinals. One has
+  \begin{center}
+    $\forall x, y \in P \:\: (x E y \to \rho(x) < \rho(y))$.
+  \end{center}
+\end{example}
+
+\begin{example} {\bf (The Transitive Collapse)}
+
+  By induction, let
+  \begin{center}
+    $\forall x \in P \:\: \pi(x) = \{ \pi(z) \: | \: z E x \}$.
+  \end{center}
+
+  The range of $\pi$ is a transitive class such that
+  \begin{center}
+    $\forall x, y \in P \:\: (x E y \to \pi(x) \in \pi(y))$
+  \end{center}
+\end{example}
+
+$\pi$ is one-to-one whenever $E$ is extensional.
+
+\begin{definition}
+  A well-founded relation $E$ on a class $P$ is \emph{extensional} if
+  \begin{center}
+    $\forall x, y \in P \:\: x \neq y \to \operatorname{ext}_E(x) \neq \operatorname{ext}_E(y)$
+  \end{center}
+\end{definition}
+A class $M$ is \emph{extensional} if the membership relation on $M$ is extensional, that is,
+\begin{center}
+  $\forall x, y \in M \:\: x \neq y \to x \cap M \neq y \cap M$.
+\end{center}
+
+\begin{theorem} {\bf (Mostowski's Collapsing Theorem)}
+
+  \begin{enumerate}
+    \item Let $E$ be a well-founded relation and extensional relation on a class $P$, then
+    there exists a unique transitive class $M$ and a unique isomorphism $\pi : (P, E) \cong (M, \in)$.
+    \item Every extensional class $P$ is isomorphic to some transitive class $M$.
+    \item~\label{most:iii} In the case of the previous item, if $T \subset P$ is transitive, 
+    then $\pi x = x$ for every $x \in T$.
+  \end{enumerate}
+\end{theorem}
+
+\begin{proof} Let us show the general existence of an isomorphism.
+
+$E$ is well-founded, so we can define $\pi$ by well-founded induction.
+That is, take any $x \in P$, then $\pi(x)$ can be defined by $\pi(z)$'s where $z E x$:
+\begin{center}
+  $\pi(x) = \{ \pi(z) \: | \: z E x \}$
+\end{center}
+In particular, if $E$ is the membership relation, then $\pi(x)$ becomes
+\begin{center}
+  $\pi(x) = \{ \pi(z) \: | \: z \in x \cap P \}$.
+\end{center}
+$\pi$ maps $P$ onto the class $M = \pi(P)$, which turns out to be transitive by the definition of $\pi$.
+ 
+We use extensionality of $E$ in order to show that $\pi$ is one-to-one.
+Let $z \in M$ be of least rank such that $z = \pi(x) = \pi(y)$ for some different $x, y \in P$.
+$x \neq y$ implies $\operatorname{ext}_E(x) \neq \operatorname{ext}_E(y)$. In other words,
+there is some $u \in \operatorname{ext}_E(x)$ such that $u \notin \operatorname{ext}_E(y)$.
+
+Let $t = \pi(u)$. Since $t \in z = \pi(y)$, there is $v \in \operatorname{ext}_E(y)$ such that
+$t = \pi(v)$. Thus we have $t = \pi(u) = \pi(v)$ for different $u, v$ of less rank that $z$ has since $t \in z$. Contradiction.
+
+Now it follows that
+\begin{center}
+  $x E y \leftrightarrow \pi(x) E \pi(y)$
+\end{center}
+because
+
+  $\begin{array}{lll}
+    & xEy \leftrightarrow & \\
+    & \:\:\:\: \text{By the definition of $\pi$}& \\
+    & \pi(x) E \pi(y) \to & \\
+    & \:\:\:\: \text{By the definition of $\pi$}& \\
+    & \exists z \: z E y \: \& \: \pi(x) = \pi(z) \to & \\
+    & \:\:\:\: \text{As far as $\pi$ is one-to-one}& \\
+    & x = z \land x E y & \\
+  \end{array}$
+
+The uniqueness of the isomorphism as well as the transitive class $M = \pi(P)$
+by Theorem~\ref{trivialautomors}. Let $\pi_1$ and $\pi_2$ be two isomorphisms of $P$ and $M_1$ and $M_2$,
+then $\pi_2 \circ \pi_1^{-1} : M_1 \cong M_2$ and therefore $\pi_2 \circ \pi_1^{-1}$ is the identity mapping.
+Thus $M_1 = M_2$.
+
+To show (\ref{most:iii}), let $T \subset P$ be transitive. 
+Observe $x \subset P$ for every $x \in T$ and $x \cap P = x$ and we have
+\begin{center}
+  $\pi(x) = \{ \pi(z) \: | \: z \in x \}$
+\end{center}
+for all $x \in T$. By $\in$-induction one can show that $\pi(x) = x$ for each $x \in T$.
+\end{proof}
+
+\subsection{The Bernays-G\"{o}del Axiomatic Set Theory}
+
+In the Bernays-G\"{o}del set theory we consider two types of objects: \emph{sets} (denoted with lowercase letters) and 
+\emph{classes} (denoted with uppercase letters).
+
+\begin{enumerate}
+  \item Extensionality: $\forall u (u \in X \leftrightarrow u \in Y) \to X = Y$.
+  \item Every set is a class.
+  \item If $X \in Y$, then $X$ is a set.
+  \item Pairing: if $x, y$ are sets, so is $\{x, y\}$.
+  \item Let $\varphi$ be a formula where only set variables are quantified, then
+  \begin{center}
+    $\forall X_1 \dots \forall X_n \exists Y \:\: Y = \{ x \: | \: \varphi(x, X_1, \dots, X_n )\}$
+  \end{center}
+  \item Infinite: there exists an infinite set.
+  \item Union: for every set $x$ $\cup x$ exists.
+  \item Powerset: for every set $x$ the powerset $P(x)$ exists.
+  \item Replacement: if a class $F$ is a function and $x$ is a set, then $\{ F(z) \: | \: z \in x \}$ is a set.
+  \item Regularity.
+  \item Choice: any family of non-empty sets has a choice function.
+\end{enumerate}
+
+\subsection{Some Exercises}
+
+\begin{exercise}
+  $\operatorname{rank}(x) = \sup \{ \operatorname{rank}(z) + 1 \: | \: z \in x \}$
+\end{exercise}
+
+\begin{proof}
+  If $x = \emptyset$, then 
+  \begin{center}
+    $\operatorname{rank}(\emptyset) = 1 = \sup \{ \operatorname{rank}(\emptyset) + 1 \: \}$
+  \end{center}
+
+  If there is $z \in x$, then assume that 
+  \begin{center}
+    $\operatorname{rank}(z) = \sup \{ \operatorname{rank}(z') + 1 \: | \: z' \in z \}$
+  \end{center}
+
+  On the other hand, we have
+  \begin{center}
+    $\operatorname{rank}(x) = \text{the least $\alpha$ such that $x \in V_{\alpha + 1}$}$
+  \end{center}
+  which is $\cup \operatorname{rank}(z) = \sup \{ \operatorname{rank}(z) + 1 \: | \: z \in x \}$.
+\end{proof}
+
+\begin{exercise}
+  $|\mathcal{V}_{\omega + \alpha}| = \beth_{\alpha}$
+\end{exercise}
+
+\begin{proof}
+
+  \begin{enumerate}
+    \item $\alpha = 0$, then let us show $|\mathcal{V}_{\omega}| = \aleph_0 = \beth_0$.
+
+    Recall that 
+    \begin{center}
+      $\mathcal{V}_{\omega} = \bigcup \limits_{n < \omega} \mathcal{V}_n$
+    \end{center}
+    In turn each of $\mathcal{V}_n$ is finite and we have
+    \begin{center}
+      $\mathcal{V}_0 \subset \mathcal{V}_1 \subset \dots \mathcal{V}_n \subset \dots$ for $n < \omega$.
+    \end{center}
+    so the whole union $\cup_{n < \omega} \mathcal{V}_n$ is countable.
+    \item Assume $\alpha = \beta + 1$, we have to show that $|\mathcal{V}_{\omega + \beta + 1}| = \beth_{\beta + 1} = 2^{\beth_{\beta}}$
+
+    Assume we have already showed that $|\mathcal{V}_{\omega + \beta}| = \beth_{\beta}$. But then
+    
+    \begin{center}
+    $|\mathcal{V}_{\omega + (\beta + 1)}| = |\mathcal{V}_{(\omega + \beta) + 1}| = |P(\mathcal{V}_{\omega + \beta})| = 2^{\beth_{\beta}}$.
+    \end{center}
+    \item Let $\alpha = \sup \{\beta \: | \: \beta < \alpha \}$
+    and assume $\mathcal{V}_{\omega + \beta} = \beth_{\beta}$ for each $\beta < \omega$.
+
+    We have
+
+    $\begin{array}{lll}
+      & |\mathcal{V}_{\omega + \alpha}| = & \\
+      & |\mathcal{V}_{\omega + \sup \{ \beta \: | \: \beta < \alpha\}}| = & \\
+      & |\mathcal{V}_{\sup \{ \omega + \beta \: | \: \beta < \alpha \}} |= & \\
+      & |\bigcup \limits_{\gamma} \mathcal{V}_{\gamma} | = & \\
+      & \sup \{ \beth_{\beta} \: | \: \beta < \alpha\} = \beth_{\alpha}.&
+    \end{array}$
+  \end{enumerate}
+\end{proof}
+
+
+\section{Filters, Ultrafilters and Boolean Algebras}
 
 \bibliographystyle{alpha}
 \bibliography{Text}
