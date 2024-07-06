@@ -223,7 +223,7 @@ Let $\alpha > 0$ be a limit ordinal, the \emph{cofinality} of $\alpha$ is:
 
   \begin{enumerate}
     \item~\label{confin1.1} If $A \subseteq \alpha$ and $\sup A = \alpha$, the order-type of $A$ is at least $\operatorname{cf} \alpha$.
-    \item Let $\beta_0 \leq \beta_1 \leq \dots \leq \beta_{\xi} \leq \dots $ for $\xi < \gamma$ 
+    \item~\label{confin1.2} Let $\beta_0 \leq \beta_1 \leq \dots \leq \beta_{\xi} \leq \dots $ for $\xi < \gamma$ 
     be a non-decreasing sequence of ordinals such that $\lim_{\xi \to \gamma} = \alpha$, then $\operatorname{cf} \gamma = \alpha$.
   \end{enumerate}
 \end{lemma}
@@ -357,6 +357,103 @@ Let $\kappa$ be a limit ordinal, a subset $X \subset \kappa$ is \emph{bounded} i
 
 An uncountable cardinal $\kappa$ is \emph{weakly inaccessible} if it is limit and regular, but we cannot prove the
 existence of weakly inaccessible cardinals in ZFC.
+
+\subsection{Some Exercises}
+
+\begin{exercise}
+  The set of all finite sequences in $\mathbb{N}$ is countable.
+\end{exercise}
+
+\begin{proof}
+  The set of finite sequences is $\bigcup \limits_{n < \omega} \mathbb{N}^n$.
+  Each of $\mathbb{N}^n$ is countable for each $n < \omega$, so is the whole union 
+  $\bigcup \limits_{n < \omega} \mathbb{N}^n$.
+\end{proof}
+
+\begin{exercise}
+  $\Gamma(\alpha \times \alpha) \leq \omega^{\alpha}$.
+\end{exercise}
+
+\begin{proof}
+
+Induction on $\alpha$.
+
+\begin{enumerate}
+\item If $\alpha = 0$, then trivially
+\begin{center}
+  $\Gamma(0 \times 0) = \Gamma(0) = 0 < \omega^0 = 1$
+\end{center}
+\item Assume $\alpha = \beta + 1$ and $\Gamma(\beta \times \beta) \leq \omega^{\beta}$.
+Take $\gamma(\beta) = \Gamma(\beta \times \beta)$.
+
+Then
+\begin{center}
+$\gamma(\alpha) = \gamma(\beta + 1) = \gamma(\beta) + \beta + \beta + 1 = \gamma(\beta) + 2 \cdot \beta + 1$.
+\end{center}
+
+By the induction hypothesis, we have $\gamma(\beta) \leq \omega^{\beta}$, so
+$\gamma(\beta) + 2 \cdot \beta + 1 \leq \omega^{\beta} + 2 \cdot \beta + 1 < \omega^{\beta + 1} = \omega^{\alpha}$.
+\end{enumerate}
+\item Assume $\alpha = \lim \limits_{\beta \to \alpha} \beta$ and $\Gamma(\beta \times \beta) \leq \omega^{\beta}$ for each $\beta$.
+
+We have
+\begin{center}
+$\gamma(\alpha) = \gamma(\lim \limits_{\beta \to \alpha} \beta) = \lim \limits_{\beta \to \alpha} (\gamma(\beta)) \leq 
+\lim \limits_{\beta \to \alpha} \omega^{\beta} = \omega^{\alpha}$.
+\end{center}
+
+\end{proof}
+
+A set $B$ is a \emph{projection} of a set $A$ if there is a mapping of $A$ onto $B$.
+$B$ is a projection of $A$ if and only if there is a partition $P$ of $A$ such that $|P| = |B|$.
+If $|A| \geq |B| > 0$, then $B$ is a projection of $A$. 
+Conversely, by the Axiom of Choice, one can show that $B$ is a projection of $A$, then $|A| \geq |B|$.
+This cannot be proved if we assume no the Axiom of Choice.
+
+\begin{exercise}
+  Let $B$ a projection of $\omega_{\alpha}$, then $|B| \leq \aleph_{\alpha}$.
+\end{exercise}
+
+\begin{proof}
+  If $B$ is a projection of $\omega_{\alpha}$, so 
+  $\omega_{\alpha} \twoheadrightarrow B$, so $|B| \leq |\omega_{\alpha}| = \aleph_{\alpha}$.
+\end{proof}
+
+\begin{exercise}
+  If $B$ is a projection of $A$, then $|2^B| \leq |2^A|$.
+\end{exercise}
+
+\begin{proof}
+  Let $f : A \to B$ maps $A$ onto $B$. Define $g : 2^{B} \to 2^A$ as
+  \begin{center}
+    $g : X \mapsto f^{-1}(X)$
+  \end{center}
+  Then $g$ is one-to-one since
+  \begin{center}
+  $g(X) = g(Y) \leftrightarrow f^{-1}(X) = f^{-1}(Y) \leftrightarrow 
+  \{ x \in A \: | \: f(x) \in X \} = \{ y \in A \: | \: f(y) \in Y \} \leftrightarrow X = Y$.
+  \end{center}
+\end{proof}
+
+\begin{exercise}
+  Let $\aleph_{\alpha}$ be an uncountable limit cardinal, then 
+  $\operatorname{cf} \omega_{\alpha} = \operatorname{cf} \alpha$; 
+  $\omega_{\alpha}$ is the limit of a cofinal sequence $\langle \omega_{\xi} \: : \: \xi < \operatorname{cf} \alpha \rangle$ of cardinals.
+\end{exercise}
+
+\begin{proof}
+  $\aleph_{\alpha}$ is a limit cardinal, so 
+  \begin{center}
+  $\aleph_{\alpha} = \sup \{ \omega_{\beta} \: | \: \beta < \alpha \}$
+  \end{center}
+  But the sequence $\langle \omega_{\beta} \: : \: \beta < \alpha \rangle$ is non-decreasing, so by Lemma~\ref{confin1}(~\ref{confin1.2})
+  we have $\operatorname{cf} \omega_{\alpha} = \operatorname{cf} \alpha$.
+
+  Moreover:
+  \begin{center}
+    $\omega_{\alpha} = \lim \limits_{\xi \to \operatorname{cf} \alpha} \omega_{\xi}$.
+  \end{center}
+\end{proof}
 
 \section{Real Numbers and The Baire Space}
 
