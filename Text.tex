@@ -1342,6 +1342,39 @@ the continuum function on regular cardinals.
   \end{enumerate}
 \end{theorem}
 
+\subsection{Some Exercises}
+
+\begin{exercise}
+  There exists a subset $A \subset \mathbb{R}$ such that $A$ has cardinality $2^{\aleph_0}$ but it has no
+  perfect subsets. 
+\end{exercise}
+
+\begin{proof}
+  Let $\langle P_{\alpha} \: : \: \alpha < 2^{\aleph_0} \rangle$ be an enumeration of all perfect
+  subsets of reals. Construct the following disjoint sets
+
+  \begin{center}
+    $A = \{ a_{\alpha} \: | \: \alpha < 2^{\aleph_0} \}$
+
+    $B = \{ b_{\alpha} \: | \: \alpha < 2^{\aleph_0} \}$
+  \end{center}
+  the following way. For each $\alpha < 2^{\aleph_0}$ $a_{\alpha}$ and $b_{\alpha}$ are such that:
+  \begin{center}
+    $a_{\alpha} \notin \{ a_{\xi} \: | \: \xi < \alpha \} \cup \{ b_{\xi} \: | \: \xi < \alpha \}$
+
+    $b_{\alpha} \in P_{\alpha} - \{ a_{\xi} \: | \: \xi < \alpha \}$
+  \end{center}
+
+  By the construction $A$ and $B$ are disjoint. Moreover, $A$ is the set. 
+  Let $\rho$ be the order-type of $\mathbb{R}$ (which does exist by Zermelo's theorem), so there is a one-to-one
+  mapping from $\rho$ to $A$ defined as $\alpha \mapsto a_{\alpha}$ and, by the construction, if 
+  $\alpha, \beta < 2^{\aleph_0}$ are different, so are $a_{\alpha}$ and $b_{\beta}$.
+
+  Let $P_{\alpha} \subseteq A$ be a perfect subset. In particular we have $P_{\alpha} \cap B= \emptyset$ by the construction.
+  But $b_{\alpha} \in P_{\alpha} \cap B$, which is impossible, or $P_{\alpha} - \{ a_{\xi} \: | \: \xi < \alpha \} = \emptyset$, 
+  which is also a contradiction.
+\end{proof}
+
 \section{The Axiom of Regularity}
 
 The \emph{Axiom of Regularity} states that the membership relation on any family of sets is well-founded:
