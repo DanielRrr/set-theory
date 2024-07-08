@@ -1375,6 +1375,104 @@ the continuum function on regular cardinals.
   which is also a contradiction.
 \end{proof}
 
+\begin{exercise}
+  Let $(P, <)$ be a linear ordering and let $\kappa$ be a cardinal. 
+  If every initial segment has cardinality $< \kappa$, then $|P| \leq \kappa$.
+\end{exercise}
+
+\begin{proof}
+  Let $a \in P$, define $P_a = \{ b \in P \: | \: b \leq a \}$. The condition states that
+  $|P_a| < \kappa$ for each $a \in P$.
+
+  Assume $|P| > \kappa$. So we can construct a sequence 
+  $\langle a_{\alpha} \: : \: \alpha \leq \kappa \rangle$ by letting
+  every $a_{\alpha}$ to be greater that all previous $a_{\beta}$'s for each $\beta < \alpha$.
+  Such $a_{\alpha}$ always exists since the union
+  \begin{center}
+    $\bigcup \limits_{\beta < \alpha} P_{a_{\beta}}$
+  \end{center}
+  is the union of at most $\kappa$ sets and the cardinality of each of which is at most $\kappa 
+  \leq |P|$.
+
+  But then $a_{\kappa}$ is smaller that all $a_{\alpha}$'s for each $\alpha < \kappa$, so $|P_{a_{\kappa}}| = \kappa$, which
+  contradicts the assumption.
+\end{proof}
+
+\begin{exercise}
+  If $A$ can be well-ordered, then $2^A$ can be linearly ordered.
+\end{exercise}
+
+\begin{proof}
+  Let $X, Y \subset A$, define
+  \begin{center}
+    $X < Y$ iff the least element of $X \Delta Y$ belongs to $X$.
+  \end{center}
+
+  \begin{enumerate}
+  \item The relation is clearly irreflexive since $X \Delta X = \emptyset$ for each $X$.
+
+  \item Assume there are sets $X, Y$ such that neither $X < Y$ nor $Y < X$ nor $X = Y$.
+  That is, the least element of $X \Delta Y$ belong neither to $X$ nor $Y$ and $X$ and $Y$ are different.
+  Let $a$ be the least element of $X \Delta Y$, so $a \notin X$ and $b \notin Y$, so $A$ is not a well-ordering.
+
+  \item This relation is transitive. Assume $X < Y < Z$, we need $X < Z$. 
+  $X < Y$ means that the least element of $X \Delta Y$, say $a$, belongs to $X - Y$, whereas
+  $Y < Z$ is the case if the least element of $Y \Delta Z$, say $b$ belongs to $Y - Z$.
+  Note that the least element exists in every case since $A$ is well-ordered. 
+  We also note that $a \neq b$ since $a \in X - Y$ and $b \in Y - Z$, so $a \notin Y$.
+
+ 
+  We have the following alternatives:
+  \begin{itemize}
+    \item Assume $a < b$. Take any $x \in A$ such that $x < a$, then 
+    $x \in X$ iff $x \in Y$ iff $x \in Z$, so $x \notin X \Delta Z$. But $a \notin Y$ and $a \notin C$, so $a$ is the least in $X \Delta Z$.
+    \item Assume $b < a$. Take $x < b$, then $x \in X$ iff $x \in Y$ iff $x \in Z$, so $x \notin X \Delta Z$.
+    Provided $b \in X - Y$, we conclude that $b$ is the least in $X \Delta Z$.
+  \end{itemize}
+  \end{enumerate}
+\end{proof}
+
+\begin{exercise}
+  Assume the Countable Axiom of Choice, then every infinite set has a countable subset.
+\end{exercise}
+
+\begin{proof}
+  Let $A$ be infinite, define $A_n = \{ f : n \to A \: | \: \text{$f$ is one-to-one} \}$. Consider
+  a family $\{ A_n \: | \: n \in \omega \}$, each of those $A_n$ is non-empty, so we have a choice function
+  $f$ on $\cup_{n < \omega} A_n$, so $f(n) : n \to A$, so take $\{ f(n)(0) \: | \: n < \omega \}$ and this set
+  is clearly countable. 
+\end{proof}
+
+\begin{exercise}
+  The Dependent Choice Principle implies The Countable Axiom of Choice.
+\end{exercise}
+
+\begin{proof}
+  Let $S = \{ A_n \: | \: n < \omega \}$ be a countable family of non-empty sets. 
+  Let $\mathcal{S} = \bigcup \limits_{n < \omega} A_n$.
+  
+  Construct a relation $R \subset \mathcal{S} \times \mathcal{S}$ such that
+  \begin{center}
+    $(a, b) \in R \leftrightarrow \exists n < \omega \:\: a \in A_{n + 1} \: \& \: b \in A_n$
+  \end{center}
+  so the relation satisfies the condition of DC, so we have the following sequence:
+  
+  \begin{center}
+    $a_0 R^{-1} a_1 R^{-1} \dots a_n R^{-1} a_{n + 1} R^{-1} \dots $
+  \end{center}
+
+  So construct a function $f : \omega \to \mathcal{S}$ such that $f : n \mapsto a_n$.
+\end{proof}
+
+\begin{exercise}
+  $\prod \limits_{0 < n < \omega} n = 2^{\aleph_0}$.
+\end{exercise}
+
+\begin{proof}
+  The set of all countable sequences of natural numbers is $2^{\aleph_0}$, 
+  but it is also obviously $\Pi_{0 < n < \omega} n$.
+\end{proof}
+
 \section{The Axiom of Regularity}
 
 The \emph{Axiom of Regularity} states that the membership relation on any family of sets is well-founded:
