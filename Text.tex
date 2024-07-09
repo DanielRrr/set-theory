@@ -978,7 +978,7 @@ Let $\{ X_i \: | \: i \in I \}$ be a disjoint family such that for each $i \in I
 Assign each $x \in \bigcup_i X_i$ to a pair $(i, f)$ such that $x \in X_i$ and $f \in \prod_i X_i$
 such that $f(i) = x$.
 
-\begin{lemma}
+\begin{lemma}~\label{prod:as:sup}
   Let $\lambda$ be an infinite cardinal and let $\langle \kappa_i \: : \: i < \lambda \rangle$ 
   be a non-descreasing sequence of ordinals, then
   \begin{center}
@@ -1471,6 +1471,75 @@ the continuum function on regular cardinals.
 \begin{proof}
   The set of all countable sequences of natural numbers is $2^{\aleph_0}$, 
   but it is also obviously $\Pi_{0 < n < \omega} n$.
+\end{proof}
+
+\begin{exercise}
+  $\prod \limits_{n < \omega} \aleph_n = \aleph_{\omega}^{\aleph_0}$
+\end{exercise}
+
+\begin{proof}
+  By Lemma~\ref{prod:as:sup} we have:
+  \begin{center}
+  $\prod \limits_{n < \omega} \aleph_n = (\sup \limits_{n < \omega} \aleph_n)^{\aleph_0} = \aleph_{\omega}^{\aleph_0}$.
+  \end{center}
+\end{proof}
+
+\begin{exercise}
+  $\prod \limits_{\alpha < \omega + \omega} \aleph_{\alpha} = \aleph^{\aleph_0}_{\omega + \omega}$
+\end{exercise}
+
+\begin{proof}
+  By Lemma~\ref{prod:as:sup} we have:
+  \begin{center}
+    $\prod \limits_{\alpha < \omega + \omega} \aleph_{\alpha} = (\sup \limits_{\alpha < \omega + \omega} \aleph_{\alpha})^{\aleph_0} = \aleph_{\omega}^{\aleph_0}$.
+  \end{center}
+  as far as $|\omega + \omega| = \aleph_0$.
+\end{proof}
+
+\begin{exercise}
+  Let $\beta$ be such $2^{\aleph_{\alpha}} = \aleph_{\alpha + \beta}$ for each $\alpha$, then $\beta$ is finite.
+\end{exercise}
+
+\begin{proof}
+  Assume $\beta \geq \alpha$, let $\alpha$ be the least such that $\alpha + \beta < \beta$.
+  We have $0 < \alpha \leq \beta$ and $\alpha$ is limit. 
+  
+  Let $\kappa = \aleph_{\alpha + \alpha}$. $\kappa$ is singular since 
+  \begin{center}
+  $\operatorname{cf} \kappa = \operatorname{cf} \alpha \leq \alpha < \kappa$
+  \end{center}
+
+  For each $\xi < \alpha$ we have $\xi + \beta = \beta$ by our assumption, thus
+  \begin{center}
+    $2^{\alpha + \xi} = \aleph_{\alpha + \xi + \beta} = \aleph_{\alpha + \beta} = 2^{\kappa}$
+  \end{center}
+  which is a contradiction since $\aleph_{\alpha + \beta} < \aleph_{\alpha + \alpha+ \beta}$.
+\end{proof}
+
+\begin{exercise}
+  $\prod \limits_{\alpha < \omega_1 + \omega} \aleph_{\alpha} = \aleph^{\aleph_1}_{\omega_1 + \omega}$.
+\end{exercise}
+
+\begin{proof}
+  \begin{center}
+    $\prod \limits_{\alpha < \omega_1 + \omega} \aleph_{\alpha} = (\sup \limits_{\alpha < \omega_1 + \omega} \aleph_{\alpha})^{\aleph_1} = \aleph^{\aleph_1}_{\omega_1 + \omega}$
+  \end{center}
+  since $|\omega_1 + \omega| = \aleph_1$.
+\end{proof}
+
+\begin{exercise}
+  Let $\kappa$ be a limit cardinal and let $\lambda < \operatorname{cf} \kappa$, then
+  \begin{center}
+    $\kappa^{\lambda} = \sum \limits_{\alpha < \kappa} |\alpha|^{\lambda}$
+  \end{center}
+\end{exercise}
+
+\begin{proof}
+ 
+As far as $\lambda < \operatorname{cf} \kappa$, then the range of $f : \lambda \to \kappa$ is bounded, so
+\begin{center}
+$\kappa^{\lambda} = | \bigcup \limits_{\alpha < \kappa} \alpha^{\lambda}| \leq \sum \limits_{\alpha < \kappa} |\alpha|^{\lambda} \leq \kappa \cdot \kappa^{\lambda} = \kappa^{\lambda}$.
+\end{center}
 \end{proof}
 
 \section{The Axiom of Regularity}
