@@ -1060,7 +1060,7 @@ such that $f(i) = x$.
   $i < \omega_{\beta}$, then $\Sigma_{i < \omega_{\beta}} \kappa_i < \aleph_{\alpha}^{\aleph_{\beta}}$.
   Let $\lambda_i = \aleph_{\alpha}^{\aleph_{\beta}}$, then
   \begin{center}
-    $\sum \limits_{i < \omega_{\beta}} \kappa_i < \prod \limits_{i < \omega_{\beta}} = \aleph_{\alpha}^{\aleph_{\beta}}$
+    $\sum \limits_{i < \omega_{\beta}} \kappa_i < \prod \limits_{i < \omega_{\beta}} \kappa_i = \aleph_{\alpha}^{\aleph_{\beta}}$
   \end{center}
 \end{proof}
 
@@ -2101,6 +2101,130 @@ one can apply Theorem~\ref{existence} to the Fr\'{e}chet filter.
 
 If $S$ is infinite and $|S| = \kappa$, then there are at most $2^{2^{\kappa}}$ ultrafilters. 
 An ultrafilter $D$ is uniform if $|X| = \kappa$ for each $X \in D$.
+
+\begin{theorem}~\label{how:many:ultra}
+  Let $S$ be an infinite set of cardinality $\kappa$, then there are $2^{2^{\kappa}}$ ultrafilters.
+\end{theorem}
+
+To show this theorem, we will show the following lemma. A family $\mathcal{A}$ 
+of subsets $\kappa$ is \emph{independent} if for any distinct subset $X_1, \dots, X_n, Y_1, \dots, Y_m$ the intersection
+
+\begin{center}
+  $X_1 \cap \dots \cap X_n \cap (\kappa - Y_1) \cap \dots \cap (\kappa - Y_m)$
+\end{center}
+has cardinality $\kappa$.
+
+\begin{lemma}
+  There exists an independent family of subsets of $\kappa$ of cardinality $2^{\kappa}$.
+\end{lemma}
+
+\begin{proof}
+  Let $P$ be the set of all pairs $(F, \mathcal{F})$ where $F \subset \kappa$ is finite and 
+  $\mathcal{F}$ is a finite set of finite subsets of $\kappa$. Since $|P| = \kappa$, 
+  it is enough to find an independent family $\mathcal{A}$ of subsets of $P$ such that $|\mathcal{A}| = 2^{\kappa}$.
+
+  For each $u \subset \kappa$ let
+  \begin{center}
+    $X_u = \{ (F, \mathcal{F}) \in P \: | \: F \cap u \in \mathcal{F} \}$
+  \end{center}
+  and let $\mathcal{A} = \{ X_u \: | \: u \subset \kappa \}$. 
+  If $u, v \subset \kappa$ are distinct, so are $X_u$ and $X_v$. Thus $|\mathcal{A}| = 2^{\kappa}$.
+
+  Let us show that $\mathcal{A}$ is independent, let $u_1, \dots, u_n, v_1, \dots, v_m$
+  be distinct subsets of $\kappa$. For each $i \leq n$ and $j \leq m$, 
+  let $\alpha_{i, j}$ be some element of $\kappa$ such that either 
+  $\alpha_{i,j} \in u_i - v_j$ or $\alpha_{i,j} \in v_j - u_i$. 
+  Let $F$ be any finite subset of $\kappa$ such that $F \supset \{ \alpha_{i, j} \: | \: i \leq n, j \leq m \}$ and there
+  are $\kappa$ many such finite sets.
+  We have $F \cap u_i \neq F \cap v_j$ for any $i \leq n$ and $j \leq m$.
+  Let $\mathcal{F} = \{ F \cap u_i \: | \: i \leq n \}$, we have $(F, \mathcal{F}) \in X_{u_i}$
+  for all $i \leq n$ and $(F, \mathcal{F}) \notin X_{v_j}$ for each $j \leq m$. Consequentely
+  \begin{center}
+    $|X_{u_1} \cap \dots \cap X_{u_n} \cap X_{v_1} \cap \dots \cap X_{v_m}| = \kappa$.
+  \end{center}
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{how:many:ultra}]
+  Let $\mathcal{A}$ be an independent family of subsets of $\kappa$.
+  For every function $f : \mathcal{A} \to \{ 0, 1 \}$, consider the following family
+  \begin{center}
+    $G_f = \{ X \:| \: |\kappa - X| < \kappa \} \cup \{ X \: | \: f(X) = 1\} \cup \{ \kappa - X \: | \: f(X) = 0 \}$
+  \end{center}
+
+  The family $G_f$ satisfies the finite intersection property, 
+  so there is an ultrafilter $D_f \supset G_f$ such that $D_f$ is also uniform. If $f \neq g$, 
+  then there is $X \in \mathcal{A}$ such that $f(X) \neq g(X)$,so either $X \in D_f$ and $\kappa - X \in D_g$ or vice versa.
+  And there are $2^{2^{\kappa}}$ such ultrafilters.
+\end{proof}
+
+\subsection{Ultrafilters over $\omega$}
+
+Let $D$ be a non-principal ultrafilter on $\omega$. $D$ is a \emph{$p$-point} if for every partition 
+$\{ A_n \: | \: n < \omega \}$ of $\omega$ into $\aleph_0$ pieces such that no $n$ such that $A_n \in D$,
+there exists $X \in D$ such that $X \cap A_n$ is finite for each $n < \omega$.
+
+Note that there is a non-principal ultrafilter which is not a $p$-point. Let $\{ A_n \: | \: n < \omega \}$ 
+be a partition of $\omega$ into $\aleph_0$ pieces. Let $F$ be the following filter on $\omega$:
+\begin{center}
+  $X \in F$ iff expect for finitely many $n$, $X \cap A_n$ contains all but finitely many elements of $A_n$.
+\end{center}
+Let $D$ be an ultrafilter extending $F$, $D$ is not a $p$-point since almost each intersection $X \cap A_n$ is countable.
+
+The below theorem shows that the existence of $p$-points can be shown assuming the Continuum Hypothesis.
+Note that there is a model of ZFC where no $p$-points exist.
+
+A nonprincipal ultrafilter $D$ over $\omega$ is a \emph{Ramsey ultrafilter} if every partition 
+$\{ A_n \: | \: n < \omega \}$ of $\omega$ into $\aleph_0$ pieces such that $A_n \notin D$ for each $n < \omega$,
+there exists $X \in D$ each $X \cap A_n$ is a singleton. Clearly every Ramsey ultrafilter is a $p$-point.
+
+\begin{theorem}
+  Assume CH, then there exists a Ramsey ultrafilter.
+\end{theorem}
+
+\begin{proof}
+  Let $\mathcal{A}_{\alpha}$, for $\alpha < \omega_1$, be an enumeration of all partitions of $\omega$ and let us
+  construct an $\omega_1$-sequence of infinite subsets of $\omega$ the following way: 
+  given $G_{\alpha}$, let $G_{\alpha + 1} = G_{\alpha}$ be such that either there is $A \in \mathcal{A}$ such that
+  $X_{\alpha + 1} \subset A$ or $|X_{\alpha + 1} \cap A| \leq 1$ for each $A \in \mathcal{A}_{\alpha}$.
+
+  If $\alpha$ is a limit ordinal, let $X_{\alpha}$ be such that $X_{\alpha} - X_{\beta}$ is finite for each $\beta < \alpha$
+  and such $X_{\alpha}$ exists since $\alpha$ is countable.
+  Then
+  \begin{center}
+    $D = \bigcup \limits_{\alpha < \omega_1} \{ X \: | \: X_{\alpha} \subset X \}$
+  \end{center}
+  is a Ramsey ultrafilter.
+\end{proof}
+
+\subsection{$\kappa$-complete Filters and Ideals}
+
+A filter $F$ on $S$ is \emph{countably complete} ($\sigma$-complete) if whenever $\{ X_n \: | \: n < \omega \} \subset F$, then
+\begin{center}
+  $\bigcap \limits_{n < \omega} X_n \in F$.
+\end{center}
+
+A filter $F$ on $S$ is \emph{$\kappa$-complete} if whenever $\{ X_{\alpha} \: | \: \alpha < \gamma \} \subset F$ for any $\gamma < \kappa$, then
+\begin{center}
+  $\bigcap \limits_{\alpha < \gamma} X_{\kappa} \in F$.
+\end{center}
+
+Note that the notions of $\sigma$-complete and $\aleph_1$-filters are equivalent. $\sigma$-ideals (or \emph{countably complete ideals}) and $\kappa$-complete ideals are defined dually.
+A simple example: let $S$ be of cardinality at least $\kappa$, then $I = \{ X \subset S \: | \: |X| < \kappa \}$ is a $\kappa$-complete ideal.
+
+There are no nonprincipal $\sigma$-complete filters on a countable set. If $S$ is uncountable, then
+\begin{center}
+$\{ X \subset S \: | \: |X| \leq \aleph_0 \}$
+\end{center}
+is a $\sigma$-ideal on $S$.
+
+Similarly, if $\kappa > \omega$ is regular and $|S| \geq \kappa$, then
+\begin{center}
+  $\{ X \subset S \: | \: |X| < \kappa \}$
+\end{center}
+is the smallest $\kappa$-complete ideal on $S$ containing all the singletons $\{ a\}$ for $a \in S$.
+
+\subsection{Some Exercises}
+
 
 \bibliographystyle{alpha}
 \bibliography{Text}
