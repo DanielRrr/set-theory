@@ -2223,6 +2223,182 @@ Similarly, if $\kappa > \omega$ is regular and $|S| \geq \kappa$, then
 \end{center}
 is the smallest $\kappa$-complete ideal on $S$ containing all the singletons $\{ a\}$ for $a \in S$.
 
+\subsection{Boolean Algebras}
+
+\begin{definition}
+  A \emph{Boolean algebra} is a set $B$ with at least two elements $0$ and $1$ and operations $+$, $\cdot$ and $-$ such that
+
+  \vspace{\baselineskip}
+
+  \begin{minipage}{0.45\textwidth}
+      \begin{itemize}
+        \item $u + v = v + u$,
+        \item $u + (v + w) = (u + v) + w$,
+        \item $u \cdot (v + w) = u \cdot v + u \cdot w$,
+        \item $u \cdot (u + v) = u$,
+        \item $u + (- u) = 1$.
+      \end{itemize}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.45\textwidth}
+      \begin{itemize}
+        \item $u \cdot v = v \cdot u$,
+        \item $u \cdot (v \cdot w) = (u \cdot v) \cdot w$,
+        \item $u + (v \cdot w) = (u + v) \cdot (u + w)$,
+        \item $u + (u \cdot v) = u$,
+        \item $u \cdot (- u) = 0$.
+      \end{itemize}
+  \end{minipage}
+\end{definition}
+
+A subset $A$ of a Boolean algebra $B$ is a \emph{subalgebra} of $B$ such that $A$ contains $0$ and $1$ and
+is closed under all the required operations. If $X \subset B$, there is a smallest subalgebra $A$ of $B$ containing $X$.
+$A$ can be characterised in either of the following ways:
+\begin{itemize}
+  \item $A = \bigcap \{ C \: | \: X \subset C \subset B \: \& \: \text{$C$ is a subalgebra} \}$.
+  \item $A$ is the set of all Boolean combinations of elements of $X$ in $B$.
+\end{itemize}
+
+Let $B$ be a Boolean algebra, let $B^+ = B \setminus \{ 0 \}$ denote the set of all non-zero elements of $B$.
+Let $a \in B^+$, the set
+\begin{center}
+  $B \upharpoonright a = \{ u \in B \: | \: u \leq a \}$
+\end{center}
+is a Boolean algebra, where $+$ and $\cdot$ are the same and the complement of $u \in B \upharpoonright a$ is defined as 
+$a - u$.
+
+An element $a \in B$ is an \emph{atom} if $a \in B^{+}$ and if $b < a$ in $B$, then $b = 0$. A Boolean algebra
+is \emph{atomic} is every $b \in B^{+}$ has an atom $a$ beneath $b$. 
+A Boolean algebra is \emph{atomless} if it has no atoms at all.
+
+Let $B_1$ and $B_2$ be Boolean algebras, a function $h : B_1 \to B_2$ is a homomorphism if it preserves all the operations
+and constants.
+
+The set $\operatorname{Im}(B_2) = \{ f(x) \: | \: x \in B_1 \}$ is a subalgebra of $B_2$ and $u \leq v$ impplies
+$h(u) \leq h(v)$. A one-to-one homomorphism of $B_1$ onto $B_2$ is an \emph{isomorphism}. 
+An \emph{embedding} of $B$ in $C$ is an isomorphism of $B$ onto some subalgebra of $C$.
+A one-to-one mapping $h : B_1 \to B_2$ is an isomorphism if and only if
+$f(u) \leq f(v)$ implies $u \leq v$.
+An isomorphism of a Boolean algebra of $B$ onto itself is called an \emph{automorphism}.
+
+\subsection{Ideals and Filters on Boolean Algebras}
+
+An \emph{ideal} on a Boolean algebra $B$ is a subset $I \subset B$ such that
+\begin{itemize}
+  \item $0 \in I$,
+  \item $a, b \in I \Rightarrow a + b \in I$,
+  \item $a \leq b \: \& \: b \in I \Rightarrow a \in I$.
+\end{itemize}
+
+A \emph{filter} on a Boolean algebra $B$ is a subset $F \subset B$ such that
+\begin{itemize}
+  \item $1 \in F$,
+  \item $a, b \in F \Rightarrow a \cdot b \in F$,
+  \item $a \leq b \: \& \: a \in F \Rightarrow b \in F$.
+\end{itemize}
+
+The \emph{trivial} ideal is the singleton $\{ 0 \}$; an ideal is principal if $I = \{ u \in B \: | \: u \leq u_0 \}$ for
+some $u_0 \neq 0$. Similarly for filters. A subset $G$ of $B^+$ has \emph{the finite intersection property} if no
+$\{ u_1, \dots, u_n\} \subset G$ such that $u_1 \cdot \dots \cdot u_n = 0$. Similarly every such a subset
+can be extended to some filter.
+
+Let $h : B_1 \to B_2$ be a Boolean homomorphism, consider the set
+\begin{center}
+  $I = \{ u \in B \: | \: h(u) = 0 \}$.
+\end{center}
+is an ideal on $B$ (the \emph{kernel} of the composition). On the other hand, let $I$ be an ideal on $B$, consider the
+following equivalence relation:
+\begin{center}
+  $u \sim v \leftrightarrow u \: \Delta \: v \in I$.
+\end{center}
+where
+\begin{center}
+  $u \: \Delta \: v = (u - v) + (v - u)$.
+\end{center}
+
+Let $C$ be the set of all equivalence classes, $C = B / \sim$, we equip $C$ with the following operations:
+\begin{itemize}
+  \item $[u] + [v] = [u + v]$,
+  \item $[u] \cdot [v] = [u \cdot v]$,
+  \item $-[u] = [- u]$,
+  \item $0 = [0]$,
+  \item $1 = [1]$.
+\end{itemize}
+
+Then $C$ is a Boolean algebra, the \emph{quotient} of $B$ modulo $I$, written $B/I$,
+and $C$ is a homomorphic image of $B$ under the mapping $u \mapsto [u]$.
+
+An ideal $I$ is \emph{prime} if for each $u \in B$ either $u \in I$ or $- u \in I$. A ideal is prime
+if and only if $I$ is maximal if and only if $B/I = \{ 0, 1\}$.
+Theorem~\label{existence} has the following generalisation:
+\begin{theorem}~\label{prime:ideal} {\bf (The Prime Ideal Theorem)}
+
+Every ideal on a Boolean algebra $B$ can extended to a prime ideal.
+\end{theorem}
+
+\begin{theorem} {\bf (Stone's Representation Theorem)}
+
+Every Boolean algebra is isomorphic to an algebra of sets.
+\end{theorem}
+
+\begin{proof}
+Let $B$ be a Boolean algebra. We let
+\begin{center}
+  $S = \{ p \: | \: \text{$p$ is an ultrafilter on $B$ }\}$
+\end{center}
+By Theorem~\ref{prime:ideal} $S$ is non-empty. Let $u \in B$, define
+\begin{center}
+$X_u = \{ p \in S \: | \: u \in p \}$
+\end{center}
+and also let
+\begin{center}
+  $\mathcal{S} = \{ X_u \: | \: u \in B \}$.
+\end{center}
+
+Consider the mapping $\pi(u) = X_u$ from $B$ onto $\mathcal{S}$. Clearly $\pi(1) = S$ and $\pi(0) = \emptyset$.
+From the definition of an ultrafilter one has:
+\begin{center}
+  $\pi(u + v) = \pi(u) \cup \pi(v)$
+
+  $\pi(u \cdot v) = \pi(u) \cap \pi(v)$
+
+  $\pi(- u) = - \pi(u)$
+\end{center}
+
+$\pi$ is one-to-one since if $u \neq v$, then by Theorem~\ref{prime:ideal} there exists an ultrafilter $p$
+on $B$ that contains $u$ and does not contain $v$. Thus $\pi(u) \neq \pi(v)$.
+\end{proof}
+
+\subsection{Complete Boolean Algebras}
+
+Let $B$ be a Boolean algebra and let $X \subset B$, define
+\begin{center}
+  $\Pi \{ u \: | \: u \in X \} = \inf X$,
+
+  $\Sigma \{ u \: | \: u \in X \} = \sup X$.
+\end{center}
+and they are well-defined whenever the corresponding supremum and infimum exist. We also define
+\begin{center}
+  $\Sigma \emptyset = 0$,
+
+  $\Pi \emptyset = 1$.
+\end{center}
+
+A Boolean algebra is \emph{complete} if every supremum and infimum exist. 
+Let $\kappa$ be an uncountable regular cardinal, then $B$ is \emph{$\kappa$-complete}
+if every supremum and infimum of any subset of cardinality $< \kappa$ exist.
+An $\aleph_1$-complete Boolean algebra is \emph{$\sigma$-complete} or \emph{countably complete}.
+
+An algebra of sets $\mathcal{S}$ is \emph{$\kappa$-complete} if its closed under unions and
+intersections of $< \kappa$ sets. A $\kappa$-complete algebra of sets is a 
+$\kappa$-complete Boolean algebra and for every $X \subset \mathcal{S}$ such that $|X| < \kappa$ and $\Sigma X = \bigcup X$.
+
+An ideal $I$ on a $\kappa$-complete Boolean algebra is \emph{$\kappa$-complete} if
+\begin{center}
+  $\sum \limits_{u \in X} u \in I$.
+\end{center}
+whenever $X \subset I$ and $|X| < \kappa$. A \emph{$\kappa$-complete filter} is a dual notion.
+
 \subsection{Some Exercises}
 
 
