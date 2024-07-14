@@ -2401,6 +2401,27 @@ whenever $X \subset I$ and $|X| < \kappa$. A \emph{$\kappa$-complete filter} is 
 
 \subsection{Some Exercises}
 
+\begin{exercise}
+  If $F$ is a filter and $X \in F$, then $P(X) \cap F$ is a filter on $X$.
+\end{exercise}
+
+\begin{proof}
+  Let $A \subset B \subset X$ and $A \in 2^X \cap F$, so $A \in F$. We need $B \subset X$ since $B$ obviosly belongs to $F$.
+
+  Let $A, B \in 2^X \cap F$, so $A, B \subset X$ and $A, B \in F$, so $A \cap B \in F$ as well as
+  $A \cap B \subset X$.
+
+  Obviously, $X \in 2^X \cap F$. Assume $\emptyset \in 2^X \cap F$, so $\emptyset \in F$, contradiction.
+
+\end{proof}
+
+\begin{exercise}
+  If $U$ is an ultrafilter, then $X \cup Y \in U$ implies either $X \in U$ or $Y \in U$.
+\end{exercise}
+
+\begin{proof}
+  Assume $X \notin U$ and $Y \notin U$, so $- X, -Y \in U$, then $-X \cap -Y \in U$, so contradiction.
+\end{proof}
 
 \bibliographystyle{alpha}
 \bibliography{Text}
