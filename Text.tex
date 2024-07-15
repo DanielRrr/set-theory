@@ -2423,6 +2423,95 @@ whenever $X \subset I$ and $|X| < \kappa$. A \emph{$\kappa$-complete filter} is 
   Assume $X \notin U$ and $Y \notin U$, so $- X, -Y \in U$, then $-X \cap -Y \in U$, so contradiction.
 \end{proof}
 
+\begin{exercise}
+  Let $U$ be an ultrafilter on $S$, then the set $U'$ of all $X \subset S \times S$
+  such that $\{ a \in S \: | \: \{ b \in S \:| \: (a, b) \in X \} \in U\} \in U$ is an ultrafilter on $S \times S$.
+\end{exercise}
+
+\begin{proof}
+  Reword the definition from the condition as follows:
+  \begin{center}
+    $U' = \{ X \subset S \times S \: | \: \{ a \in S \: | \: \{ b \in S \:| \: (a, b) \in X \} \in U\} \in U \}$
+  \end{center}
+  \begin{enumerate}
+    \item Obviously, $\emptyset \notin U'$ and $S \times S \in U'$.
+    \item Let $A, B \in U'$, then we have
+    \begin{center}
+      $\{ a \in S \: | \: \{ b \in S \:| \: (a, b) \in A \} \in U\} \in U $ 
+
+      $\{ a \in S \: | \: \{ b \in S \:| \: (a, b) \in B \} \in U\} \in U $ 
+    \end{center}
+
+    But $U$ is filter, so
+    \begin{center}
+      $\{ a \in S \: | \: \{ b \in S \:| \: (a, b) \in A \} \in U\} \cap \{ a \in S \: | \: \{ b \in S \:| \: (a, b) \in B \} \in U\} \in U$
+    \end{center}
+    But the latter is
+    \begin{center}
+     $\begin{array}{lll}
+     & \{ a \in S \: | \: \{ b \in S \:| \: (a, b) \in A \} \in U \land \{ b \in S \:| \: (a, b) \in B \} \in U \} = & \\
+     & \{ a \in S \: | \: \{ b \in S \:| \: (a, b) \in A \} \cap \{ b \in S \:| \: (a, b) \in B \} \in U \} = & \\
+     & \{ a \in S \: | \: \{ b \in S \: | \: (a, b) \in A \land (a, b) \in B \} \in U\} = & \\
+     & \{ a \in S \: | \: \{ b \in S \: | \: (a, b) \in A \cap B \} \in U\}& \\
+     \end{array}$
+    \end{center}
+    which completes the proof.
+    \item Let $A \subset B$ and $A \in U'$. We need $B \in U'$, that is, we need
+    \begin{center}
+      $\{ a \in S \: | \: \{ b \in S \: | \: (a, b) \in B \} \in U \} \in U$.
+    \end{center}
+    Assume the contrary, then
+    \begin{center}
+      $\{ a \in S \: | \: \{ b \in S \: | \: (a, b) \notin B \} \in U \} \in U$
+    \end{center}
+    But $A \in U'$, so
+    \begin{center}
+      $\{ a \in S \: | \: \{ b \in S \:| \: (a, b) \in A \} \in U\} \in U$
+    \end{center}
+    $U$ is a filter, so we have
+    
+    $\begin{array}{lll}
+      &\{ a \in S \: | \: \{ b \in S \:| \: (a, b) \in A \} \in U\} \cap \{ a \in S \: | \: \{ b \in S \: | \: (a, b) \notin B \} \in U \} \in U \leftrightarrow& \\
+      &\{ a \in S \: | \: \{ b \in S \: | \: (a, b) \in A\} \in U \land \{ b \in S \: | \: (a, b) \notin B \} \in U \} \in U \leftrightarrow & \\
+      &\{ a \in S \: | \: \{ b \in S \: | \: (a, b) \in A \land (a, b) \notin B \} \in U \} \in U &
+    \end{array}$
+
+    But $A \subset B$, so no such $a, b \in S$ such that $(a, b) \in A$ and $(a, b) \notin B$, so the set above is empty,
+    which implies $\empty \in U$, contradiction.
+
+    \item Assume there is $A, B \subset X \times X$ such that
+    $A \cup B \in U'$, which means that
+    \begin{center}
+    $\begin{array}{lll}
+    & \{ a \in S \: | \: \{ b \in S \:| \: (a, b) \in A \cup B \} \in U\} \in U = & \\
+    & \{ a \in S \: | \: \{ b \in S \:| \: (a, b) \in A \cup B \} \in U\} \in U = & \\
+    & \{ a \in S \: | \: \{ b \in S \:| \: (a, b) \in A \} \cup \{ b \in S \: | \: (a, b) \in B \} \in U\} \in U = & \\
+    \end{array}$
+    \end{center}
+    which implies that either $A \in U'$ or $B \in U'$, so $U'$ is prime and thus $U'$ is an ultrafilter.
+  \end{enumerate}
+\end{proof}
+
+\begin{exercise}
+  Let $U$ be an ultrafilter on $S$ and $f : S \to T$, then the set $f_*(U) = \{ X \subset T \: | \: f^{-1}(X) \in U \}$ 
+  is an ultrafilter on $T$.
+\end{exercise}
+
+\begin{proof}
+  \begin{enumerate}
+    \item $f^{-1}(\emptyset) = \emptyset \notin U$, so $\emptyset \notin f_*(U)$.
+    \item Let $A, B \in f_*(U)$, so $f^{-1}(A), f^{-1}(B) \in U$, so
+    $f^{-1}(A) \cap f^{-1}(B) \in U$, but $f^{-1}(A \cap B) \in U$, so $A \cap B \in f_{*}(U)$.
+    \item Let $A \in f_*(U)$ and $A \subset B \subset T$.
+    So $f^{-1}(A) \in U$, but $U$ is upward closed, so $B \in U$.
+    \item Assume $A \cup B \in f_*(U)$, so $f^{-1}(A \cup B) = f^{-1}(A) \cup f^{-1}(B) \in U$, so
+    either $f^{-1}(A) \in U$ or $f^{-1}(B) \in U$.
+    \item Let $A \subset B$ and $A \in f_*(U)$.
+    We have $A = A \cap B$, so $f^{-1}(A \cap B) = f^{-1}(A) \cap f^{-1}(B) \in U$, so $f^{-1}(B) \in U$ as well since
+    $f^{-1}(A) \cap f^{-1}(B) \subset f^{-1}(B)$ and $U$ is upward closed.
+  \end{enumerate}
+\end{proof}
+
 \bibliographystyle{alpha}
 \bibliography{Text}
 
