@@ -2399,6 +2399,8 @@ An ideal $I$ on a $\kappa$-complete Boolean algebra is \emph{$\kappa$-complete} 
 \end{center}
 whenever $X \subset I$ and $|X| < \kappa$. A \emph{$\kappa$-complete filter} is a dual notion.
 
+
+
 \subsection{Some Exercises}
 
 \begin{exercise}
@@ -2510,6 +2512,39 @@ whenever $X \subset I$ and $|X| < \kappa$. A \emph{$\kappa$-complete filter} is 
     We have $A = A \cap B$, so $f^{-1}(A \cap B) = f^{-1}(A) \cap f^{-1}(B) \in U$, so $f^{-1}(B) \in U$ as well since
     $f^{-1}(A) \cap f^{-1}(B) \subset f^{-1}(B)$ and $U$ is upward closed.
   \end{enumerate}
+\end{proof}
+
+\begin{exercise}
+  Let $U$ be an ultrafilter on $\omega$ and let $\langle x_n \: : \: n < \omega \rangle$ be a bounded sequence of real numbers,
+  then there exists a unique \emph{$U$-limit} $a = \lim \limits_U a_n$
+  such that for every $\epsilon > 0$ $\{ n \: | \: |a_n - a| < \epsilon \} \in U$.
+\end{exercise}
+
+\begin{proof}
+  Take $a_0$ and $b_0$ such that $a_0 \leq x_n \leq b_0$ for each $n$.
+  Let $c_0 = \frac{a_0 + b_0}{2}$, then either
+  $\{ n < \omega \: | \: x_n \in [a_0, c_0] \} \in U$ or  $\{ n < \omega \: | \: x_n \in [c_0, b_0] \} \in U$.
+  We choose subinterval $[a_1, b_1]$ as the subinterval of $[a_0, c_0]$ and $[c_0, b_0]$
+  such that $\{ n < \omega \: | \: x_n \in [a_1, b_1]\}$.
+
+  Now we let $c_1 = \frac{a_1 + b_1}{2}$, let $A = \{ n < \omega \: |\: x_n \in [a_1, c_1] \}$ and $B = 
+  \{ n < \omega \: | \: x_n \in [c_1, b_1]\}$. Either $A$ or $B$ belongs to $U$.
+  Similarly we define $c_2$ and choose $[a_2, b_2]$.
+
+  Thus we have monotonous sequences $\langle a_n \: : \: n < \omega \rangle$ and 
+  $\langle b_n \: : \: n < \omega \rangle$ with the same limit
+  \begin{center}
+    $a = \lim \limits_{n \to \infty} a_n = \lim \limits_{n \to \infty} b_n$
+  \end{center}
+  and moreover $\{ n < \omega \: | \: x_n \in [a_1, b_1]\} \in U$.
+
+  We put
+  \begin{center}
+    $a = \lim \limits_U x_n$
+  \end{center}
+  Take any $\epsilon > 0$ there is $n < \omega$ such that $[a_n, b_n] \subset (a - \epsilon, a + \epsilon)$, so
+  $\{ n < \omega \: | \: x_n \in [a_n, b_n] \} \in U$ as far as $\{ n < \omega \: | \: x_n \in [a_1, b_1]\} \in U$.
+  So  $\{ n \: | \: |a_n - a| < \epsilon \} \in U$.
 \end{proof}
 
 \bibliographystyle{alpha}
