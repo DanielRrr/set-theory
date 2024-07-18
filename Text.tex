@@ -2539,6 +2539,94 @@ The $\aleph_1$-chain condition is called the \emph{countable chain condition}.
   \end{enumerate}
 \end{proof}
 
+\subsection{Distributivity of Complete Boolean Algebras}
+
+The following distributivity law holds in any complete Boolean algebra:
+\begin{center}
+  $\sum \limits_{i \in I} u_{0,i} \cdot \sum \limits_{j \in J} u_{1, j} = \sum \limits_{(i, j) \in I \times J} u_{0,i} \cdot u_{1, j}$
+\end{center}
+
+To formulate the general distributivity law, let $\kappa$ be a cardinal, then a complete Boolean algebra $B$
+is \emph{$\kappa$}-distributive if
+\begin{center}
+  $\prod \limits_{\alpha < \kappa} \sum \limits_{i \in I_{\alpha}} u_{\alpha, i} = \sum \limits_{f \in \prod \limits_{\alpha < \kappa} I_{\alpha}} \prod \limits_{\alpha < \kappa} u_{\alpha, f(\alpha)}$
+\end{center}
+
+Every complete algebra of sets satisfies the general distributivity law. For now, we give two equivalent
+formulations of \emph{$\kappa$}-distributivity.
+
+Let $W$ and $Z$ be partitions of $B$, then $W$ is a \emph{refinement} of $Z$ if for every $w \in W$
+there is $z \in Z$ such that $w \leq z$. A set $D \subset B$ is \emph{open dense} if $D$ is dense in $B$
+and $0 \neq u \leq v \in D$ implies $u \in D$.
+
+\begin{lemma} Let $B$ be a complete Boolean algebra and let $\kappa$ be a cardinal, then the following are equivalent:
+  \begin{enumerate}
+    \item $B$ is $\kappa$-distributive,
+    \item The intersection of $\kappa$ sets open dense subsets of $B$ is open dense in $B$,
+    \item Every collection of $\kappa$ refinements of $B$ has a common refinement.
+  \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+  $ $
+
+  \begin{enumerate}
+    \item $(i) \to (ii)$.
+
+    Let $D_{\alpha}$ for $\alpha < \kappa$ be open dense and 
+    \begin{center}
+    $D = \bigcap \limits_{\alpha < \kappa} D_{\alpha}$
+    \end{center}
+    $D$ is open, so let $u \in B^+$. Let
+    \begin{center}
+      $\{ u_{\alpha, i} \: | \: i \in I_{\alpha} \} = \{ u \cdot v \: | \: v \in D_{\alpha} \}$
+    \end{center}
+    then for each $\alpha$ we have
+    \begin{center}
+      $\sum \limits_{i} u_{\alpha, i} = u = \prod \limits_{\alpha < \kappa} \sum \limits_{i \in I_{\alpha}} u_{\alpha, i}$
+    \end{center}
+    Take $f \in \Pi_{\alpha} I_{\alpha}$ and let $u_f = \Pi_{\alpha} u_{\alpha, f(\alpha)}$. 
+    Each non-zero $u_f$ is in $D$. But $\Sigma_f u_f = u$, so some $u_f$ is non-zero.
+    \item $(ii) \to (iii)$.
+
+    Let $W_{\alpha}$ for $\alpha < \kappa$ be partitions of $B$. For each $\alpha$ we let
+    \begin{center}
+      $D_{\alpha} = \{ u \: | \: \exists v \in W_{\alpha} \:\: u \leq v \}$.
+    \end{center}
+    Each $D_{\alpha}$ is open dense. Let
+    \begin{center}
+      $D = \bigcap \limits_{\alpha < \kappa} D_{\alpha}$
+    \end{center}
+    Let $W$ be a maximal set of pairwise disjoint elements of $D$. 
+    $D$ is dense, $W$ is a partition of $B$ and $W$ refines each $W_{\alpha}$.
+    \item $(iii) \to (i)$.
+
+    Let $\{ u_{\alpha, i} \: | \: \alpha < \kappa, i \in I_{\alpha} \}$ be a collection of elements
+    of $B$. First of all, observe that
+    \begin{center}
+      $\sum \limits_{f \in \prod \limits_{\alpha < \kappa} I_{\alpha}} \prod \limits_{\alpha < \kappa} u_{\alpha, f(\alpha)} \leq \prod \limits_{\alpha < \kappa} \sum \limits_{i \in I_{\alpha}} u_{\alpha, i}$.
+    \end{center}
+    Indeed, take $f \in \Pi_{\alpha < \kappa} I_{\alpha}$, let $u_f = \Pi_{\alpha < \kappa} u_{\alpha, f(\alpha)}$.
+    We have $u_f \leq u_{\alpha, f(\alpha)}$, so $u_f \leq \Sigma_{i \in I_{\alpha}} u_{\alpha, i}$ 
+    for each $\alpha < \kappa$. Thus, for each $\alpha$,
+    \begin{center}
+      $\sum \limits_{f} u_f \leq \sum \limits_{i} u_{\alpha, i}$
+    \end{center}
+    and thus
+    \begin{center}
+      $\sum \limits_{f} \prod \limits_{\alpha} u_{\alpha, f(\alpha)} = \sum \limits_{f} u_f \leq \prod \limits_{\alpha} \sum \limits_{i} u_{\alpha, i}$.
+    \end{center}
+    So assume (iii) holds. Let $u = \Pi_{\alpha} \Sigma_{i} u_{\alpha, i}$. We need to show that
+    $\Sigma_f \Pi_{\alpha} u_{\alpha, f(\alpha)} = u$. Assume $u = 1$. For each $\alpha$ we can replace 
+    $\{ u_{\alpha, i} \: | \: i \in I_{\alpha}\}$ by pairwise disjoint 
+    $W_{\alpha} = \{ v_{\alpha, i} \: | \: i \in I_{\alpha}\}$ such that $v_{\alpha, i} \leq u_{\alpha, i}$ and
+    $\Sigma_i v_{\alpha, i} = \Sigma_i u_{\alpha, i}$.
+    Clearly we have $\Sigma_f \Pi_{\alpha} v_{\alpha, f(\alpha)} \leq \Sigma_f \Pi_{\alpha} u_{\alpha, f(\alpha)}$.
+    Each $W_{\alpha}$ is a partition of $B$ and there is a partition $W$ refining each $W_{\alpha}$.
+    So for each $w \in W$ there is $f$ such that $w \leq \Pi_{\alpha} v_{\alpha, f(\alpha)}$, so $\Sigma_f \Pi_{\alpha} v_{\alpha, f(\alpha)} = 1$.
+  \end{enumerate}
+\end{proof}
+
 \subsection{Some Exercises}
 
 \begin{exercise}
