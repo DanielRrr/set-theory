@@ -2773,6 +2773,59 @@ and $0 \neq u \leq v \in D$ implies $u \in D$.
   So  $\{ n \: | \: |a_n - a| < \epsilon \} \in U$.
 \end{proof}
 
+\begin{exercise}
+  Let $D$ be a nonprincipal ultrafilter on $\omega$, then $D$ is a $p$-point if and only if the following holds:
+  if $A_0 \supset A_1 \supset \ldots \supset A_n \supset \dots$ is a decreasing sequence of elements of $D$, then
+  there exists $X \in D$ such that for each $n$ $X - A_n$ is finite.
+\end{exercise}
+
+\begin{proof}
+$ $ 
+
+\begin{enumerate}
+  \item The "if" part.
+  
+  Assume there is a partition $\{ P_n \: | \: n < \omega \}$ disjoint from $D$.
+  Construct a family of sets $\{ X_n \: | \: n < \omega \}$, where for each $n < \omega$
+  \begin{center}
+  $X_n = \bigcup_{m \geq n} P_m$
+  \end{center}
+  Clearly we have the increasing sequence:
+  \begin{center}
+    $X_0 \subset X_1 \subset \ldots \subset X_n \subset \dots$
+  \end{center}
+  where no such $n < \omega$ that $X_n \in D$, thus we have the decreasing sequence
+  \begin{center}
+    $- X_0 \supset - X_1 \supset \ldots \supset - X_n \supset \cdots$
+  \end{center}
+  where each $- X_0$ belongs to $D$. Then there is $X \in D$ such that
+  for each $n < \omega$ $X - (- X_n) = X \cap X_n$ is finite.
+
+  TODO: complete.
+  \item The "only if part".
+
+  Let $A_0 \supset A_1 \supset \ldots \supset A_n \supset \dots$ be a decreasing sequence of elements in $D$,
+  construct a family of sets $\{ P_n \: | \: n < \omega \}$ the following way by induction:
+  \begin{itemize}
+    \item $P_0 = - A_0$,
+    \item $P_{n + 1} = A_n - \bigcap \limits_{j < n} A_j$
+  \end{itemize}
+  Then each $P_i \notin D$ and $\{ P_n \: | \: n < \omega \}$ is the partition of $\omega$.
+  Thus there is $X \in D$ such that $X \cap P_n$ is finite for each $n$.
+
+  TODO: complete.
+\end{enumerate}
+\end{proof}
+
+\begin{exercise}
+  An ultrafilter on $\omega$ is Ramsey iff every function $f : \omega \to \omega$ is either 
+  one-to-one on a set in $D$ or $f$ is constant on a set in $D$.
+\end{exercise}
+
+\begin{proof}
+  TODO.
+\end{proof}
+
 \bibliographystyle{alpha}
 \bibliography{Text}
 
