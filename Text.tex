@@ -638,6 +638,71 @@ $\mathbb{R}$ is not the union of a countable family of nowhere dense sets.
   Take $a = \lim_{k \to \infty} q_k$, then $a \in I \cap D$.
 \end{proof}
 
+\subsection{Borel Sets}
+
+\begin{definition}
+  An \emph{algebra of sets} is a collection $\mathcal{S}$ of subsets of $S$ satisfying the following axioms:
+  \begin{itemize}
+    \item $S \in \mathcal{S}$,
+    \item $X, Y \in \mathcal{S} \Rightarrow X \cup Y \in \mathcal{S}$,
+    \item $X \in \mathcal{S} \Rightarrow -X \in \mathcal{S}$
+  \end{itemize}
+
+  An algebra of sets is {$\sigma$-algebra} if its closed under countable unions:
+  \begin{itemize}
+    \item Given $\{ X_n \in \mathcal{S} \: | \: n < \omega \}$, then $\bigcup \limits_{n < \omega} X_n 
+    \in \mathcal{S}$.
+  \end{itemize}
+\end{definition}
+
+Let $\mathcal{X}$ be a collection of sets, there is the smallest $\sigma$-algebra containing $\mathcal{X}$.
+
+\begin{definition}
+  A set of reals $B$ is \emph{Borel} if it belongs to the smallest $\sigma$-algebra that contains all open sets.
+\end{definition}
+
+\subsection{Lebesgue Measure}
+
+The \emph{outer measure} $\mu(X)$ for $X \subset \mathbb{R}^n$ is the infimum of all possible sums of
+the form
+\begin{center}
+  $\sum \limits_{k < \omega} v(I_k)$
+\end{center}
+where $\{ I_k \: | \: k < \omega \}$ is the collection of $n$-dimensional intervals such that
+\begin{center}
+  $X \subset \bigcup \limits_{k < \omega} I_k$
+\end{center}
+where $v(I)$ is the volume of $I$.
+
+Clearly $\mu^*(X) \geq 0$ for each $X \subset \mathbb{R}^n$ and $\mu^*(X)$ could equal $\infty$. A set $X$ is \emph{null}
+$\mu^*(X) = 0$.
+
+A set $A$ is \emph{Lebesgue measurable} if for each $X \subset \mathbb{R}^n$ one has
+\begin{center}
+  $\mu^*(X) = \mu^*(X \cap A) + \mu^*(X - A)$.
+\end{center}
+The above formula is also knows
+
+If $A$ is measurable, then we write $\mu(A)$ instead of $\mu^*(A)$. We shall $\mu(A)$ the \emph{Lebesgue measure}.
+
+Some standard facts about Lebesgue measure:
+\begin{enumerate}
+  \item Every interval $I$ is Lebesgue measurable and $\mu(I) = v(I)$.
+  \item The Lebesgue measurable sets form a $\sigma$-algebra. In particular, every Borel set is Lebesgue measurable.
+  \item $\mu$ is $\sigma$-additive. Let $\{ A_n \: | \: n < \omega \}$ be a family of pairwise disjoint and Lebesgue measurable sets, 
+  then
+  \begin{center}
+    $\mu(\bigcup \limits_{n < \omega} A_n) = \sum \limits_{n < \omega} \mu(A_n)$.
+  \end{center}
+  \item $\mu$ is $\sigma$-finite. If $A$ is Lebesgue measurable, then there are sets $A_n$ for $n < \omega$
+  such that $A = \cup_{n < \omega} A_n$ and $\mu(A_n) < \infty$ for each $n < \omega$.
+  \item Every null set is measurable.
+  \item If $A$ is measurable, then
+  \begin{center}
+    $\mu(A) = \sup \{ \mu(K) \: | \: K \subset A \: \& \: \text{$K$ is compact}\}$
+  \end{center}
+\end{enumerate}
+
 \subsection{The Baire Space}
 
 The \emph{Baire Space} is the space $\mathcal{N} = \omega^{\omega}$ of infinite sequences of natural numbers
@@ -2786,22 +2851,16 @@ $ $
   \item The "if" part.
   
   Assume there is a partition $\{ P_n \: | \: n < \omega \}$ disjoint from $D$.
-  Construct a family of sets $\{ X_n \: | \: n < \omega \}$, where for each $n < \omega$
+  Construct a family of sets $\{ X_n \: | \: n < \omega \}$ where for each $n < \omega$:
   \begin{center}
   $X_n = \bigcup_{m \geq n} P_m$
   \end{center}
-  Clearly we have the increasing sequence:
-  \begin{center}
-    $X_0 \subset X_1 \subset \ldots \subset X_n \subset \dots$
-  \end{center}
-  where no such $n < \omega$ that $X_n \in D$, thus we have the decreasing sequence
-  \begin{center}
-    $- X_0 \supset - X_1 \supset \ldots \supset - X_n \supset \cdots$
-  \end{center}
-  where each $- X_0$ belongs to $D$. Then there is $X \in D$ such that
-  for each $n < \omega$ $X - (- X_n) = X \cap X_n$ is finite.
+  So we have the increasing sequence $X_0 \subset X_1 \subset \ldots \subset X_n \subset \dots$
+  where no such $n < \omega$ that $X_n \in D$. Thus we have the decreasing sequence
+  $- X_0 \supset - X_1 \supset \ldots \supset - X_n \supset \cdots$, where each $- X_0$ belongs to $D$. 
+  Then there is $X \in D$ such that for each $n < \omega$ $X - (- X_n) = X \cap X_n$ is finite.
 
-  TODO: complete.
+  So one can show by induction that each intersection $X \cap P_n$ is finite.
   \item The "only if part".
 
   Let $A_0 \supset A_1 \supset \ldots \supset A_n \supset \dots$ be a decreasing sequence of elements in $D$,
@@ -2812,8 +2871,6 @@ $ $
   \end{itemize}
   Then each $P_i \notin D$ and $\{ P_n \: | \: n < \omega \}$ is the partition of $\omega$.
   Thus there is $X \in D$ such that $X \cap P_n$ is finite for each $n$.
-
-  TODO: complete.
 \end{enumerate}
 \end{proof}
 
@@ -2825,6 +2882,77 @@ $ $
 \begin{proof}
   TODO.
 \end{proof}
+
+Let $D, E$ be ultrafilters on $\omega$, then the \emph{Rudin-Keisler ordering} is defined as follows:
+\begin{center}
+  $D \leq E$ iff $\exists f : \omega \to \omega \:\: D = f_*(E)$.
+\end{center}
+$D \equiv E$ means there is a one-to-one function $f : \omega \to \omega$ such that $E = f_*(D)$.
+
+\begin{exercise}
+  If $D = f_*(D)$, then $\{ n \: | \: f(n) = n \} \in D$.
+\end{exercise}
+
+\begin{proof}
+  Let $X = \{ n \: | \: f(n) < n \}$ and $Y = \{ n \: | \: f(n) > n\}$. Take $n \in X$, let
+  $l(n)$ be the length of the maximal sequence $n > f(n) > f(f(n)) > \dots$.
+  Let $X_0 = \{ n \: | \: l(n) \equiv 0 \mod 2\}$ and $X_1 = \{ n \: | \: l(n) \equiv 1 \mod 2\}$.
+  Neither $X_0$ nor $X_1$ belong to $D$ since $f^{-1}(X_0) \cap X_0 = \emptyset$. 
+  We handle $Y$ similarly, but we have got to show that the set $Z$ of all $n$ such that
+  the sequence $n < f(n) < f(f(n)) < f(f(f(n))) < \dots$ is infinite does not belong to $D$.
+  Take $x, y \in Z$, we say that $x \equiv y$ if $\exists k, m < \omega \:\: f^{k}(x) = f^m(y)$.
+  Take $x \in Z$ and let $a_x$ be a fixed representative of the class ${y \: | \: y \equiv x }$.
+  Let $l(x)$ be the least $k + m$ such that $f^k(x) = f^m(a_x)$.
+  Take $Z_0 = \{ x \in Z \: | \: l(x) \equiv 0 \mod 2 \}$ and $Z_1 = \{ x \in Z \: | \: l(x) \equiv 1 \mod 2 \}$.
+  Thus $Z_0 \cap f^{-1}(Z_0) = \emptyset$.
+\end{proof}
+
+\begin{exercise}
+  $D \leq E$ and $E \leq D$ implies $D \equiv E$
+\end{exercise}
+
+\begin{proof} Let $D \leq E$ and $E \leq D$, then
+  there are $f, g : \omega \to \omega$ such that $D = f_*(E)$ and $E = g_*(D)$. We have
+  $D = (f \circ g)_*(D)$ since
+  \begin{center}
+    $(f \circ g)_*(D) = \{ X \subset \omega \: | \: (f \circ g)^{-1}(X) \in D \} = \{ X \subset \omega \: | \: X \in D \}$.
+  \end{center}
+  Thus by the above lemma, the set $X_0 = \{ n \: | \: f(g(n)) = n \}$ is in $D$ and thus 
+  $f \circ g\upharpoonright_{X_0}$ is the identity function. Thus $g\upharpoonright_{X_0}$ and 
+  $f\upharpoonright_{g[X_0]}$ are one-to-one, so $f$ and $g$ are both bijections on $X_0$ and $g[X_0]$.
+  Let us find $X_0' \subset X_0 \in D$ such that $g\upharpoonright_{X_0}'$ 
+  can be extended to a bijection $\overline{g} : \omega \to \omega$.
+
+  If $|\omega - X_0| = |\omega - g[X_0]|$, so take any bijection $h : \omega - X_0 \to \omega - g[X_0]$. In this case
+  we let $X_0' = X_0$ and $\overline{g}$ as $g \cup f$.
+  Otherwise $X_0$ must be infinite and one split $X_0$ into two disjoint parts $X'_0$ and $X^{''}_0$ where 
+  $X'_0 \in D$. And then we take a bijection $h : \omega - X'_0 \to \omega - g[X'_0]$ and $\overline{g} = g \cup h$.
+
+  In either case $\overline{g}$ is a bijection, we have $X'_0 \in D$, $E = f_*(D)$ and 
+  $g\upharpoonright_{X'_0} = \overline{g}\upharpoonright_{X'_0}$, 
+  so $\overline{g}[X'_0] \in E$. The rest is to show that $\overline{g}_*(E) = D$. Since
+  $g_*(E) = D$, we get
+  \begin{center}
+    $\{ g[X] \: | \: X \in D \} \subset E$,
+
+    $\{ g^{-1}[Y] \: | \: Y \in E \} \subset D$.
+  \end{center}
+
+  Take any $Y \in E$ and let $Y' = Y \cap \overline{g}[X'_0]$ and let $X' = \overline{g}^{-1}[Y']$, 
+  then $Y' \in E$, $X' \in D$ and $g'[X'] \subset Y$ and thus $\overline{g}_*(E) = D$.
+\end{proof}
+
+
+\begin{exercise}
+  The set of all $X \subset \mathbb{R}$ having Lebesgue measure $0$ is a $\sigma$-ideal.
+\end{exercise}
+
+Recall that a set $A \subset \mathbb{R}$ is \emph{meager} if $A$ is the union of countable of nowhere dense sets.
+
+\begin{exercise}
+  The set of all $A \subset \mathbb{R}$ meager sets is a $\sigma$-ideal.
+\end{exercise}
+
 
 \bibliographystyle{alpha}
 \bibliography{Text}
