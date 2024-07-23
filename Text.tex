@@ -620,7 +620,7 @@ A set $A \subset \mathbb{R}$ is \emph{nowhere dense} if $\operatorname{Int}\oper
 The following theorem shows that $\mathbb{R}$ is not of the \emph{first category}, that is,
 $\mathbb{R}$ is not the union of a countable family of nowhere dense sets.
 
-\begin{theorem} ({\bf The Baire Category Theorem})
+\begin{theorem}~\label{baire:category} ({\bf The Baire Category Theorem})
 
   Let $\{ D_i \: | \: i < \omega \}$ be a countable family of dense open subsets of $\mathbb{R}$, then
   $D = \bigcap \limits_{i < \omega} D_i$ is dense in $\mathbb{R}$.
@@ -683,7 +683,7 @@ A set $A$ is \emph{Lebesgue measurable} if for each $X \subset \mathbb{R}^n$ one
 \end{center}
 The above formula is also knows
 
-If $A$ is measurable, then we write $\mu(A)$ instead of $\mu^*(A)$. We shall $\mu(A)$ the \emph{Lebesgue measure}.
+If $A$ is measurable, then we write $\mu(A)$ instead of $\mu^*(A)$. We shall call $\mu(A)$ the \emph{Lebesgue measure} of $A$.
 
 Some standard facts about Lebesgue measure:
 \begin{enumerate}
@@ -789,6 +789,102 @@ so we have
   $[T] - [T_{\theta}] = \bigcup \limits_{\beta < \alpha} ([T_{\alpha} - T^{'}_{\alpha}])$
 \end{center}
 and the set $[T] - [T_{\theta}]$ is at most countable. So we have a version of Theorem~\ref{cantor-bendixon} for the Baire space.
+
+\vspace{\baselineskip}
+
+In descriptive set theory we often deal with the \emph{Lebesgue measure} on the Baire space $\mathcal{N}$.
+Such a measure is defined as the extension of the product measure $m$ on Borel sets induced by
+the probability measure on $\mathbb{N}$ that measures each singleton $\{ n \}$ as $1/2^{n + 1}$.
+
+So if $s \in \operatorname{Seq}$ such that that $\operatorname{len}(s) \geq 1$ we have
+\begin{center}
+  $m(O(s)) = \prod \limits_{k = 0}^{n - 1} 1/2^{s(k) + 1}$
+\end{center}
+
+\subsection{Polish Space}
+
+\begin{definition}
+  A \emph{Polish space} is a topological space homeomorphic to a separable complete metric space.
+\end{definition}
+
+The examples of Polish spaces are $\mathbb{R}$, $\mathcal{N}$, the Cantor space, $[0, 1]$,
+the Hilbert cube $[0, 1]^{\omega}$.
+
+\subsection{Some Exercises}
+
+\begin{exercise}
+  The set of all continuous functions $f : \mathbb{R} \to \mathbb{R}$ has cardinality $\mathfrak{c}$.
+\end{exercise}
+
+\begin{proof}
+  $\mathbb{Q}$ is dense in $\mathbb{R}$, so for every $a \in \mathbb{R}$ there is a sequence
+  $\langle q_n \: | \: n \in \mathbb{N} \rangle$ of rationals such that
+  \begin{center}
+    $\lim \limits_{n \to \infty} q_n = a$
+  \end{center}
+  If $f$ is continuous, then
+  \begin{center}
+  $f(a) = f(\lim \limits_{n \to \infty} q_n) = \lim \limits_{n \to \infty} (f(q_n))$
+  \end{center}
+  Thus every continuous $f$ is determined by its values at its rational points $\{ f(q) \: | \: q \in \mathbb{Q}\}$.
+\end{proof}
+
+\begin{exercise}
+  The set of all algebraic numbers is countable.
+\end{exercise}
+
+\begin{proof}
+  If $a \in \mathbb{R}$ is algebraic, then there is a polynomial $p(x) = c_n x^n + c_{n - 1} x^{n - 1} + \ldots + c_1 x + c_0$ such
+  that $p(a) = 0$ and each $c_i \in \mathbb{Z}$. There is a clear bijection between algebraic numbers and finite sequences of integers
+  (or sequences of polynomial coefficients), thus the set of all algebraic numbers is countable.
+\end{proof}
+
+\begin{exercise}
+  Let $S$ be a countable set of reals, then $|\mathbb{R} - S| = \mathfrak{c}$.
+\end{exercise}
+
+\begin{proof}
+  Consider $|\mathbb{R} \times \mathbb{R} - S|$, then it is going to have the cardinality $\mathfrak{c}$.
+\end{proof}
+
+\begin{exercise}
+$ $
+
+\begin{enumerate}
+  \item The set of irrational numbers has cardinality $\mathfrak{c}$.
+  \item The set of transcendental numbers has cardinality $\mathfrak{c}$.
+\end{enumerate}
+\end{exercise}
+
+\begin{proof}
+Both parts are derived from the previous exercise by the obvious instantiation.
+\end{proof}
+
+\begin{exercise}
+  The set of all open sets of $\mathbb{R}$ has cardinality $\mathfrak{c}$.
+\end{exercise}
+
+\begin{proof}
+  Each open set is the union of some collection intervals, but such a collection is at most countable
+  since the disjoint collection of open intervals is countable as far as $\mathbb{Q}$ is dense $\mathbb{R}$.
+\end{proof}
+
+\begin{exercise}
+  The Cantor Set is perfect.
+\end{exercise}
+
+\begin{proof}
+  We remove the open middle thirds from $[0, 1]$ infinitely many times, so we have
+  The sequence of sets $\{ C_n \: | \: n < \omega \}$
+
+  where
+  \begin{enumerate}
+    \item $C_0 = [0, 1]$,
+    \item $C_{n + 1} = \frac{C_{n}}{3} \cup (\frac{2}{3} + \frac{C_{n}}{3})$
+    \item $C = \bigcap \limits_{n < \omega} C_n$
+  \end{enumerate}
+  One can approximate any element $c \in C$ by the converging sequence of endpoints, thus $C$ is perfect.
+\end{proof}
 
 \section{The Axiom of Choice}
 
@@ -2947,11 +3043,46 @@ $D \equiv E$ means there is a one-to-one function $f : \omega \to \omega$ such t
   The set of all $X \subset \mathbb{R}$ having Lebesgue measure $0$ is a $\sigma$-ideal.
 \end{exercise}
 
-Recall that a set $A \subset \mathbb{R}$ is \emph{meager} if $A$ is the union of countable of nowhere dense sets.
+\begin{proof}
+  Let $I = \{ X \subset \mathbb{R} \: | \: \mu(I) = 0 \}$.
+  Then $\emptyset \in I$ since $\mu(\emptyset) = 0$.
+  Let $A \subset B$ and $\mu(B) = 0$, but $\mu(A) \leq \mu(B)$ and $\mu(A) \geq 0$.
+  The Lebesgue measure is $\sigma$-additive, so $I$ is closed under countable unions.
+\end{proof}
+
+Recall that a set $A \subset \mathbb{R}$ is \emph{meagre} if $A$ is the union of countable of nowhere dense sets.
 
 \begin{exercise}
-  The set of all $A \subset \mathbb{R}$ meager sets is a $\sigma$-ideal.
+  The set of all $A \subset \mathbb{R}$ meagre sets is a $\sigma$-ideal.
 \end{exercise}
+
+\begin{proof}
+  We let 
+  \begin{center}
+  $I = \{ A \subset \mathbb{R} \: | \: \text{$A$ is meagre} \}$
+  \end{center}
+
+  By Theorem~\ref{baire:category}, $\mathbb{R} \notin I$. We have 
+  $\emptyset = \operatorname{Int}(\operatorname{Cl}\empty)$, so $\emptyset$ is nowhere dense.
+
+  Now let $A \subset B$ and assume $B \in I$, thus there is a family $\{ B_n \: | \: n < \omega \}$ such that
+  each $B_n \subset \mathbb{R}$ is nowhere dense in $\mathbb{R}$ and $B = \cup_{n < \omega} B_n$.
+  Thus
+  \begin{center} 
+  $A \subset \bigcup \limits_{n < \omega} B_n \leftrightarrow A \cap \bigcup \limits_{n < \omega} B_n = \bigcup \limits_{n < \omega} A \cap B_n$
+  \end{center}
+
+  Note that each $A \cap B_n$ is nowhere dense for each $n < \omega$. Thus $A \in I$.
+
+  Let $\{ A_n \: | \: n < \omega \}$ be a collection of elements of $I$. For each $k < \omega$
+  $A_k$ is the countable union of some nowhere dense sets, that is
+  \begin{center}
+    $A_k = \bigcup \limits_{i < \omega} {A_i}_{k}$
+  \end{center}
+  where each ${A_i}_k$ is countable.
+  Consider the family $\{ {A_i}_k \: | \: i, k < \omega \}$. Such a family is obviously countable, so
+  $\cup_{i, k} {A_i}_k$ is meagre and thus belongs to $I$.
+\end{proof}
 
 
 \bibliographystyle{alpha}
