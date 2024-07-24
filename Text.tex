@@ -886,6 +886,101 @@ Both parts are derived from the previous exercise by the obvious instantiation.
   One can approximate any element $c \in C$ by the converging sequence of endpoints, thus $C$ is perfect.
 \end{proof}
 
+\begin{exercise}
+  Let $P \subset \mathbb{R}$ be a perfect set and let $(a, b)$ be an open interval such that 
+  $(a, b) \cap P \neq \emptyset$, then $|P \cap (a, b)| = \mathfrak{c}$.
+\end{exercise}
+
+\begin{proof}
+  Take $x \in (a, b) \cap P$ and take $\epsilon > 0$ such that $(x - \epsilon, x + \epsilon) \subset (a, b)$,
+  but $P$ is perfect, so there is $y \in P$ such that $y \in (x - \epsilon, x + \epsilon)$, 
+  so $y \in P \cap (a, b)$.
+\end{proof}
+
+\begin{exercise}~\label{uncountable:diff}
+  Let $P_1, P_2 \subset \mathbb{R}$ be perfect sets such that $P_1 \not\subset P_2$, then $|P_1 - P_2| = \mathfrak{c}$.
+\end{exercise}
+\begin{proof}
+$- P_2$ is open, so $- P_2$ can be viewed as the union of some intervals. The intersection of $P_1$ with each of them is $\mathfrak{c}$ by
+the previous exercise.
+\end{proof}
+
+Let $A \subset \mathbb{R}$ be a set of real, then $a \in \mathbb{R}$ is a \emph{condensation point} of $A$
+if every neighbourhood of $a$ contains uncountably many elements of $A$. $A^*$ is the set of all condensation points of $A$.
+
+\begin{exercise}~\label{perf:cons}
+  If $P$ is perfect, then $P^* = P$.
+\end{exercise}
+
+\begin{proof}
+   $P$, so every condensation point of $P$ belongs to $P$, so
+   $P^* \subset P$. $P$ has no isolated points, every element of $P$
+   has a sequence converging to it, so every element of $P$ is a condensation point.
+\end{proof}
+
+\begin{exercise}~\label{monotone:2}
+  If $F$ is closed and $P \subset F$ is perfect, then $P \subset F^*$.
+\end{exercise}
+
+\begin{proof}
+  The $^*$ is functorial, so $P^* \subset F^*$, so $P \subset F^*$ by Exercise~\ref{perf:cons}.
+\end{proof}
+
+\begin{exercise}
+  Let $F$ be an uncountable closed set and let $P$ be a perfect set from Theorem~\ref{cantor-bendixon}, then
+  $F^* \subset P$ and thus $F^* = P$.
+\end{exercise}
+
+\begin{proof}
+  We have $P \subset F^*$ by Exercise~\ref{monotone:2}. Take $a \in F^*$. We need $a \in P$.
+  $a$ is a condensation point, $U_a \cap F = \mathfrak{c}$ for any neighbourhood of $a$ and $F - P$ is at most
+  countable by the Cantor-Bendixon theorem,
+  so $U_a \cap P \neq \emptyset$. So $a$ is a limit point of $P$, but $P$ is closed so $a \in P$.
+\end{proof}
+
+\begin{exercise}
+  Let $F$ be an uncountable closed set, then $F = F^* \cup (F - F^*)$ is the unique partition of
+  $F$ into a perfect set and an at most countable set.
+\end{exercise}
+
+\begin{proof}~\label{monotone:2}
+  By Cantor-Bendixon theorem, $F^*$ is countable and $(F - F^*)$ is at most countable.
+  Let $P \subset F$ be a perfect set, then $P \subset F^*$. If $P$ and $F^*$ are different, then
+  by Exercise~\ref{uncountable:diff}, $|P - F^*| = \mathfrak{c}$, which is contradiction, so $P = F^*$, and thus
+  such a partition is unique.
+\end{proof}
+
+\begin{exercise}
+  $\mathbb{Q}$ is not the intersection of a countable collection of open sets.
+\end{exercise}
+
+\begin{proof}
+  Let 
+  \begin{center}
+  $\mathbb{Q} = \bigcap \limits_{n < \omega} O_n$
+  \end{center}
+  where each $O_n \subset \mathbb{R}$ is open. Each $O_n$ is also dense in $\mathbb{R}$ since $\mathbb{Q} \subset O_n$
+  for each $n < \omega$.
+
+  Assume we have some numeration $q : \omega \to \mathbb{Q}$ of rationals. Construct the following sequence of intervals:
+  \begin{enumerate}
+    \item $I_0$ is a closed subinterval of $O_0$ such that $q_0 \notin I_0$.
+    \item $I_{n + 1}$ is a closed subinterval of $I_n \cap D_n$ such that $q_{n + 1} \notin I_{n + 1}$.
+  \end{enumerate}
+
+  Then $\cap_{n < \omega} I_n \subset \cap_{n < \omega} D_n$, but $\cap_{n < \omega} D_n = \emptyset$ and
+  $\cap_{n < \omega} D_n \cap \mathbb{Q} = \emptyset$.
+\end{proof}
+
+\begin{exercise}
+  Let $f$ be a continuous function and let $B$ be a Borel set, then $f^{-1}(B)$ is Borel.
+\end{exercise}
+
+\begin{proof}
+  Follows from the definition of a continuous function.
+\end{proof}
+
+
 \section{The Axiom of Choice}
 
 Recall that the axiom of choice (AC) says that if we have a family of sets $S$ such that $\emptyset \notin S$, then
