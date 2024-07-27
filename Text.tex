@@ -3261,6 +3261,110 @@ The \emph{diagonal intersection} of $X_{\alpha}$ for $\alpha < \kappa$ is define
   $\Delta_{\alpha < \kappa} X_{\alpha} = \{ \xi < \kappa \: | \: \xi \in \bigcap \limits_{\alpha < \xi} X_{\alpha} \}$.
 \end{center}
 
+Note that $\Delta_{\alpha < \kappa} X_{\alpha} = \Delta_{\alpha < \kappa} Y_{\alpha}$
+where $Y_{\alpha} = \{ \xi \in X_{\alpha} \: | \: \xi > \alpha \}$. Also note that
+$\Delta_{\alpha} X_{\alpha} = \cap_{\alpha} (X_{\alpha} \cup \{ \xi \: |\: \xi \leq \alpha \})$.
+
+\begin{lemma}~\label{diag:lemma}
+  The diagonal intersection of a $\kappa$-sequence of clubs is a club.
+\end{lemma}
+
+\begin{proof}
+  Let $\langle C_{\alpha} \: : \: \alpha < \kappa \rangle$ be a sequence of clubs.
+  We can replace each $C_{\alpha}$ with $\cap_{\xi < \alpha} C_{\xi}$, the diagonal intersection
+  remains the same. By the previous theorem we can assume that, for $\alpha < \kappa$
+  \begin{center}
+    $C_0 \supset C_1 \supset C_2 \supset \ldots \supset C_{\alpha} \supset \dots$.
+  \end{center}
+
+  Let $C = \Delta_{\alpha < \kappa} C_{\alpha}$. Let us show $C$ is closed.
+  Let $\alpha$ be a limit point of $C$. We need $\alpha \in C$ or $\alpha \in C_{\xi}$ for each $\xi < \alpha$.
+  Let $X = \{ \nu \: | \: \xi < \nu < \alpha \}$. Every $\nu \in X$ is in $C_{\xi}$ by the previous theorem.
+  Thus $X \subset C_{\xi}$ and $\alpha = \sup X \in C_{\xi}$, so $\alpha \in C$.
+
+  Let us show that $C$ is unbounded. Let $\alpha < \kappa$. Construct a sequence 
+  $\langle \beta_n \: : \: n < \omega \rangle$ the following way. Let $\beta_0 > \alpha$
+  such that $\beta_0 \in C_0$ and for each $n$, let $\beta_{n + 1} > \beta_n$
+  such that $\beta_{n + 1} \in C_{\beta_n}$. Let us that that $\beta = \lim_{n} \beta_n$ is in $C$.
+  If $\xi < \beta$, let us show that $\beta \in C_{\xi}$. Since $\xi < \beta$, there is $n < \omega$
+  such that $\xi < \beta_n$. Each $\beta_k$ for $k > n$ belongs to $C_{\beta_n}$, so $\beta \in C_{\beta_n}$.
+  Thus $\beta \in C_{\xi}$ and thus $\beta \in C$.
+\end{proof}
+
+\begin{col}
+  The closed unbounded filter on $\kappa$ is closed under diagonal intersections.
+\end{col}
+
+The dual notion of a closed unbounded filter is the ideal of nonstationary sets, the \emph{nonstationary ideal} $I_{NS}$.
+$I_{NS}$ is $\kappa$-complete and is closed under diagonal unions:
+\begin{center}
+  $\sum \limits_{\alpha < \kappa} X_{\alpha} = \{ \xi < \kappa \: : \: \xi \in \bigcup \limits_{\alpha < \xi} X_{\alpha} \}$
+\end{center}
+
+The quotient algebra $B = P(\kappa)/_{I_{NS}}$ is a $\kappa$-complete where infinitary operations are induced
+by infinitary intersection and union (up to $\kappa$, of course). By Lemma~\ref{diag:lemma}, $B$ is also $\kappa^+$-complete.
+Indeed, let $\{ X_{\alpha} \: | \: \alpha < \kappa \}$ be a collection of subsets of $\kappa$, then the equivalence
+classes of $\Delta_{\alpha} X_{\alpha}$ and $\Sigma_{\alpha} X_{\alpha}$ are the greatest lower bound and the 
+least upper bound of the equivalence classes $[X_{\alpha}]$ in $B$. Also note that if $\langle X_{\alpha} \: : 
+\: \alpha < \kappa \rangle$ and $\langle Y_{\alpha} \: : \: \alpha < \kappa \rangle$ are two enumerations of the same collection,
+then $\Delta_{\alpha} X_{\alpha}$ and $\Delta_{\alpha} Y_{\alpha}$ differ only by a nonstationary set.
+
+\begin{definition}
+  An ordinal function $f$ on a set $S$ is \emph{regressive} if $f(\alpha) < \alpha$ for all non-zero $\alpha \in S$.
+\end{definition}
+
+\begin{theorem}[\bf Fodor]~\label{fodor}
+
+  Let $f$ be a regressive function on a stationary set $S \subset \kappa$, then there is a stationary set
+  $T \subset S$ and some $\gamma < \kappa$ such that $f(\alpha) = \gamma$ for all $\alpha \in T$.
+\end{theorem}
+
+\begin{proof}
+  Assume that for each $\gamma < \kappa$ the set $\{ \alpha \in S \: | \: f(\alpha) = \gamma \}$
+  is nonstationary and choose a closed unbounded set $C_{\gamma}$ such that $f(\alpha \neq \gamma)$
+  for each $\alpha \in S \cap C_{\gamma}$. Let $C = \Delta_{\gamma < \kappa} C_{\gamma}$.
+  The set $S \cap C$ is stationary and if $\alpha \in S \cap C$, so we have $f(\alpha \neq \gamma)$
+  for $\gamma < \alpha$, or $f(\alpha) \geq \alpha$, but $f$ is regressive. Contradiction.
+\end{proof}
+
+Let $\kappa$ be a regular uncountable cardinal and let $\lambda < \kappa$ be regular, let
+\begin{center}
+  $E^{\kappa}_{\lambda} = \{ \alpha < \kappa \: | \: \operatorname{cf} \alpha = \lambda \}$
+\end{center}
+One can check that $E^{\kappa}_{\lambda}$ is a stationary subset of $\kappa$.
+
+Note that the closed unbounded filter on $\kappa$ is not an ultrafilter. 
+This is because there is a stationary subset of $\kappa$ with a stationary complement. If $\kappa > \omega_1$,
+this is clear since $E_{\omega}^{\kappa}$ and $E_{\omega_1}^{\kappa}$ are disjoint. If $\kappa = \omega_1$, then
+the decomposition of $\omega_1$ into disjoint stationary sets requires the Axiom of Choice.
+
+\begin{lemma}
+  Every stationary subset of $E_{\omega}^{\kappa}$ is the union of $\kappa$ stationary sets.
+\end{lemma}
+
+\begin{proof}
+  Let $W = \{ \alpha < \kappa \: | \: \operatorname{cf} \alpha = \omega \}$ be stationary. Take $\alpha \in W$ and
+  choose an increasing sequence $\langle a^{\alpha}_n \: : \: n < \omega \rangle$ such that 
+  $\lim_n a^{\alpha}_n = \alpha$. Let us first show that there is $n < \omega$ such that for all $\eta < \kappa$ the set
+  \begin{center}
+    $\{ \alpha \in W \: | \: a^{\alpha}_n \geq \eta \}$
+  \end{center}
+  is stationary. Otherwise there is $\eta_n$ and a club $C_n$ such that $a^{\alpha}_n < \eta_n$
+  for each $\alpha \in C_n \cap W$ for every $n < \omega$. 
+  If we let $\eta$ be the supremum of the $\eta_n$ and $C$ the intersection of $C_n$'s,
+  we have $a_n^{\alpha} < \eta$ for all $n$ and all $\alpha \in C \cap W$. Contradiction.
+  Now let $n$ be such that $\{ \alpha \in W \: | \: a^{\alpha}_n \geq \eta \}$ is stationary 
+  for every $\eta < \kappa$. Define the following function $f$ on $W$
+  \begin{center}
+    $f(\alpha) = a^{\alpha}_n$
+  \end{center}
+  $f$ is regressive, so by Theorem~\ref{fodor}, there is a stationary set $S_{\eta} \subset \{ \alpha \in W \: | \: a^{\alpha}_n \geq \eta \}$
+  and $\gamma_{\eta} \geq \eta$ such that $f(\alpha) = \gamma_{\eta}$ on $S_{\eta}$.
+  If $\gamma_{\eta} \neg \gamma_{\eta'}$, then $S_{\eta} \cap S_{\eta'} = \emptyset$. But $\kappa$ is regular, thus
+  \begin{center}
+    $\kappa = |\{ S_{\eta} \: | \: \eta < \kappa\}| = |\{ \gamma_{\eta} \: | \: \eta < \kappa \}|$.
+  \end{center}
+\end{proof}
 
 \bibliographystyle{alpha}
 \bibliography{Text}
