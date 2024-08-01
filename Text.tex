@@ -3592,8 +3592,70 @@ Lemma~\ref{silver:lemma} follows from
   and let $F = \{ f_h \: | \: h \in \aleph_{\omega_1}^{\omega_1}\}$. If $h \neq g$, then $f_h$ and $f_g$ are almost disjoint.
   Moreover, 
   \begin{center}
+    $F \subset \prod \limits_{\alpha < \omega_1} \aleph_{\alpha}^{\omega_1}$.
+  \end{center}
+  and
+  \begin{center}
+    $|\aleph_{\omega_1}^{\omega_1}| = \aleph_{\omega_1+1}$.
   \end{center}
 \end{proof}
+
+\begin{lemma}
+  Assume $\aleph_{\alpha}^{\aleph_1} < \aleph_{\omega_1}$ for all $\alpha < \omega_1$. Let $F$ be an almost disjoint
+  family of functions
+  \begin{center}
+    $F \subset \prod \limits_{\alpha < \omega_1} A_{\alpha}$
+  \end{center}
+  such that the set
+  \begin{center}
+    $\{ \alpha < \omega_1 \: | \: |A_{\alpha}| \leq \aleph_{\alpha}\}$
+  \end{center}
+  is stationary. Then $|F| \leq \aleph_{\omega_1}$.
+\end{lemma}
+
+\begin{proof}
+  We may assume that each $A_{\alpha}$ is a set of ordinals and $A_{\alpha} \subset \omega_{\alpha}$
+  for all $\alpha$ in some stationary subset of $\aleph_1$. Let
+  \begin{center}
+    $S_0 = \{ \alpha < \omega_1 \: | \: \text{$\alpha$ is a limit ordinal and $A_{\alpha} \subset \omega_{\alpha}$}\}$.
+  \end{center}
+If $f \in F$, then $f(\alpha) < \omega_{\alpha}$ for each $\alpha \in S_0$. Given $f \in F$,
+one can find for each $\alpha > 0$ in $S_0$ some $\beta < \alpha$ such that $f(\alpha) < \omega_{\beta}$. Let us
+call this $\beta = g(\alpha)$. $g$ is regressive on $S$, so, by Fodor's Theorem, there is a stationary $S \subset S_0$
+such that $g$ is constant on $S_0$. $f$ is bounded on $S$ by some $\omega_{\gamma} < \omega_{\omega_1}$.
+
+Let us assign $f$ to a pair $(S, f \upharpoonright S)$ where $S \subset S_0$ is a stationary set
+and $f \upharpoonright S$ is a bounded function. For any $S$ if $f \upharpoonright S = g \upharpoonright S$, then $f = g$
+since two distinct functions in $F$ are almost disjoint. So the map $f \mapsto (S, f \upharpoonright S)$ is one-to-one.
+
+For a given $S$, the number of bounded functions on $S$ is at most
+\begin{center}
+  $\sum \limits_{\gamma < \omega_1} \aleph_{\gamma}^{|S|} = \sup \limits_{\gamma < \omega_1} \aleph^{\aleph_1}_{\gamma} = \aleph_{\omega_1}$.
+\end{center}
+
+We have $|2^{\omega_1}| = 2^{\aleph_1} < \aleph_{\omega_1}$, so the number of pairs $(S, f \upharpoonright S)$
+is at most $\aleph_{\omega_1}$. Thus $|F| \leq \aleph_{\omega_1}$.
+\end{proof}
+
+\begin{proof}[Proof of \ref{silver:lemma:2}]
+  Let $U$ be an ultrafilter on $\omega_1$ that extends the closed unbounded filter. Every $S \in U$ stationary.
+
+  Let us assume that each $A_{\alpha}$ is a subset of $\omega_{\alpha + 1}$. Take $f, g \in F$, let
+  \begin{center}
+    $f < g \leftrightarrow \{ \alpha < \omega_1 \: | \: f(\alpha) < g(\alpha) \} \in U$.
+  \end{center}
+  Since $U$ is a filter, the relation $<$ is transitive. As far as $U$ is an ultrafilter, 
+  $\{ \alpha \: | \: f(\alpha) = g(\alpha)\} \notin U$ for distinct $f, g \in F$, and the relation $<$ is also a linear
+  ordering of $F$. Take $f \in F$, let
+  \begin{center}
+    $F_f = \{ g \in F \: | \: \exists T (\text{$T$ is stationary} \land \forall \alpha \in T \:\: g(\alpha) < f(\alpha))\}$
+  \end{center}
+
+  By the previous lemma, $|F_f| \leq \aleph_{\omega_1}$. If $g < f$, then $g \in F_f$ and thus 
+  $|\{ g \in F \: | \: g < f \}| \leq \aleph_{\omega_1}$. So $|F| \leq \aleph_{\omega_1 + 1}$.
+\end{proof}
+
+\subsection{A Hierarchy of Stationary Sets}
 
 \bibliographystyle{alpha}
 \bibliography{Text}
