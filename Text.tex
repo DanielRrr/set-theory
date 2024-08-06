@@ -3657,6 +3657,73 @@ is at most $\aleph_{\omega_1}$. Thus $|F| \leq \aleph_{\omega_1}$.
 
 \subsection{A Hierarchy of Stationary Sets}
 
+If $\alpha$ is a limit ordinal of uncountable cofinality, we can also consider its closed unbounded subsets.
+Since $\operatorname{cf} \alpha > \omega$, the closed unbounded sets generate a filter on $\alpha$.
+The closed unbounded filter is $\operatorname{cf}\alpha$-complete. A set $S \subset \alpha$ is stationary if and
+only if for some normal function $f : \operatorname{cf} \alpha \to \alpha$, $f^{-1}(S)$ is stationary subset of $\alpha$.
+
+Let $\kappa$ be a regular uncountable cardinal, let us consider the \emph{Mahlo operation} on stationary sets:
+\begin{definition}
+  If $S \subset \kappa$ is stationary, the \emph{trace} of $S$ is the set
+  \begin{center}
+    $\operatorname{Tr}(S) = \{ \alpha < \kappa \: | \: \operatorname{cf} \alpha > \omega \land \text{$S \cap \alpha$ is stationary} \}$.
+  \end{center}
+\end{definition}
+
+The Mahlo operation is invariant under equivalence $\mod I_{NS}$ and can be considered as an operation
+on the Boolean algebra $P(\kappa) / I_{NS}$. 
+
+We shall use the phrase \emph{for almost all $\alpha \in S$} for the cases when the set of all contrary $\alpha \in S$
+is non-stationary.
+
+\begin{definition}
+  Let $S < T$ be stationary subsets of $\kappa$, then
+  \begin{center}
+    $S < T$ iff $S \cap \alpha$ is stationary for almost all $\alpha \in T$.
+  \end{center}
+\end{definition}
+
+For example, if $\lambda < \mu$ are regular, then $E^{\kappa}_{\lambda} < E^{\kappa}_{\mu}$.
+We also have the following properties:
+\begin{lemma}
+  $ $
+
+  \begin{enumerate}
+    \item $A < \operatorname{Tr}(A)$,
+    \item $A < B \land B < C \to A < C$,
+    \item if $A < B$, $A \simeq A' \mod I_{NS}$, $B \simeq B' \mod I_{NS}$, then $A' < B'$.
+  \end{enumerate}
+\end{lemma}
+
+\begin{theorem}[Jech]
+  The relation $<$ is well-founded.
+\end{theorem}
+
+\begin{proof}
+  Assume there exist stationary sets such that $A_0 > A_1 > A_2 > \dots$. Therefore there exist closed
+  unbounded sets $C_n$ such that $A_n \cap C_n \subset \operatorname{Tr}(A_{n + 1})$ for $n < \omega$.
+  For each $n < \omega$, let
+  \begin{center}
+    $B_n = A_n \cap C_n \cap \operatorname{Lim}(C_{n + 1}) \cap \operatorname{Lim}(\operatorname{Lim}(C_{n + 1})) \cap \dots$
+  \end{center}
+  where $\operatorname{Lim}(C)$ is the set of all limit points of $C$.
+
+  Each $B_n$ is stationary and $B_n \subset \operatorname{Tr}(B_{n + 1})$. Let $\alpha_n = \min B_n$.
+  Since $B_{n + 1} \cap \alpha_n$ is stationary, so we have $\alpha_{n + 1} < \alpha_n$ and therefore
+  we have a decreasing sequence $\alpha_0 > \alpha_1 > \dots$.
+\end{proof}
+
+The rank of a stationary set $A \subset \kappa$ in the relation $<$ is called the \emph{order} of a set $A$.
+The height of $<$ is the order of the cardinal $\kappa$:
+
+\begin{center}
+  $o(A) = \sup \{ o(X) +1 \: | \: X < A\}$,
+
+  $o(\kappa) = \sup \{ o(A) + 1 \: | \: \text{$A \subset \kappa$ is stationary}\}$.
+\end{center}
+
+We also define $o(\aleph_0) = 0$, $o(\alpha) = \operatorname{cf} \alpha$ for every limit $\alpha$.
+
 \bibliographystyle{alpha}
 \bibliography{Text}
 
