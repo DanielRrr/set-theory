@@ -3281,7 +3281,7 @@ Recall that a function $f : \kappa \to \kappa$ is \emph{normal} if $f$ is contin
 The range of a normal function is a closed unbounded set. Conversely, if $C$ is closed unbounded
 then there exists a unique normal function that enumerates $C$.
 
-\begin{theorem}
+\begin{theorem}~\label{closed:unbonded:theorem}
 The intersection of fewer than $\kappa$ closed unbounded subsets of $\kappa$ is closed unbounded.
 \end{theorem}
 
@@ -3749,6 +3749,45 @@ If $|A| = |B|$, then $P_{\kappa}(A)$ and $P_{\kappa}(B)$ are isomorphic, so it i
 $P_{\kappa}(\lambda)$. If $|A| = \kappa$, then the set $\kappa \subset P_{\kappa}(\kappa)$
 is closed unbounded and the closed unbounded filter on $\kappa$ is the restriction to $\kappa$
 of the closed unbounded filter on $P_{\kappa}(\kappa)$.
+
+\begin{theorem}[Jech]
+  The closed unbounded filter on $P_{\kappa}(A)$ is $\kappa$-complete.
+\end{theorem}
+
+\begin{proof}
+The proof of this theorem generalises Theorem~\ref{closed:unbonded:theorem}.
+\end{proof}
+
+Fodor's Theorem can be also generalised to $P_{\kappa}(A)$ with regressive functions replaced by choice functions.
+The \emph{diagonal intersection} of subsets of $P_{\kappa}(A)$ is defined as follows
+\begin{center}
+  $\Delta_{a \in A} X_a = \{ x \in P_{\kappa}(A) \: | \: x \in \bigcup \limits_{a \in x} X_a \}$.
+\end{center}
+
+\begin{lemma} If $\{ C_a \: | \: a \in A \}$ is a collection of closed unbounded subsets of $P_{\kappa}(A)$
+  then its diagonal intersection is closed unbounded.
+\end{lemma}
+
+\begin{proof}
+Let $C = \Delta_{a \in A} C_a$. First of all $C$ is closed. Let
+\begin{center}
+  $x_0 \subset x_1 \subset \ldots \subset x_{\xi} \subset \cdots$ for $\xi < \alpha$,
+\end{center}
+be a chain in $C$ with $\alpha < \kappa$ and let $x$ be its union.
+Let us show that $x \in C$, let $a \in x$ and let us show that $x \in C_a$. 
+There is some $\eta < \alpha$ such that $a \in x_{\xi}$ for all $\xi \geq \eta$.
+Thus $x_{\xi} \in C_a$ for all $\xi \geq \eta$, so $x \in C_a$.
+
+Let us show that $C$ is unbounded. Let $x_0 \in P_{\kappa}(A)$, let us find an $x \in C$
+such that $x \supset x_0$. By induction we find a chain
+\begin{center}
+  $x_0 \subset x_1 \subset \ldots \subset x_n \subset \cdots$
+\end{center}
+for $n < \omega$ such that $x_{n + 1} \in \cap_{a \in x_n} C_a$. But each 
+$\cap_{as \in x_n} C_a$ is closed unbounded. 
+Then let $x = \cup_{n < \omega} x_n$ and show that $x \in C_a$ for all $a \in x$. But if $a \in x$ then 
+$a \in x_k$ for some $k < \omega$, then $x_n \in C_a$ for all $n \geq k + 1$. Thus $x \in C_a$.
+\end{proof}
 
 \bibliographystyle{alpha}
 \bibliography{Text}
