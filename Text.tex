@@ -3789,6 +3789,64 @@ Then let $x = \cup_{n < \omega} x_n$ and show that $x \in C_a$ for all $a \in x$
 $a \in x_k$ for some $k < \omega$, then $x_n \in C_a$ for all $n \geq k + 1$. Thus $x \in C_a$.
 \end{proof}
 
+\begin{theorem}[Jech]
+If $f$ is a function on a stationary set $S \subset P_{\kappa}(\lambda)$ and if 
+$f(x) \in x$ for every nonempty $x \in S$, then there exist a stationary set $T \subset S$
+and $a \in A$ such that $f(x) = a$ for all $a \in T$.
+\end{theorem}
+
+\begin{proof}
+  The proof uses the above lemma and generalises Fodor's theorem.
+\end{proof}
+
+A set $D \subset P_{\kappa}(\lambda)$ is \emph{directed} if for all $x$ and $y$ in $D$, then there is $z \in D$
+such that $x \cup y \subset z$.
+
+\begin{lemma}
+  If $C$ is a closed subset of $P_{\kappa}(\lambda)$ then for every directed set $D \subset C$ with
+  $|D| < \kappa$ one has $\cup D \in C$.
+\end{lemma}
+
+\begin{proof}
+  Induction on $D$. Let $|D| = \gamma$, $D = \{ x_{\alpha} \: | \: \alpha < \gamma \}$ and 
+  assume the lemma holds for every directed set of cardinality $< \gamma$. 
+  By induction on $\alpha < \gamma$, let $D_{\alpha}$ be a smallest directed subset of $D$ such that
+  $x_{\alpha} \in D_{\alpha}$ and $D_{\alpha} \supset \bigcup \limits_{\beta < \alpha} D_{\beta}$.
+  Let $y_{\alpha} = \bigcup D_{\alpha}$, one has $y_{\gamma} \in C$ 
+  for all $\alpha < \gamma$ and $y_{\beta} \subset y_{\alpha}$ if $\beta < \alpha$.
+  It follows that $\cup D = \cup_{\alpha < \gamma} y_{\alpha} \in C$.
+\end{proof}
+
+Consider a function $f : [A]^{< \omega} \to P_{\kappa}(A)$; a set $x \in P_{\kappa}(A)$ is a 
+\emph{closure point} of $f$ if $f(e) \subset x$ whenever $e \subset x$. The set $C_f$ of all closure points
+$x \in P_{\kappa}(A)$ is a closed unbounded set. The sets $C_f$ generate the closed unbounded filter.
+
+\begin{lemma}
+  For every closed unbounded set $C$ in $P_{\kappa}(A)$ there
+  is a function $f : [A]^{< \omega} \to P_{\kappa}(A)$ such that $C_f \subset C$.
+\end{lemma}
+
+\begin{proof}
+  By induction on $|e|$ we find for each $e \in [A]^{< \omega}$ an infinite set 
+  $f(e) \in C$ such that $e \subset f(e)$ and $f(e_1) \subset f(e_2)$ whenever $e_1 \subset e_2$.
+  Let us show $C_f \subset C$. Let $x$ be a closure point of $f$. We have
+  \begin{center}
+    $x = \bigcup \{ f(e) \: | \: e \in [x]^{< \omega }\}$
+  \end{center}
+  is the union of a directed subset of $C$ (pf cardinality $< \kappa$).
+  By the above lemma we have $x \in C$.
+\end{proof}
+
+Let $A \subset B$ and $|A| \geq \kappa$. For $X \in P_{\kappa}(B)$, the 
+\emph{projection} of $X$ to $A$ is the set
+\begin{center}
+  $X \upharpoonright A = \{ x \cap A \: | \: x \in X\}$.
+\end{center}
+For $Y \in P_{\kappa}(A)$, the \emph{lifting} of $Y$ to $B$ is the set
+\begin{center}
+  $Y^B = \{ x \in P_{\kappa}(B) \: | \: x \cap A \in Y \}$.
+\end{center}
+
 \bibliographystyle{alpha}
 \bibliography{Text}
 
