@@ -3821,7 +3821,7 @@ Consider a function $f : [A]^{< \omega} \to P_{\kappa}(A)$; a set $x \in P_{\kap
 \emph{closure point} of $f$ if $f(e) \subset x$ whenever $e \subset x$. The set $C_f$ of all closure points
 $x \in P_{\kappa}(A)$ is a closed unbounded set. The sets $C_f$ generate the closed unbounded filter.
 
-\begin{lemma}
+\begin{lemma}~\label{function:p:kappa}
   For every closed unbounded set $C$ in $P_{\kappa}(A)$ there
   is a function $f : [A]^{< \omega} \to P_{\kappa}(A)$ such that $C_f \subset C$.
 \end{lemma}
@@ -3833,19 +3833,80 @@ $x \in P_{\kappa}(A)$ is a closed unbounded set. The sets $C_f$ generate the clo
   \begin{center}
     $x = \bigcup \{ f(e) \: | \: e \in [x]^{< \omega }\}$
   \end{center}
-  is the union of a directed subset of $C$ (pf cardinality $< \kappa$).
+  is the union of a directed subset of $C$ (of cardinality $< \kappa$).
   By the above lemma we have $x \in C$.
 \end{proof}
 
-Let $A \subset B$ and $|A| \geq \kappa$. For $X \in P_{\kappa}(B)$, the 
+Let $A \subset B$ and $|A| \geq \kappa$. For $X \subset P_{\kappa}(B)$, the 
 \emph{projection} of $X$ to $A$ is the set
 \begin{center}
   $X \upharpoonright A = \{ x \cap A \: | \: x \in X\}$.
 \end{center}
-For $Y \in P_{\kappa}(A)$, the \emph{lifting} of $Y$ to $B$ is the set
+For $Y \subset P_{\kappa}(A)$, the \emph{lifting} of $Y$ to $B$ is the set
 \begin{center}
   $Y^B = \{ x \in P_{\kappa}(B) \: | \: x \cap A \in Y \}$.
 \end{center}
+
+\begin{theorem}[Menas] Let $A \subset B$, then
+
+  \begin{enumerate}
+    \item If $S$ is stationary in $P_{\kappa}(B)$, then $S \upharpoonright A$ is stationary in $P_{\kappa}(A)$.
+    \item If $S$ is stationary in $P_{\kappa}(A)$, then $S^B$ is stationary in $P_{\kappa}(B)$.
+  \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+  $ $
+
+  \begin{enumerate}
+    \item It sufficies to show that if $C$ is closed unbounded in $P_{\kappa}(B)$, then
+    $C \upharpoonright A$ contains a closed unbounded set.
+
+    Let $C \subset P_{\kappa}(B)$ be closed unbounded, then by Lemma~\ref{function:p:kappa} 
+    $C \supset C_f$ for some $f : [B]^{< \omega} \to P_{\kappa}(B)$. Let $g : [A]^{< \omega} \to P_{\kappa}(A)$
+    be the following function. Take $e \in[A]^{< \omega}$, let $x$ be the smallest closure point of $f$
+    such that $x \supset e$ and put $g(e) = x \cap A$. Then $C_f \upharpoonright A = C_g$, where $C_f$ is defined 
+    in $P_{\kappa}(B)$ and $C_g$ in $P_{\kappa}(A)$, so we have $C_g \subset C \upharpoonright A$.
+    \item If $C$ is a closed unbounded set in $P_{\kappa}(A)$, then $C^B$ is closed unbounded in $P_{\kappa}(B)$.
+  \end{enumerate}
+\end{proof}
+
+When $\kappa = \omega_1$, Lemma~\ref{function:p:kappa} can be improved for $[A]^{\omega} = \{ x \subset A \: | \: |x| = \omega \}$.
+An \emph{operation} on $A$ is a function $F : [A]^{< \omega} \to A$. A set $x$ is \emph{closed under} $F$
+if $f(e) \in x$ for all $e \in [x]^{< \omega}$.
+
+\begin{theorem}[Kueker]
+
+  Let $C \subset [A]^{< \omega}$, then there exists an operation $F$ on $A$ such that $C \supset C_F$, where
+  \begin{center}
+    $C_F = \{ x \in [A]^{< \omega} \: | \: \text{$x$ is closed under $F$}\}$.
+  \end{center}
+\end{theorem}
+
+\begin{proof}
+  We may assume that $A = \lambda$ is an infinite cardinal, and let $C$ be a closed unbounded
+  subset of $[\lambda]^{\omega}$. As in the proof of Lemma~\ref{function:p:kappa} there exists
+  a function $f : [\lambda]^{< \omega} \to C$ such that $e \subset f(e)$ and
+  $f(e_1) \subset f(e_2)$ whenever $e_1 \subset e_2$. Each $f(e)$ is countable,
+  there exists functions $\{ f_k \: | \: k < \omega\}$ such that for all $e$
+  \begin{center}
+    $f(e) = \{ f_k(e) \: | \: k < \omega \}$.
+  \end{center}
+
+  Let $n \mapsto (k_n, m_n)$ be a pairing function. We define an operation $F$ on $\lambda$ as follows:
+  let $F(\{ \alpha\}) = \alpha + 1$ and if $\alpha_1 < \ldots < \alpha_n$ we let 
+  \begin{center}
+  $F(\{ \alpha_1, \ldots, \alpha_n\}) = f_{k_n} (\{ \alpha_1, \ldots, \alpha_{m_n} \})$.
+  \end{center}
+  It is enough to show that if $x \in [\lambda]^{\omega}$ is closed under $F$ then $x$ is a closure point
+  of $f$, and thus $C_F \subset C_f \subset C$.
+
+  Let $x$ be closed under $F$, let $k < \omega$ and let $e \in [x]^{< \omega}$; we want to
+  show that $f_k(e) \in x$. If $e = \{ \alpha_1, \ldots, \alpha_m \}$ with $\alpha_1 < \ldots < \alpha_m$.
+  Let $n \geq m$ be such that $k=k_n$ and $m = m_n$. Since $x$ does not have a greatest element, there are
+  $\alpha_{m + 1}, \ldots, \alpha_n \in x$ such that 
+  $f_k(\{ \alpha_1, \ldots, \alpha_m \})= F(\{ \alpha_1, \ldots, \alpha_n\}) \in x$.
+\end{proof}
 
 \bibliographystyle{alpha}
 \bibliography{Text}
