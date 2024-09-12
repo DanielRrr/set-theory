@@ -68,6 +68,8 @@
 \author{Daniel Rogozin}
 \date{ }
 
+\newcommand\cf{\operatorname{cf}}
+
 \begin{document}
 
 \maketitle
@@ -4021,6 +4023,90 @@ if all the $n$-element subsets of $H$ are in the same piece of the partition.
   Thus $F_{a_i}(x) = r$ for all $x \in [\{ a_m  \: | \: m > i\}]^n$, so $F$ is constant on $[H]^{n + 1}$.
 \end{proof}
 
+Let us introduce the \emph{arrow notation}. Let $\lambda$ and $\kappa$ be infinite cardinals, let $m$ be a cardinal
+and let $n < \omega$. The notation $\kappa \to (\lambda)^n_{m}$ (read as ``$\kappa$ arrows $\lambda$'') stands for
+the following \emph{partition property}: every partition of $[\kappa]^n$ into $m$ pieces has a homogeneous set
+of size $\lambda$. That is, every function $F : [\kappa]^n \to m$ is constant on $[H]^n$ for some $H \subset \kappa$
+such that $|H|= \lambda$. By using this notation, one can reword Ramsey's theorem the following way:
+
+\begin{center}
+  $\forall n, k < \omega \:\: \aleph_0 \to (\aleph_0)^n_k$.
+\end{center}
+One often drops the subscript $m$ when $m = 2$, so we have
+\begin{center}
+  $\kappa \to (\lambda)^n \leftrightharpoons \kappa \to (\lambda)^n_2$.
+\end{center}
+
+The relation $\kappa \to \lambda$ is true of $\kappa$ is made larger or if $\lambda$ or $m$ are made smaller.
+The relation is the case if only $\kappa \geq \lambda$ and $k > m$ and it is false for $k = m$.
+So we can always assume $2 \geq m < \kappa$ and $\lambda \leq \kappa$. 
+When $n = 1$, then the relation holds whenever either $\kappa > \lambda$ or $\kappa = \lambda$ and $\cf \kappa > m$.
+By default, we shall assume that $n \geq 2$.
+
+\begin{lemma}
+  For all $\kappa$
+  \begin{center}
+    $2^{\kappa} \not\to (\omega)^2_{\kappa}$.
+  \end{center}
+  That is, there is a partition of $2^{\kappa}$ into $\kappa$ pieces such that it does not have
+  an infinite homogeneous set.
+\end{lemma}
+
+\begin{proof}
+  One can find a partition with no homogeneous set of size $3$.
+  Let $S = 2^{\kappa}$ and let $F : [S]^2 \to \kappa$
+  defined as
+  \begin{center}
+    $F(\{ f, g\}) = \text{the least $\alpha < \kappa$ such that $f(\alpha) \neq g(\alpha)$}$.
+  \end{center}
+  If $f, g, h$ are distinct elements of $S$, then we have $F(\{ f, g\}) = F(\{ f, h\}) = F(\{ g, h\})$.
+\end{proof}
+
+The following is a rather direct generalisation of Ramsey's theorem:
+\begin{lemma}
+  For every $\kappa$,
+  \begin{center}
+    $2^{\kappa} \not\kappa (\kappa^+)^2$.
+  \end{center}
+\end{lemma}
+
+\begin{proof}
+  Let $2^{\kappa} = \lambda$ and let $\{ f_{\alpha} \: | \: \alpha < \kappa \}$
+  be an enumeration of the set $P = \{ 0, 1\}^{\kappa}$. Let $\prec$ be a linear ordering of $\lambda$ induced
+  by the lexicographic ordering of $P$:
+  \begin{center}
+    $\alpha \prec \beta \leftrightarrow f_{\alpha} \prec f_{\beta}$.
+  \end{center}
+
+  Define a partition $F : [\lambda]^2 \to \{ 0, 1 \}$ by letting $F(\{ \alpha, \beta \}) = 1$
+  when the ordering on $\{ \alpha, \beta \}$ agrees with the natural ordering and $F(\{ \alpha, \beta \}) = 0$
+  for otherwise. If $H \subset \lambda$ is a homogeneous set of order-type $\kappa^+$.
+  $\{ f_{\alpha} \: | \: \alpha \in H \}$ constitutes a decreasing (or increasing) $\kappa^+$-sequence, which contradicts
+  the below lemma.
+\end{proof}
+
+\begin{lemma}
+  The lexicographically ordered set $\{ 0, 1\}^{\kappa}$ has no increasing or decreasing $\kappa^+$-sequence.
+\end{lemma}
+
+\begin{proof} Let us consider the increasing case. The decreasing case is considered similarly.
+  Assume that $W = \{ f_{\alpha} \: | \: \alpha < \kappa^+\} \subset \{ 0, 1\}^{\kappa}$ is such that
+  $f_{\alpha} < f_{\beta}$ whenever $\alpha < \beta$. Let $\gamma \leq \kappa$ be the least $\gamma$
+  such that the set $\{ f_{\alpha} \upharpoonright \gamma \: | \: \alpha < \kappa^+ \}$ has size $\kappa^+$.
+  Let $Z \subset W$ be such that $|Z| = \kappa^+$ and $f \upharpoonright \gamma = g \upharpoonright \gamma$
+  for $f, g \in Z$. We may assume that $Z = W$.
+
+  For each $\alpha < \kappa^+$, let $\xi_{\alpha}$ such that 
+  $f_{\alpha} \upharpoonright \xi_{\alpha} = f_{\alpha + 1} \upharpoonright \xi_{\alpha}$ and 
+  $f_{\alpha}(\xi_{\alpha}) = 0$, $f_{\alpha + 1}(\xi_{\alpha}) = 1$, so clearly $\xi_{\alpha} < \gamma$.
+  Thus there exists $\xi < \gamma$ such that $\xi = \xi_{\alpha}$ for $\kappa^+$ elements $f_{\alpha}$
+  of $W$.
+  If $\xi = \xi_{\alpha} = \xi_{\beta}$ and 
+  $f_{\alpha} \upharpoonright \xi = f_{\beta} \upharpoonright \xi$,
+  then $f_{\beta} < f_{\alpha + 1}$ and $f_{\alpha} < f_{\beta + 1}$, so $f_{\alpha} = f_{\beta}$.
+  The set $\{ f_{\alpha} \upharpoonright \: | \: \alpha < \kappa^+ \}$ has size $\kappa^+$, but we have already assume that
+  $\gamma$ is minimal.
+\end{proof}
 
 \bibliographystyle{alpha}
 \bibliography{Text}
