@@ -4108,6 +4108,70 @@ The following is a rather direct generalisation of Ramsey's theorem:
   $\gamma$ is minimal.
 \end{proof}
 
+\begin{theorem}[Erd\"{o}s-Rado]
+$ $
+
+  \begin{center}
+    $\beth^+_n \to (\aleph_1)^{n + 1}_{\aleph_0}$.
+  \end{center}
+
+  In particular, $(2^{\aleph_0})^+ \to (\aleph_1)^2_{\aleph_0}$.
+\end{theorem}
+
+\begin{proof}
+  Let us first show the case $n = 1$.
+  Let $\kappa = (2^{\aleph_0})^+$ and let $F : [\kappa]^2 \to \omega$ be a partition of $[\kappa]^2$ into 
+  $\aleph_0$ pieces. Let us find a homogeneous $H \subset \kappa$ of size $\aleph_1$.
+
+  Let $a \in \kappa$, let $F_{a}$ be a function on $\kappa - \{ a \}$
+  defined by $F_a(x) = F(\{ a, x\})$.
+  Let us first show the following claim: there exists a set $A \subset \kappa$
+  such that $|A| = 2^{\aleph_0}$ such that for every comfortable $C \subset A$
+  and every $u \in \kappa - C$ there exists $v \in A - C$ such that $F_v$ agrees with $F_u$ on $C$.
+
+  To show the claim, construct an $\omega_1$-sequence
+  \begin{center}
+    $A_0 \subset A_1 \subset \ldots \subset A_{\alpha} \cdots$ for $\alpha < \omega_1$.
+  \end{center}
+  of subsets of $\kappa$, each of which is of size $2^{\aleph_0}$.
+  Let $A_0$ be arbitrary and for each limit $\alpha$ put
+  \begin{center}
+    $A_{\alpha} = \bigcup \limits_{\beta < \alpha} A_{\beta}$.
+  \end{center}
+
+  Given $A_{\alpha}$, there exists a set $A_{\alpha + 1} \supset A_{\alpha}$ of size $2^{\aleph_0}$
+  such that for each countable $C \subset A_{\alpha}$ and every $u \in \kappa - C$
+  there exists $v \in A_{\alpha + 1} - C$ such that $F_v$ agrees with $F_u$ on $C$. Thus let
+  \begin{center}
+    $A = \bigcup \limits_{\alpha < \omega_1} A_{\alpha}$
+  \end{center}
+  and $A$ clearly satisfies the required property. Choose $a \in \kappa - A$ and
+  construct a sequence $\langle x_{\alpha} \: : \: \alpha < \omega_1 \rangle$ in $A$ the following way.
+  Let $x_0 \in A$ be arbitrary. Given $\{ x_{\beta} \: | \: \beta < \alpha \} = C$,
+  let $x_{\alpha}$ be some $v \in A - C$ such that $F_v$ agrees with $F_{\alpha}$ on $C$.
+  Let $X = \{ x_{\alpha} \: | \: \alpha < \omega_1 \}$.
+
+  Now let us consider the function $G : X \to \omega$ defined by $G(x) = F_{\alpha}(x)$.
+  Clearly $\alpha < \beta$ implies 
+  $F(\{ x_{\alpha}, x_{\beta}\}) = F_{x_{\beta}}(x_{\alpha}) = F_a(x_{\alpha}) = G_{x_{\alpha}}$.
+  The range of $G$ is countable, so there is $H \subset X$ of size $\aleph_1$ such that $G$
+  is constant on $H$. Thus $F$ is constant on $[H]^2$.
+
+  So we have proved the theorem for $n = 1$. Let us assume that 
+  $\beta^+_{n - 1} \to (\aleph_1)^n_{\aleph_0}$ and let $F : [\kappa]^{n + 1} \to \omega$
+  where $\kappa = \beth^+_n$. For each $a \in \kappa$, let $F_{a} : [\kappa - \{ a\}]^n \to \omega$
+  be defined by such that for every $C \subset A$ of size $|C| \leq \beth_{n - 1}$
+  and every $u \in \kappa - C$ there exists $v \in A - C$ such that $F_v$ agrees with $F_u$ on $[C]^n$.
+
+  We choose $a \in \kappa - A$ and construct a set $X = \{ x_{\alpha} \: | \: \alpha < \beth^+_{n - 1}\} \subset A$
+  such that for each $\alpha$, $F_{x_{\alpha}}$ agrees with $F_{a}$ on $[\{ x_{\beta} \: | \: \beta < \alpha \}]^n$.
+
+  Consider $G : [X]^n \to \omega$ where $G(x) = F_a(x)$. If $\alpha_1 < \ldots < \alpha_{n + 1}$,
+  then $F(\{x_{{\alpha}_1}, \ldots, F_{{\alpha_{n + 1}}}\}) = G(\{x_{{\alpha}_1}, \ldots, F_{{\alpha_{n}}}\})$.
+  By the induction hypothesis, there is $H \subset X$ of size $\aleph_1$ such that $G$ is constant on $[H]^n$.
+  Thus $F$ is constant on $[H]^{n + 1}$.
+\end{proof}
+
 \bibliographystyle{alpha}
 \bibliography{Text}
 
